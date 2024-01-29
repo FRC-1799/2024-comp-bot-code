@@ -9,13 +9,12 @@ import frc.robot.subsystems.DriveBase;
 public class controlInitalizer {
 
     final ToggleCompressor toggleCompressor;
-
-  
     final RunIntake runIntake;
     final RunIntake runIntakeBackward;
     final ToggleBucket toggleBucket;
     final IntakeToggle toggleIntake;
     final DriveBase m_driveSubsystem;
+    final Joystick m_joystick;
 
     public controlInitalizer(
         ToggleCompressor toggleCompressor,
@@ -117,5 +116,13 @@ public class controlInitalizer {
         
     }
 
+    public final void initalizeJoystickControl(Joystick m_joystick){
+        m_driveSubsystem.setDefaultCommand(
+            new ArcadeDrive(
+                m_joystick,
+                  () -> (-exampleJoystick.getY()),
+                  () -> (-exampleJoystick.getX())
+            ));
+    }
 
 }

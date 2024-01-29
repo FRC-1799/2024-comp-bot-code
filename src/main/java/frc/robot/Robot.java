@@ -11,6 +11,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
   final RunIntake runIntakeBackward = new RunIntake(m_intakeSubsystem, Constants.intake.revSpeed);
   final ToggleBucket toggleBucket = new ToggleBucket(m_bucketSubsystem);
   final IntakeToggle toggleIntake = new IntakeToggle(m_intakeSubsystem);
+  
 
  
   SendableChooser<Command> autoChooser = new SendableChooser<Command>();
@@ -52,6 +54,8 @@ public class Robot extends TimedRobot {
 
   final CommandXboxController controller1 = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController controller2 = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
+  final Joystick m_joystick = new Joystick(Constants.FLIGHTJOYSTICK);
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -77,6 +81,7 @@ public class Robot extends TimedRobot {
     controlChooser.setDefaultOption("Two Controler", 0);
     controlChooser.addOption("One controler", 1);
     controlChooser.addOption("jace control", 2);
+    controlChooser.addOption("Joystick control", 3);
 
     SmartDashboard.putData("control type", controlChooser);
 
@@ -108,6 +113,10 @@ public class Robot extends TimedRobot {
 
     else if (controlChooser.getSelected()==2){
       controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2);
+    }
+
+    else if (controlChooser.getSelected()==3){
+      controlInitalizer.initalizeJoystickControl(m_joystick);
     }
      
 
