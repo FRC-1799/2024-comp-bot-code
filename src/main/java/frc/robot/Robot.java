@@ -35,7 +35,8 @@ public class Robot extends TimedRobot {
   final Gyro gyro = new Gyro();
 
 
-
+  final RangeFinder m_RangeFinder = new RangeFinder();
+  final int stoppingDistance = Constants.rangeFinder.distanceFromWall;
  
   SendableChooser<Command> autoChooser = new SendableChooser<Command>();
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();

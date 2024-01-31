@@ -102,6 +102,11 @@ public final class Constants {
         }
     }
 
+    public static final class rangeFinder{
+        public static final int distanceFromWall = 30;
+        public static final int speedOfSound = 343;
+    }
+
     public static final int MOVEMENT_JOYSTICK = 0;
     public static final int MANIPULATOR_JOYSTICK = 1;
     public static final int OneJoystick=2;
