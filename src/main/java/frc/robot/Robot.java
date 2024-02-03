@@ -7,7 +7,10 @@
 
 package frc.robot;
 
+import org.littletonrobotics.urcl.URCL;
+
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -222,10 +225,30 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = autoChooser.getSelected();
+    
+    SysIdRoutine sysIdRoutine = new SysIdRoutine(
+      new SysIdRoutine.Config(),
+      new SysIdRoutine.Mechanism(
+      (voltage) -> subsystem.runVolts(voltage.in(Volts)),
+     null, // No log consumer, since data is recorded by URCL
+      subsystem
+  )
+);
 
+// The methods below return Command objects
+sysIdRoutine.quasistatic(SysIdRoutine.Direction.kForward);
+sysIdRoutine.quasistatic(SysIdRoutine.Direction.kReverse);
+sysIdRoutine.dynamic(SysIdRoutine.Direction.kForward);
+sysIdRoutine.dynamic(SysIdRoutine.Direction.kReverse);
+
+// AdvantageKit users should log the test state using the following configuration
+new SysIdRoutine.Config(
+  null, null, null,
+  (state) -> Logger.recordOutput("SysIdTestState", state.toString())
+)
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+      sysIdRoutine.quasistatic(SysIdRoutine.Direction.kReverse).schedule();
     }
     
     
@@ -256,6 +279,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+      DataLogManager.start();
+      URCL.start();
   }
 
   @Override
