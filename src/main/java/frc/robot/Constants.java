@@ -71,26 +71,6 @@ public final class Constants {
         }
     }
 
-    public static final class robotStats{
-        public static final double trackWidth=0.3937;
-        public static final double wheelRadius=0.0762;
-        public static final double gearRatio=8.5;
-    }
-
-    public static final class intake{
-        public static final class solenoid {
-            public static final int fwdPort = 4;
-            public static final int revPort = 5;
-
-        }
-        public static final int motor1 = 6;
-        public static final int motor2 = 11;
-        
-        //reversed
-        public static final double fwdSpeed = .5;
-        public static final double revSpeed = -.2;
-    }
-
     public static final class auto{
         public static final double fwdSpeed = 0.5;
         public static final double revSpeed = -0.4;
@@ -157,6 +137,31 @@ public final class Constants {
             "sliderAB",
             "rightSilverDial",
             "leftSilverDial"};
+    }
+
+    public static final class intake {
+        public static final int counterCap = 25; // this number is untested, it should run for 0.5 seconds after note is taken
+
+        public static final class intakeSpeeds {
+            public static final int intakeSpeed = 1;
+            public static final int outakeSpeed = -1;
+            public static final int intakeRaiseSpeed = 1;
+        }
+
+        public static final class intakeNote {
+            public static final int intakeMotorPortLeft = 1;
+            public static final int intakeMotorPortRight = 2;
+        }
+        
+        public static final class raisingIntake {
+            public static final int raisingMotorPort = 3;
+
+            public static final int topLimitSwitchPort = 4;
+            public static final int bottomLimitSwitchPort = 5;
+            public static final int beamBreakPort = 6;
+        }
+
+        
     }
 
     public static final int MOVEMENT_JOYSTICK = 0;
