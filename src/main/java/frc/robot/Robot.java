@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import frc.robot.Constants.drive;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -49,6 +51,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     
     // starts the auto selector
+    DataLogManager.start();
+    URCL.start();
+
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
   
     SmartDashboard.putData("autos: ", autoChooser);
@@ -84,21 +89,6 @@ public class Robot extends TimedRobot {
 
 
 
-
-      manipulatorController.leftBumper() //intake
-      .whileTrue(runIntake);
-
-      manipulatorController.rightBumper()//outake
-      .whileTrue(runIntakeBackward);
-
-      manipulatorController.x()
-      .onTrue(toggleBucket);
-
-      manipulatorController.a()
-      .onTrue(toggleIntake);
-
-      manipulatorController.y()
-      .onTrue(toggleCompressor);
     }
 
 
@@ -121,24 +111,6 @@ public class Robot extends TimedRobot {
               () -> ( movementController.getLeftY()),
               () -> (-movementController.getLeftX())
         ));
-
-
-
-
-        movementController.leftBumper() //intake
-      .whileTrue(runIntake);
-
-      movementController.rightBumper()//outake
-      .whileTrue(runIntakeBackward);
-
-      movementController.x()
-      .onTrue(toggleBucket);
-
-      movementController.a()
-      .onTrue(toggleIntake);
-
-      movementController.y()
-      .onTrue(toggleCompressor);
     }
 
   }
@@ -185,23 +157,22 @@ public class Robot extends TimedRobot {
     SysIdRoutine sysIdRoutine = new SysIdRoutine(
       new SysIdRoutine.Config(),
       new SysIdRoutine.Mechanism(
-      (voltage) -> subsystem.runVolts(voltage.in(Volts)),
+      (voltage) -> m_driveSubsystem. (voltage.in(Volts)),
      null, // No log consumer, since data is recorded by URCL
-      subsystem
-  )
-);
+      m_driveSubsystem
+    )
+    );
 
-// The methods below return Command objects
-sysIdRoutine.quasistatic(SysIdRoutine.Direction.kForward);
-sysIdRoutine.quasistatic(SysIdRoutine.Direction.kReverse);
-sysIdRoutine.dynamic(SysIdRoutine.Direction.kForward);
-sysIdRoutine.dynamic(SysIdRoutine.Direction.kReverse);
+    // The methods below return Command objects
+    sysIdRoutine.quasistatic(SysIdRoutine.Direction.kForward);
+    sysIdRoutine.quasistatic(SysIdRoutine.Direction.kReverse);
+    sysIdRoutine.dynamic(SysIdRoutine.Direction.kForward);
+    sysIdRoutine.dynamic(SysIdRoutine.Direction.kReverse);
 
-// AdvantageKit users should log the test state using the following configuration
-new SysIdRoutine.Config(
-  null, null, null,
-  (state) -> Logger.recordOutput("SysIdTestState", state.toString())
-)
+    // AdvantageKit users should log the test state using the following configuration
+    // new SysIdRoutine.Config(
+    //   null, null, null,
+    //   (state) -> Logger.recordOutput("SysIdTestState", state.toString()));
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       sysIdRoutine.quasistatic(SysIdRoutine.Direction.kReverse).schedule();
@@ -235,8 +206,7 @@ new SysIdRoutine.Config(
    */
   @Override
   public void teleopPeriodic() {
-      DataLogManager.start();
-      URCL.start();
+
   }
 
   @Override
