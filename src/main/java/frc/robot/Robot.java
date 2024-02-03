@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.autoRoutines.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -31,30 +30,15 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
-
-  final Pneumatics pneumatics = new Pneumatics();
   final DriveBase m_driveSubsystem = new DriveBase();
-  final Intake m_intakeSubsystem = new Intake(pneumatics);
-  final Bucket m_bucketSubsystem = new Bucket(pneumatics);
-  final ToggleCompressor toggleCompressor = new ToggleCompressor(pneumatics);
   final Gyro gyro = new Gyro();
-
-  final RunIntake runIntake = new RunIntake(m_intakeSubsystem, Constants.intake.fwdSpeed);
-  final RunIntake runIntakeBackward = new RunIntake(m_intakeSubsystem, Constants.intake.revSpeed);
-  final ToggleBucket toggleBucket = new ToggleBucket(m_bucketSubsystem);
-  final IntakeToggle toggleIntake = new IntakeToggle(m_intakeSubsystem);
-
  
   SendableChooser<Command> autoChooser = new SendableChooser<Command>();
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
 
-
-
-
-
   final CommandXboxController movementController = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController manipulatorController = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -63,18 +47,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    configureControls();
     
     // starts the auto selector
-    autoChooser.setDefaultOption("Auto Balance Mobile", new AutonomousBalanceMobile(m_driveSubsystem, m_intakeSubsystem, m_bucketSubsystem, gyro));
-    autoChooser.addOption("Auto Grab", new AutonomousGrab(m_driveSubsystem, m_intakeSubsystem, m_bucketSubsystem));
-    autoChooser.addOption("Auto No Mobile", new AutonomousBalanceNoMobile(m_driveSubsystem, m_intakeSubsystem, m_bucketSubsystem, gyro));
-    autoChooser.addOption("doNothing", new InstantCommand());
-    autoChooser.addOption("Dump Do Nothing", new AutonomousDumpDoNothing(m_driveSubsystem, m_intakeSubsystem, m_bucketSubsystem));
+    autoChooser.setDefaultOption("doNothing", new InstantCommand());
   
     SmartDashboard.putData("autos: ", autoChooser);
-
-
 
     //starts the control type chooser
     controlChooser.setDefaultOption("Two Controler", 0);
@@ -83,14 +60,11 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putData("control type", controlChooser);
 
-
     //start cameraServer
     CameraServer.startAutomaticCapture();
     CameraServer.startAutomaticCapture();
-    
 
     configureControls();
-
 
     gyro.log();
 
@@ -138,24 +112,6 @@ public class Robot extends TimedRobot {
               () -> ((-movementController.getLeftTriggerAxis() + movementController.getRightTriggerAxis())),
               () -> (-movementController.getLeftX() )
         ));
-
-
-
-
-        movementController.leftBumper() //intake
-      .whileTrue(runIntake);
-
-      movementController.rightBumper()//outake
-      .whileTrue(runIntakeBackward);
-
-      movementController.x()
-      .onTrue(toggleBucket);
-
-      movementController.a()
-      .onTrue(toggleIntake);
-
-      movementController.y()
-      .onTrue(toggleCompressor);
     }
 
     else if (controlChooser.getSelected()==3){
