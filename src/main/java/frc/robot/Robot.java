@@ -157,7 +157,7 @@ public class Robot extends TimedRobot {
     SysIdRoutine sysIdRoutine = new SysIdRoutine(
       new SysIdRoutine.Config(),
       new SysIdRoutine.Mechanism(
-      (voltage) -> m_driveSubsystem. (voltage.in(Volts)),
+      (voltage) -> m_driveSubsystem::VoltageDrive,
      null, // No log consumer, since data is recorded by URCL
       m_driveSubsystem
     )
