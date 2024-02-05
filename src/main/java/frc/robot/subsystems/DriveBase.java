@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.units.Measure;
+import edu.wpi.first.units.Voltage;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -78,4 +80,12 @@ public final RelativeEncoder encoderL;
     m_RobotDrive.arcadeDrive(ySpeed, rotateValue);
 
   }
+
+  
+  public void tankDriveVolts(Measure<Voltage> Volts) {
+    leftMotors.setVoltage(Volts.magnitude());
+    rightMotors.setVoltage(Volts.magnitude());
+    m_RobotDrive.feed();
+  }
+
 }

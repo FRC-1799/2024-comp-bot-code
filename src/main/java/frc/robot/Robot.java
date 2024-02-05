@@ -157,9 +157,9 @@ public class Robot extends TimedRobot {
     SysIdRoutine sysIdRoutine = new SysIdRoutine(
       new SysIdRoutine.Config(),
       new SysIdRoutine.Mechanism(
-      (voltage) -> m_driveSubsystem::VoltageDrive,
+      m_driveSubsystem::tankDriveVolts,
      null, // No log consumer, since data is recorded by URCL
-      m_driveSubsystem
+     m_driveSubsystem
     )
     );
 
@@ -175,7 +175,7 @@ public class Robot extends TimedRobot {
     //   (state) -> Logger.recordOutput("SysIdTestState", state.toString()));
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
-      sysIdRoutine.quasistatic(SysIdRoutine.Direction.kReverse).schedule();
+      (sysIdRoutine.dynamic(SysIdRoutine.Direction.kForward)).schedule();
     }
     
     
