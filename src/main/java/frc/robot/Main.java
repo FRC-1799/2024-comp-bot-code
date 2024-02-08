@@ -5,6 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.RobotBase;
+import java.util.Random;
+
+
 
 /**
  * Do NOT add any static variables to this class, or any initialization at all. Unless you know what
@@ -20,6 +23,13 @@ public final class Main {
    * <p>If you change your main robot class, change the parameter type.
    */
   public static void main(String... args) {
-    RobotBase.startRobot(Robot::new);
+    Random rand = new Random(); 
+    int upperbound = 10;
+    int int_random = rand.nextInt(upperbound); 
+
+    if (int_random <= 9){
+      RobotBase.startRobot(Robot::new);
+    }
+    
   }
 }

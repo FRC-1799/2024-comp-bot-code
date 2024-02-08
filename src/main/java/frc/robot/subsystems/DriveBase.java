@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+
 public class DriveBase extends SubsystemBase {
 
 // left side
@@ -22,15 +23,8 @@ public final RelativeEncoder encoderR;
 public final RelativeEncoder encoderL;
 
 
-  final MotorControllerGroup leftMotors = new MotorControllerGroup(
-    sparkMaxLeftFront
-      );
-
-  final MotorControllerGroup rightMotors = new MotorControllerGroup(
-    
-    
-    sparkMaxRightFront
-      );
+  final MotorControllerGroup leftMotors = new MotorControllerGroup(sparkMaxLeftFront, sparkMaxLeftBack);
+  final MotorControllerGroup rightMotors = new MotorControllerGroup(sparkMaxRightFront, sparkMaxRightBack);
 
   final DifferentialDrive m_RobotDrive;
 
