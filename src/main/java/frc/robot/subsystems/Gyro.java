@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Gyro extends SubsystemBase{
   
-  // private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  //private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   private final AHRS gyro = new AHRS();
 
   public Gyro(){
     
     addChild("Gyro", gyro);
-    //gyro.calibrate();
+    gyro.reset();
   }
 
   public void reset() {
