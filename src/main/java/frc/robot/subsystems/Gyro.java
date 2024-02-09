@@ -18,6 +18,11 @@ public class Gyro extends SubsystemBase{
     //gyro.calibrate();
   }
 
+  @Overide
+  public void periodic(){
+    SmartDashboard.putNumber("acceleration", gyro.GetVelocityX());
+  }
+
   public void reset() {
     gyro.reset();
   }
