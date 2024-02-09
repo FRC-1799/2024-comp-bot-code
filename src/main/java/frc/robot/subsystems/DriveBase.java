@@ -22,7 +22,6 @@ public final CANSparkMax sparkMaxrr = new CANSparkMax(Constants.drive.rr, MotorT
 public final CANSparkMax sparkMaxrf = new CANSparkMax(Constants.drive.rf, MotorType.kBrushless);
 public final RelativeEncoder encoderR;
 public final RelativeEncoder encoderL;
-public double VelocityValueUpdate=0;
 
 
   final MotorControllerGroup leftMotors = new MotorControllerGroup(
@@ -83,6 +82,7 @@ public double VelocityValueUpdate=0;
 
   
   public void tankDriveVolts(Measure<Voltage> Volts) {
+    SmartDashboard.putNumber("voltage", Volds);
     leftMotors.setVoltage(Volts.magnitude());
     rightMotors.setVoltage(Volts.magnitude());
     m_RobotDrive.feed();
@@ -91,9 +91,7 @@ public double VelocityValueUpdate=0;
   @Override
   public void periodic(){
     SmartDashboard.putNumber("encoder", getEncoder());
-    SmartDashboard.putNumber("Velocity", this.getEncoder()-VelocityValueUpdate);
-    VelocityValueUpdate=this.getEncoder();
-
+    
   }
 
 }

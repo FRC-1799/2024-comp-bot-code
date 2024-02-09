@@ -20,7 +20,8 @@ public class Gyro extends SubsystemBase{
 
   @Override
   public void periodic(){
-    SmartDashboard.putNumber("acceleration", gyro.getVelocityX());
+    SmartDashboard.putNumber("acceleration", gyro.getRawAccelX()/9.8);
+    SmartDashboard.putNumber("velocity", gyro.getVelocityX());
   }
 
   public void reset() {
