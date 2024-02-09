@@ -82,15 +82,19 @@ public final RelativeEncoder encoderL;
 
   
   public void tankDriveVolts(Measure<Voltage> Volts) {
-    SmartDashboard.putNumber("voltage", Volds);
+    SmartDashboard.putNumber("voltage", Volts.magnitude());
     leftMotors.setVoltage(Volts.magnitude());
     rightMotors.setVoltage(Volts.magnitude());
     m_RobotDrive.feed();
   }
 
+  public double encoderToMeters(double encoderValue){
+    return (encoderValue/Constants.gearRatio)*(Constants.gearRatio*Math.PI*2);
+  }
+
   @Override
   public void periodic(){
-    SmartDashboard.putNumber("encoder", getEncoder());
+    SmartDashboard.putNumber("encoder", encoderToMeters(getEncoder()));
     
   }
 
