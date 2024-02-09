@@ -22,6 +22,7 @@ public final CANSparkMax sparkMaxrr = new CANSparkMax(Constants.drive.rr, MotorT
 public final CANSparkMax sparkMaxrf = new CANSparkMax(Constants.drive.rf, MotorType.kBrushless);
 public final RelativeEncoder encoderR;
 public final RelativeEncoder encoderL;
+public double VelocityValueUpdate=0;
 
 
   final MotorControllerGroup leftMotors = new MotorControllerGroup(
@@ -59,8 +60,7 @@ public final RelativeEncoder encoderL;
     resetEncoder();
     
 
-    addChild("Drive", m_RobotDrive);
-    SmartDashboard.putNumber("encoder", (getEncoder()));
+    
 
   }
   //returns average of encoder values. 
@@ -76,7 +76,7 @@ public final RelativeEncoder encoderL;
 
 
   public void drive(final double ySpeed, final double rotateValue) {
-    SmartDashboard.putNumber("encoder", getEncoder());
+   ;
     m_RobotDrive.arcadeDrive(ySpeed, rotateValue);
 
   }
@@ -86,6 +86,14 @@ public final RelativeEncoder encoderL;
     leftMotors.setVoltage(Volts.magnitude());
     rightMotors.setVoltage(Volts.magnitude());
     m_RobotDrive.feed();
+  }
+
+  @Overide
+  public void periodic(){
+    SmartDashboard.putNumber("encoder", getEncoder())
+    SmartDashboard.putNumber("Velocity", this.getEncoder()-VelocityValueUpdate);
+    VelocityValueUpdate=this.getEncoder();
+
   }
 
 }
