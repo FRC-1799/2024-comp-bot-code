@@ -18,9 +18,9 @@ public class Gyro extends SubsystemBase{
     gyro.reset();
   }
 
-  @Overide
+  @Override
   public void periodic(){
-    SmartDashboard.putNumber("acceleration", gyro.GetVelocityX());
+    SmartDashboard.putNumber("acceleration", gyro.getVelocityX());
   }
 
   public void reset() {

@@ -88,9 +88,9 @@ public double VelocityValueUpdate=0;
     m_RobotDrive.feed();
   }
 
-  @Overide
+  @Override
   public void periodic(){
-    SmartDashboard.putNumber("encoder", getEncoder())
+    SmartDashboard.putNumber("encoder", getEncoder());
     SmartDashboard.putNumber("Velocity", this.getEncoder()-VelocityValueUpdate);
     VelocityValueUpdate=this.getEncoder();
 
