@@ -39,6 +39,9 @@ public final class Constants {
         public static final double driveSpeedRatio= 1;
 
         public static double rampspeed= .25;
+
+
+
     }
 
     public static final class elevator {
@@ -53,10 +56,8 @@ public final class Constants {
     }
   
     // Changing Solenoid Values idk 50/50 this'll work
-    public static final class bucket {
-        public static final class solenoid {
-            public static final int fwdPort = 6;
-            public static final int revPort = 7;
+    public static final class pneumatics{
+        public static final int hubID = 0;
 
         }
     }
