@@ -45,13 +45,13 @@ public final RelativeEncoder encoderL;
     sparkMaxRightFront.setOpenLoopRampRate(Constants.drive.rampspeed);
 
 
-    //leftMotors.setInverted(true);
+    leftMotors.setInverted(true);
     //m_RobotDrive = new DifferentialDrive(rightMotors, leftMotors)
     m_RobotDrive = new DifferentialDrive(leftMotors, rightMotors);
     resetEncoder();
     
 
-    addChild("Drive", m_RobotDrive);
+    //addChild("Drive", m_RobotDrive);
     SmartDashboard.putNumber("encoder", (getEncoder()));
 
   }
