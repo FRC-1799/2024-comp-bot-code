@@ -57,10 +57,12 @@ public final class Constants {
   
     // Changing Solenoid Values idk 50/50 this'll work
     public static final class pneumatics{
-        public static final int hubID = 0;
+        public static final int hubID = 8;
+        public static final int reversePort = 0;
+        public static final int forwardPort = 1;
 
         }
-    }
+    
 
     public static final class climbingArm{
         public static final int motorPort = 0;
