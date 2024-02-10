@@ -54,7 +54,7 @@ public class controlInitalizer {
             ));
 
         gearBox.setDefaultCommand( 
-            new shiftGears(
+            new ShiftGears(
                 gearBox,
                  () -> (movementController.getRightTriggerAxis() > 0.1)
                  ));

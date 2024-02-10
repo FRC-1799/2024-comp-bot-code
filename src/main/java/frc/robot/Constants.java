@@ -44,10 +44,7 @@ public final class Constants {
 
     }
 
-    public static final class pneumatics {
-        public static final int hubID = 0;
-        public static final int solenoidPort = 0;
-    }
+
 
     public static final class elevator {
         public static final int motorPortLeft = 0;
