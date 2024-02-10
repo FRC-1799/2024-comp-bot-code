@@ -30,7 +30,6 @@ public class controlInitalizer {
               () -> ((-movementController.getLeftTriggerAxis() + movementController.getRightTriggerAxis())),
               () -> (-movementController.getLeftX() )
         ));
-        movementController.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
 
 
     }
@@ -50,9 +49,12 @@ public class controlInitalizer {
         m_driveSubsystem.setDefaultCommand(
             new ArcadeDrive(
                   m_driveSubsystem,
-                  () -> ( movementController.getLeftY()),
-                  () -> (-movementController.getLeftX())
+                  () -> (-movementController.getLeftY()),
+                  () -> (-movementController.getRightX())
             ));
+
+        gearBox.setDefaultCommand( new shiftGears(gearBox, movementController.leftTrigger()));
+
         
     }
 
