@@ -89,12 +89,12 @@ public final RelativeEncoder encoderL;
   }
 
   public double encoderToMeters(double encoderValue){
-    return (encoderValue/Constants.gearRatio)*(Constants.gearRatio*Math.PI*2);
+    return (encoderValue/Constants.gearRatio)*Constants.wheelMath.PI*2;
   }
 
   @Override
   public void periodic(){
-    SmartDashboard.putNumber("encoder", encoderToMeters(getEncoder()));
+    SmartDashboard.putNumber("position", encoderToMeters(getEncoder()));
     
   }
 
