@@ -12,8 +12,9 @@ import frc.robot.Constants;
 public class ShiftableGearbox extends SubsystemBase{
   
   PneumaticHub hub = new PneumaticHub(Constants.pneumatics.hubID);
+  int count = 0;
 
-private final DoubleSolenoid shifter = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.pneumatics.forwardPort, Constants.pneumatics.reversePort);
+  private final DoubleSolenoid shifter = new DoubleSolenoid(PneumaticsModuleType.REVPH, Constants.pneumatics.forwardPort, Constants.pneumatics.reversePort);
   Compressor compressor = hub.makeCompressor();
 
   public ShiftableGearbox(){
@@ -31,12 +32,20 @@ private final DoubleSolenoid shifter = new DoubleSolenoid(PneumaticsModuleType.R
   }
 
   public void shift(boolean isOn){
+    //shifter.set(DoubleSolenoid.Value.kReverse);
+    count++;
+    SmartDashboard.putNumber("count", count);
     if (isOn){
-      shifter.set(DoubleSolenoid.Value.kForward);  
-    }
+       shifter.set(DoubleSolenoid.Value.kForward);  
+     }
     else{
-      shifter.set(DoubleSolenoid.Value.kReverse);
-    }
+       shifter.set(DoubleSolenoid.Value.kReverse);
+     }
+     SmartDashboard.putBoolean("triggerIsOn", isOn);
+
+    SmartDashboard.putBoolean("forwardValue", shifter.isFwdSolenoidDisabled());
+    SmartDashboard.putBoolean("BackwardValue", shifter.isRevSolenoidDisabled());
+
   }
 
 

@@ -12,7 +12,6 @@ public class shiftGears extends RunCommand {
     public shiftGears(ShiftableGearbox gearBox, BooleanSupplier isHigh){
         super(
         ()->{
-            SmartDashboard.putBoolean("triggerIsOn", isHigh.getAsBoolean());
 
             gearBox.shift(isHigh.getAsBoolean());
         },
