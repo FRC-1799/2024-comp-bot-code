@@ -60,8 +60,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("control type", controlChooser);
 
     //start cameraServer
-    CameraServer.startAutomaticCapture();
-    CameraServer.startAutomaticCapture();
 
     configureControls();
 
