@@ -53,7 +53,11 @@ public class controlInitalizer {
                   () -> (-movementController.getRightX())
             ));
 
-        gearBox.setDefaultCommand( new shiftGears(gearBox, movementController.leftTrigger()));
+        gearBox.setDefaultCommand( 
+            new shiftGears(
+                gearBox,
+                 () -> (movementController.getRightTriggerAxis() > 0.1)
+                 ));
 
         
     }
