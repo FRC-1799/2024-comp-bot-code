@@ -96,5 +96,7 @@ public final class Constants {
     public static final int OneJoystick=2;
     public static double driveSpeedRatio;
     public static final double gearRatio = 8.5;
+    public static final double wheelRadius=0.0762;
+
 
 }

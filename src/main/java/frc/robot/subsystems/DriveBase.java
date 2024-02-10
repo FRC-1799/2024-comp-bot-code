@@ -24,6 +24,7 @@ public final RelativeEncoder encoderR;
 public final RelativeEncoder encoderL;
 
 
+
   final MotorControllerGroup leftMotors = new MotorControllerGroup(
     sparkMaxlf
       );
@@ -43,6 +44,8 @@ public final RelativeEncoder encoderL;
     encoderR=sparkMaxrf.getEncoder();    
     encoderL= sparkMaxlf.getEncoder();
 
+    encoderR.setVelocityConversionFactor(8.5);
+    encoderR.setVelocityConversionFactor(8.5);
 
 
     sparkMaxlr.setOpenLoopRampRate(Constants.drive.rampspeed);
@@ -75,7 +78,7 @@ public final RelativeEncoder encoderL;
 
 
   public void drive(final double ySpeed, final double rotateValue) {
-   ;
+   
     m_RobotDrive.arcadeDrive(ySpeed, rotateValue);
 
   }
@@ -89,7 +92,7 @@ public final RelativeEncoder encoderL;
   }
 
   public double encoderToMeters(double encoderValue){
-    return (encoderValue/Constants.gearRatio)*Constants.wheelMath.PI*2;
+    return encoderValue/Constants.gearRatio*Constants.wheelRadius*Math.PI*2;
   }
 
   @Override
