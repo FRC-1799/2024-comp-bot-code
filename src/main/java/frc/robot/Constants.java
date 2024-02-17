@@ -27,7 +27,7 @@ public final class Constants {
 
         // left
         public static final int leftFrontMotor = 5;
-        public static final int leftBackMotor = 6;
+        public static final int leftBackMotor = 9;
 
         // right
         public static final int rightFrontMotor = 1;
@@ -108,8 +108,8 @@ public final class Constants {
         }
 
         public static final class intakeNote {
-            public static final int intakeMotorPortLeft = 0;
-            public static final int intakeMotorPortRight = 0;
+            public static final int intakeMotorPortLeft = 3;
+            public static final int intakeMotorPortRight = 4;
         }
         
         public static final class raisingIntake {

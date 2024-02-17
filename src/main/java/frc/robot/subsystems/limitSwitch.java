@@ -13,7 +13,7 @@ public class limitSwitch extends SubsystemBase{
     BooleanSupplier valSupplier = () -> this.getVal();
 
     public limitSwitch(int index){
-        limit = new DigitalInput(index);
+        //limit = new DigitalInput(index);
     }
 
     public Boolean getVal(){

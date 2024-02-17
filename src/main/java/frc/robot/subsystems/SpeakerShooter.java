@@ -8,20 +8,20 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class SpeakerShooter extends SubsystemBase {
-	public final CANSparkMax speakerMotorTop = new CANSparkMax(Constants.speakerShooter.ports.topMotorPort, MotorType.kBrushless);
-	public final CANSparkMax speakerMotorBottom = new CANSparkMax(Constants.speakerShooter.ports.bottomMotorPort, MotorType.kBrushless);
-	public final MotorControllerGroup intakeMotors = new MotorControllerGroup(speakerMotorTop, speakerMotorBottom);
+	//public final CANSparkMax speakerMotorTop = new CANSparkMax(Constants.speakerShooter.ports.topMotorPort, MotorType.kBrushless);
+	//public final CANSparkMax speakerMotorBottom = new CANSparkMax(Constants.speakerShooter.ports.bottomMotorPort, MotorType.kBrushless);
+	//public final MotorControllerGroup intakeMotors = new MotorControllerGroup(speakerMotorTop, speakerMotorBottom);
 
 	public final limitSwitch beamBreak = new limitSwitch(Constants.speakerShooter.ports.beamBreakPort);
 	
 
 
 	public void revving(){
-    	speakerMotorTop.set(Constants.speakerShooter.motorSpeeds.topMotorSpeed);
+    	//speakerMotorTop.set(Constants.speakerShooter.motorSpeeds.topMotorSpeed);
   	}
 
 	public void runIndex(){
-        speakerMotorBottom.set(Constants.speakerShooter.motorSpeeds.bottomMotorSpeed);
+        //speakerMotorBottom.set(Constants.speakerShooter.motorSpeeds.bottomMotorSpeed);
   	}
 
     public boolean checkNote(){
@@ -29,8 +29,8 @@ public class SpeakerShooter extends SubsystemBase {
     }
 
     public void SafetyFunction(double indexSpeed, double flySpeed){
-        speakerMotorBottom.set(indexSpeed);
-        speakerMotorTop.set(flySpeed);
+        //speakerMotorBottom.set(indexSpeed);
+        //speakerMotorTop.set(flySpeed);
     }
 
 }
