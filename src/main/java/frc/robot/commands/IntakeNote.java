@@ -19,7 +19,7 @@ public class IntakeNote extends Command {
   @Override
   public void execute() {
     m_intake.intake();
-      
+
   }
 
   @Override

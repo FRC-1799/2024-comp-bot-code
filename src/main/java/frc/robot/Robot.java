@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   final DriveBase m_driveSubsystem = new DriveBase();
   final ShiftableGearbox gearBox = new ShiftableGearbox();
+  final Intake intake = new Intake();
 
   final Gyro gyro = new Gyro();
 
@@ -41,7 +42,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
 
 
-  controlInitalizer controlInitalizer = new controlInitalizer(m_driveSubsystem, gearBox);
+  controlInitalizer controlInitalizer = new controlInitalizer(m_driveSubsystem, gearBox, intake);
 
   final CommandXboxController controller1 = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController controller2 = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);

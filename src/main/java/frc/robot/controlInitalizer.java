@@ -2,8 +2,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants.intake.intakeNote;
 import frc.robot.commands.*;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.ShiftableGearbox;
 
 //object to deal with all ofthe dirty work of multiple control schemes
@@ -13,11 +15,13 @@ public class controlInitalizer {
     final DriveBase m_driveSubsystem;
 
     final ShiftableGearbox gearBox;
+    final Intake intake;
 
     public controlInitalizer(
-        DriveBase m_driveSubsystem, ShiftableGearbox gearBox){
+        DriveBase m_driveSubsystem, ShiftableGearbox gearBox, Intake intake){
         this.gearBox=gearBox;
         this.m_driveSubsystem=m_driveSubsystem;
+        this.intake=intake;
 
 
     }
@@ -53,6 +57,9 @@ public class controlInitalizer {
                   () -> (-movementController.getRightX())
             ));
         movementController.rightTrigger().onTrue(new shiftGears(false, gearBox)).onFalse(new shiftGears(true, gearBox));
+
+        movementController.rightBumper().onTrue(new IntakeNote(intake));
+        movementController.leftBumper().onTrue(new OutakeNote(intake));
 
         
     }
