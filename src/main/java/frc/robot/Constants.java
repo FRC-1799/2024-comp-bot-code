@@ -102,9 +102,9 @@ public final class Constants {
         public static final int counterCap = 25; // this number is untested, it should run for 0.5 seconds after note is taken
 
         public static final class intakeSpeeds {
-            public static final int intakeSpeed = 1;
-            public static final int outakeSpeed = -1;
-            public static final int intakeRaiseSpeed = 1;
+            public static final double intakeSpeed = 0.5;
+            public static final double outakeSpeed = -0.5;
+            public static final double intakeRaiseSpeed = 1;
         }
 
         public static final class intakeNote {

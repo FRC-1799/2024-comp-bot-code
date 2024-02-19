@@ -58,8 +58,8 @@ public class controlInitalizer {
             ));
         movementController.rightTrigger().onTrue(new shiftGears(false, gearBox)).onFalse(new shiftGears(true, gearBox));
 
-        movementController.rightBumper().onTrue(new IntakeNote(intake));
-        movementController.leftBumper().onTrue(new OutakeNote(intake));
+        movementController.rightBumper().whileTrue(new IntakeNote(intake));
+        movementController.leftBumper().whileTrue(new OutakeNote(intake));
 
         
     }
