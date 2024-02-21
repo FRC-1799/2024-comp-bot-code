@@ -44,7 +44,7 @@ public final RelativeEncoder encoderL;
     encoderR=sparkMaxrf.getEncoder();    
     encoderL= sparkMaxlf.getEncoder();
 
-    encoderR.setVelocityConversionFactor(8.5);
+    encoderR.setPositionConversionFactor(8.5);
     encoderR.setVelocityConversionFactor(8.5);
 
 
