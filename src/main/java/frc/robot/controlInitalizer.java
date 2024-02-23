@@ -6,6 +6,7 @@ import frc.robot.commands.*;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Midi;
 import frc.robot.subsystems.ShiftableGearbox;
+import frc.robot.subsystems.WristIntake;
 
 //object to deal with all ofthe dirty work of multiple control schemes
 public class controlInitalizer {
@@ -14,12 +15,13 @@ public class controlInitalizer {
     final DriveBase m_driveSubsystem;
 
     final ShiftableGearbox gearBox;
-    final raisIntake
+    final WristIntake wrist;
 
     public controlInitalizer(
-        DriveBase m_driveSubsystem, ShiftableGearbox gearBox){
+        DriveBase m_driveSubsystem, ShiftableGearbox gearBox, WristIntake wrist){
         this.gearBox=gearBox;
         this.m_driveSubsystem=m_driveSubsystem;
+        this.wrist = wrist;
 
 
     }
@@ -64,7 +66,8 @@ public class controlInitalizer {
                   () -> (-movementController.getRightX())
             ));
 
-        coPoilot.getButtonFromDict("button1").buttonTrigger.onFalse();
+        coPoilot.getButtonFromDict("button1").buttonTrigger.onFalse(null);
+        movementController.leftTrigger().onTrue(new WristMove(wrist, 100));
         
     }
     public final void initalizeMIDIControl(Midi midi){
@@ -77,6 +80,7 @@ public class controlInitalizer {
 
        midi.getButtonFromDict("button1").buttonTrigger.whileTrue(runIntake);
     }
+
 
 
 }
