@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.*;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.Midi;
 import frc.robot.subsystems.ShiftableGearbox;
 
 //object to deal with all ofthe dirty work of multiple control schemes
@@ -53,7 +54,16 @@ public class controlInitalizer {
                   () -> (-movementController.getRightX())
             ));
         movementController.rightTrigger().onTrue(new shiftGears(false, gearBox)).onFalse(new shiftGears(true, gearBox));
+    }
+    public final void initalizeJaceControllWithMidi(CommandXboxController movementController, Midi coPoilot){
+        m_driveSubsystem.setDefaultCommand(
+            new ArcadeDrive(
+                  m_driveSubsystem,
+                  () -> ( movementController.getLeftY()),
+                  () -> (-movementController.getRightX())
+            ));
 
+        coPoilot.get
         
     }
 

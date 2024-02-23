@@ -96,10 +96,10 @@ public class Robot extends TimedRobot {
 
 
     else if (controlChooser.getSelected()==2){
-      controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2)
+      controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2);
      
+   }
   }
-    
   
 
   /**
