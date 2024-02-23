@@ -14,6 +14,7 @@ public class controlInitalizer {
     final DriveBase m_driveSubsystem;
 
     final ShiftableGearbox gearBox;
+    final raisIntake
 
     public controlInitalizer(
         DriveBase m_driveSubsystem, ShiftableGearbox gearBox){
@@ -63,7 +64,7 @@ public class controlInitalizer {
                   () -> (-movementController.getRightX())
             ));
 
-        coPoilot.get
+        coPoilot.getButtonFromDict("button1").buttonTrigger.onFalse();
         
     }
     public final void initalizeMIDIControl(Midi midi){
