@@ -66,6 +66,16 @@ public class controlInitalizer {
         coPoilot.get
         
     }
+    public final void initalizeMIDIControl(Midi midi){
+        m_driveSubsystem.setDefaultCommand(
+            new ArcadeDrive(
+                  m_driveSubsystem,
+                  () -> (midi.getButtonFromDict("slider1").getValAsOneToNegOne()),
+                  () -> (midi.getButtonFromDict("sliderAB").getValAsOneToNegOne())
+                  ));
+
+       midi.getButtonFromDict("button1").buttonTrigger.whileTrue(runIntake);
+    }
 
 
 }

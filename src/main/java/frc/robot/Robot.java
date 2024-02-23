@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
   final DriveBase m_driveSubsystem = new DriveBase();
 
   final Gyro gyro = new Gyro();
+  final Midi midi = new Midi();
 
 
 
@@ -57,6 +58,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+
+    configureControls();
+    midi.InitButtons();
     
     // starts the auto selector
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
@@ -68,6 +72,8 @@ public class Robot extends TimedRobot {
     controlChooser.setDefaultOption("Two Controler", 0);
     controlChooser.addOption("One controler", 1);
     controlChooser.addOption("jace control", 2);
+    controlChooser.addOption("MidiControl alone", 3);
+
 
     SmartDashboard.putData("control type", controlChooser);
 
@@ -97,9 +103,14 @@ public class Robot extends TimedRobot {
 
     else if (controlChooser.getSelected()==2){
       controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2);
+    }
+    else if (controlChooser.getSelected()==3){
+      controlInitalizer.initalizeMIDIControl(midi);
+    }
+
      
    }
-  }
+  
   
 
   /**
@@ -116,6 +127,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    midi.readInputs();
 
   }
 
