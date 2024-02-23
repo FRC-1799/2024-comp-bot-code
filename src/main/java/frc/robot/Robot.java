@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.autoRoutines.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -27,8 +28,10 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  final DriveBase m_driveSubsystem = new DriveBase();
+ 
   final ShiftableGearbox gearBox = new ShiftableGearbox();
+
+  final DriveBase m_driveSubsystem = new DriveBase();
 
   final Gyro gyro = new Gyro();
 
@@ -57,6 +60,7 @@ public class Robot extends TimedRobot {
     
     // starts the auto selector
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
+
   
     SmartDashboard.putData("autos: ", autoChooser);
 
@@ -85,17 +89,15 @@ public class Robot extends TimedRobot {
       controlInitalizer.configureTwoControllersBasic(controller1, controller2);
     }
 
+
     else if (controlChooser.getSelected()==1){
       controlInitalizer.configureOneControllersBasic(controller1);
     }
 
 
     else if (controlChooser.getSelected()==2){
-      controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2);
-
-    }
+      controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2)
      
-
   }
     
   

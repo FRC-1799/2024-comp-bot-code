@@ -44,6 +44,7 @@ public final class Constants {
 
     }
 
+ 
     public static final class elevator {
         public static final int motorPortLeft = 0;
         public static final int motorPortRight = 1;
@@ -97,6 +98,47 @@ public final class Constants {
 
             public static final double positionTolerance = 1;
         }
+    }
+    public static final class Midi{
+        public static final String[] buttonNames={
+            "bankButton1", 
+            "bankButton2", 
+            "slider1", 
+            "slider2", 
+            "slider3", 
+            "slider4", 
+            "slider5", 
+            "slider6", 
+            "slider7", 
+            "slider8", 
+            "slider9", 
+            "dail1", 
+            "dail2", 
+            "dail3", 
+            "dail4", 
+            "dail5", 
+            "dail6", 
+            "dail7", 
+            "dail8", 
+            "dail9", 
+            "button1",
+            "button2",
+            "button3",
+            "button4",
+            "button5",
+            "button6",
+            "button7",
+            "button8",
+            "button9",
+            "record",
+            "pause",
+            "play",
+            "rewindLeft",
+            "rewindRight",
+            "replay",
+            "sliderAB",
+            "rightSilverDial",
+            "leftSilverDial"};
     }
 
     public static final class intake {
