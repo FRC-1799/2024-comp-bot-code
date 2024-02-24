@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import frc.robot.semiAutoManager;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+
+import com.fasterxml.jackson.annotation.ObjectIdGenerators.None;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxRelativeEncoder;
@@ -130,8 +132,8 @@ public class DriveBase extends SubsystemBase {
     }
   }
 
-  public void periodic(){
-    
+  public void periodic() {
+    field.setRobotPose(semiAutoManager.getCoords());
     SmartDashboard.putData("Field", field);
   }
 
