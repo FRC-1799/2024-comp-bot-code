@@ -15,9 +15,11 @@ public class ShiftableGearbox extends SubsystemBase{
 
   DoubleSolenoid shifter = hub.makeDoubleSolenoid(Constants.pneumatics.solenoidPortA, Constants.pneumatics.solenoidPortB);
   Compressor compressor = hub.makeCompressor();
+  DriveBase drive;
 
-  public ShiftableGearbox(){
+  public ShiftableGearbox(DriveBase drive){
     compressor.enableDigital();
+    this.drive=drive;
   }
 
 
@@ -30,9 +32,11 @@ public class ShiftableGearbox extends SubsystemBase{
     }
   }
 
-  public void shift(boolean isOn){
-    if (isOn){
+  public void shift(boolean isLow){
+    drive.shift(isLow);
+    if (isLow){
       shifter.set(DoubleSolenoid.Value.kForward);
+      
     } 
     else{
         shifter.set(DoubleSolenoid.Value.kReverse);

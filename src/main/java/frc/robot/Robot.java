@@ -28,7 +28,7 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   final DriveBase m_driveSubsystem = new DriveBase();
-  final ShiftableGearbox gearBox = new ShiftableGearbox();
+  final ShiftableGearbox gearBox = new ShiftableGearbox(m_driveSubsystem);
   final WristIntake wrist = new WristIntake();
 
   final Gyro gyro = new Gyro();
@@ -77,6 +77,7 @@ public class Robot extends TimedRobot {
     gyro.log();
 
     m_driveSubsystem.resetEncoder();
+    gearBox.shift(true);
   }
 
   private void configureControls() {

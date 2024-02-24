@@ -4,6 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean
@@ -32,11 +36,17 @@ public final class Constants {
         // right
         public static final int rightFrontMotor = 1;
         public static final int rightBackMotor = 2;
-        public static final double gearRatio=8.5;
+        public static final double gearRatioLow=6;
+        public static final double gearRatioHigh=12;
+        public static final double wheelRadius=0.1016;
         
         
         public static double rotationSpeedRatio= 0.6;
         public static final double driveSpeedRatio= 1;
+        public static final double encoderToWheelRatioInLow = wheelRadius*Math.PI*2/gearRatioLow;
+        public static final double encoderToWheelRatioInHigh = wheelRadius*Math.PI*2/gearRatioHigh;
+        public static final double encoderToMetersRatio = 0;
+        public static final DifferentialDriveKinematics kinematics = null;
 
         public static double rampspeed= .25;
 
@@ -156,6 +166,13 @@ public final class Constants {
         public static final double ki = 0;
         public static final double kd = 0.05;
     }
+
+    public static final class fieldPosits{
+        public static final Pose2d leftStart = new Pose2d(7.1, 0.0, new Rotation2d(0.0));
+        public static final Pose2d ampScore = null;
+        public static final Pose2d testPosit = new Pose2d(20.1, 0.0, new Rotation2d(0.0));
+    }
+
 
     public static final int MOVEMENT_JOYSTICK = 0;
     public static final int MANIPULATOR_JOYSTICK = 1;

@@ -1,16 +1,17 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Encoder;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.SparkMaxRelativeEncoder;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class DriveBase extends SubsystemBase {
   // left side
@@ -27,12 +28,16 @@ public class DriveBase extends SubsystemBase {
 
 
 
+
+
+
   final MotorControllerGroup leftMotors = new MotorControllerGroup(
     sparkMaxLeftFront, sparkMaxLeftBack
       );
 
   final MotorControllerGroup rightMotors = new MotorControllerGroup(
     sparkMaxRightFront, sparkMaxRightBack
+
       );
 
   final DifferentialDrive m_RobotDrive;
@@ -49,9 +54,13 @@ public class DriveBase extends SubsystemBase {
     sparkMaxLeftBack.setOpenLoopRampRate(Constants.drive.rampspeed);
     sparkMaxLeftFront.setOpenLoopRampRate(Constants.drive.rampspeed);
 
-    //right voltage ramping
-    sparkMaxRightBack.setOpenLoopRampRate(Constants.drive.rampspeed);
-    sparkMaxRightFront.setOpenLoopRampRate(Constants.drive.rampspeed);
+
+    encoderL.setPositionConversionFactor(Constants.drive.encoderToMetersRatio);
+    encoderR.setPositionConversionFactor(Constants.drive.encoderToMetersRatio);
+
+    
+
+;
 
 
     //leftMotors.setInverted(true);
@@ -61,13 +70,7 @@ public class DriveBase extends SubsystemBase {
     
 
     addChild("Drive", m_RobotDrive);
-    SmartDashboard.putNumber("encoder", (getEncoder()));
-
-  }
-  //returns average of encoder values. 
-  public double getEncoder(){
-    // SmartDashboard.putNumber("encoder", (encoderL.getPosition()+encoderR.getPosition())/2);
-    return (encoderL.getPosition()+encoderR.getPosition())/2;
+    SmartDashboard.putNumber("encoder", (getEncoderAvrg()));
   }
 
   public void resetEncoder(){
@@ -75,11 +78,51 @@ public class DriveBase extends SubsystemBase {
     encoderR.setPosition(0);
   }
 
+  public void changeRatio(double ratio){
+    encoderL.setVelocityConversionFactor(ratio);
+    encoderR.setVelocityConversionFactor(ratio);
+  }
+
 
   public void drive(final double ySpeed, final double rotateValue) {
-    SmartDashboard.putNumber("encoder", getEncoder());
+    SmartDashboard.putNumber("encoder", getEncoderAvrg());
     m_RobotDrive.arcadeDrive(ySpeed, rotateValue);
 
+  }
+
+
+  public double getEncoderAvrg(){
+    return (getRightEncoder()+getLeftEncoder())/2;
+  }
+
+  public double getRightEncoder(){
+    return encoderR.getPosition();
+  }
+
+  public double getLeftEncoder(){
+    return encoderL.getPosition();
+  }
+
+  public void tankDriveVolts(double leftVolts, double rightVolts) {
+    SmartDashboard.putNumber("leftVolt", leftVolts);
+    sparkMaxLeftFront.setVoltage(leftVolts);
+    SmartDashboard.putNumber("rightVolts", rightVolts);
+    sparkMaxRightFront.setVoltage(rightVolts);
+    SmartDashboard.putNumber("voltageDiff", leftVolts-rightVolts);
+    m_RobotDrive.feed();
+  }
+
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds(encoderL.getVelocity()*60, encoderR.getVelocity()*60);
+  }
+
+  public void shift(boolean isLow){
+    if (isLow){
+      changeRatio(Constants.drive.gearRatioHigh);
+    } 
+    else{
+      changeRatio(Constants.drive.gearRatioLow);
+    }
   }
 
 }
