@@ -97,7 +97,7 @@ public class Robot extends TimedRobot {
   private void configureControls() {
     SmartDashboard.putBoolean("Controllers are Good", true);
     
-    for (int i = 0; i < 1000000000; i++) {
+    for (int i = 0; i < 100; i++) {
       switch (controlChooser.getSelected()){
         case 0:
           controlInitalizer.initalizeJaceControllWithMidi(controller1, midi);
