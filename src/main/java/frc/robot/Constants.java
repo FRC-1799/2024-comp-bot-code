@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.util.function.DoubleSupplier;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean
@@ -52,8 +54,9 @@ public final class Constants {
         public static final int topLimitSwitch = 0;
         public static final int bottomLimitSwitch = 1;
 
-        public static final int elevatorUp = 1;
-        public static final int elevatorDown = -1;
+        public static final double elevatorUpSpeed = 0.5;
+        public static final double elevatorDownSpeed = -0.5;
+        public static final double moveTime = 2;
     }
   
     // Changing Solenoid Values idk 50/50 this'll work
@@ -199,6 +202,8 @@ public final class Constants {
         public static final double kd = 0.05;
         public static final double intakeEncoderVal = 0;
         public static final double ampScoreEncoderVal = 0;
+        public static final DoubleSupplier downSpeed = null;
+        public static final DoubleSupplier upSpeed = null;
     }
 
     public static final int MOVEMENT_JOYSTICK = 0;

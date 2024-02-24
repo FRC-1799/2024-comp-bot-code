@@ -35,11 +35,11 @@ public class ElevatorToggle extends Command {
     public void initialize(){
       if (elevator.isUp){
         activeSwitch=elevator.bottomSwitch;
-        speed=Constants.elevator.elevatorDown;
+        speed=Constants.elevator.elevatorDownSpeed;
       }
       else{
         activeSwitch=elevator.topSwitch;
-        speed=Constants.elevator.elevatorUp;
+        speed=Constants.elevator.elevatorUpSpeed;
       }
 
     }

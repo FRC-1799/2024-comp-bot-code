@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants.elevator;
 import frc.robot.commands.*;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Elevator;
@@ -15,31 +16,38 @@ public class controlInitalizer {
 
   
     final DriveBase m_driveSubsystem;
+    final WristIntake wrist;
+    final Elevator elevator;
+    final Intake intake;
 
     final ShiftableGearbox gearBox;
-    final WristIntake wrist;
     final WristMove stowed;
     final WristMove scoreAmp;
     final WristMove intakingPosition;
     final ElevatorToggle elevatorToggle;
     final RepetitiveOutake outake;
-    final RepetitiveIntake intake;
+    final RepetitiveIntake intakeCommand;
     final WaitIntakeNote holdToIntake;
     final WaitIntakeNote holdToOuttake;
-    final 
+    final ElevatorTimed elevatorTimed;
 
     public controlInitalizer(DriveBase m_driveSubsystem, ShiftableGearbox gearBox, WristIntake wrist, Elevator elevator, Intake intake){
         this.gearBox=gearBox;
         this.m_driveSubsystem=m_driveSubsystem;
         this.wrist = wrist;
+        this.intake = intake;
+        this.elevator = elevator;
+
+
         stowed = new WristMove(wrist, 0);
         scoreAmp = new WristMove(wrist, Constants.wrist.ampScoreEncoderVal);
         intakingPosition = new WristMove(wrist, Constants.wrist.intakeEncoderVal);
         this.elevatorToggle=new ElevatorToggle(elevator);
         outake = new RepetitiveOutake(intake);
-        this.intake = new RepetitiveIntake(intake);
+        this.intakeCommand = new RepetitiveIntake(intake);
         holdToIntake = new WaitIntakeNote(intake, Constants.intake.intakeSpeeds.intakeSpeed);
         holdToOuttake = new WaitIntakeNote(intake, Constants.intake.intakeSpeeds.outakeSpeed);
+        elevatorTimed = new ElevatorTimed(elevator, Constants.elevator.moveTime);
         
         
     }
@@ -88,7 +96,11 @@ public class controlInitalizer {
         coPoilot.getButtonFromDict("button2").buttonTrigger.onFalse(scoreAmp);
         coPoilot.getButtonFromDict("button3").buttonTrigger.onFalse(intakingPosition);
         coPoilot.getButtonFromDict("button4").buttonTrigger.onFalse(elevatorToggle);
-        coPoilot.getButtonFromDict("button5").buttonTrigger.onFalse(null);
+        coPoilot.getButtonFromDict("button5").buttonTrigger.onFalse(holdToIntake);
+        coPoilot.getButtonFromDict("button6").buttonTrigger.onFalse(holdToOuttake);
+        coPoilot.getButtonFromDict("button7").buttonTrigger.onFalse(elevatorTimed);
+        wrist.setDefaultCommand(
+            new manualMoveWrist(wrist, ()->(coPoilot.getButtonFromDict("button8").getValAsOneToNegOne())));
         //movementController.leftTrigger().onTrue(new WristMove(wrist, 100));
         
     }
