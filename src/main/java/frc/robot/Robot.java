@@ -73,19 +73,21 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("autos: ", autoChooser);
 
     //starts the control type chooser
-    controlChooser.setDefaultOption("Two Controler", 0);
+
+    controlChooser.setDefaultOption("Jace+midi", 0);
     controlChooser.addOption("One controler", 1);
-    controlChooser.addOption("jace control", 2);
-    controlChooser.addOption("MidiControl alone", 3);
+    controlChooser.addOption("jace control with seacond control", 2);
+    controlChooser.setDefaultOption("Two Controler", 3);
+    controlChooser.addOption("MidiControl alone", 4);
 
 
     SmartDashboard.putData("control type", controlChooser);
 
     //start cameraServer
     CameraServer.startAutomaticCapture();
-    CameraServer.startAutomaticCapture();
 
     configureControls();
+
 
     gyro.log();
 
@@ -93,26 +95,30 @@ public class Robot extends TimedRobot {
   }
 
   private void configureControls() {
-    if (controlChooser.getSelected()==null){}
-
-    else if (controlChooser.getSelected()==0){
-      controlInitalizer.configureTwoControllersBasic(controller1, controller2);
+    SmartDashboard.putBoolean("Controllers are Good", true);
+    
+    for (int i = 0; i < 1000000000; i++) {
+      switch (controlChooser.getSelected()){
+        case 0:
+          controlInitalizer.initalizeJaceControllWithMidi(controller1, midi);
+          return;
+        case 1:
+          controlInitalizer.configureOneControllersBasic(controller1);
+          return;
+        case 2: 
+          controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2);
+          return;
+        case 3:
+          controlInitalizer.configureTwoControllersBasic(controller2, controller1);
+          return;
+        case 4:
+          controlInitalizer.initalizeMIDIControl(midi);
+          return;
+        default:
+        }
     }
+    SmartDashboard.putBoolean("Controllers are Good", false);
 
-
-    else if (controlChooser.getSelected()==1){
-      controlInitalizer.configureOneControllersBasic(controller1);
-    }
-
-
-    else if (controlChooser.getSelected()==2){
-      controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2);
-    }
-    else if (controlChooser.getSelected()==3){
-      controlInitalizer.initalizeMIDIControl(midi);
-    }
-
-     
    }
   
   
