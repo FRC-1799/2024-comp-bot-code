@@ -52,8 +52,7 @@ public class scoreAmp extends SequentialCommandGroup{
             
             //turns into amp
             new TurnTo(drive, 141.5, gyro),
-
-
+            
             //scores
             new RepetitiveOutake(intake)
         );
