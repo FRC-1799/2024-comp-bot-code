@@ -39,6 +39,7 @@ public final class Constants {
         public static final double driveSpeedRatio= 1;
 
         public static double rampspeed= .25;
+        public static double autoSpeed= .3;
 
 
 
