@@ -46,10 +46,10 @@ public final class Constants {
 
     public static final class elevator {
         public static final int motorPortLeft = 0;
-        public static final int motorPortRight = 1;
+        public static final int motorPortRight = 22;
 
-        public static final int topLimitSwitch = 0;
-        public static final int bottomLimitSwitch = 1;
+        public static final int topLimitSwitch = 28;
+        public static final int bottomLimitSwitch = 27;
 
         public static final int elevatorUp = 1;
         public static final int elevatorDown = -1;
@@ -60,16 +60,15 @@ public final class Constants {
         public static final int hubID = 8;
 
         public static final int solenoidPortA=8;
-        public static final int solenoidPortB=9
-        ;
+        public static final int solenoidPortB=9;
     }                             
 
 
     public static final class climbingArm{
         public static final int motorPort = 0;
 
-        public static final int limitSwitchRight = 0;
-        public static final int limitSwitchLeft = 0;
+        public static final int limitSwitchRight = 31;
+        public static final int limitSwitchLeft = 30;
 
         public static final int armDownSpeed = 0;
     }
@@ -109,16 +108,16 @@ public final class Constants {
         }
 
         public static final class intakeNote {
-            public static final int intakeMotorPortLeft = 0;
-            public static final int intakeMotorPortRight = 0;
+            public static final int intakeMotorPortLeft = 12;
+            public static final int intakeMotorPortRight = 11;
         }
         
         public static final class raisingIntake {
-            public static final int raisingMotorPort = 0;
+            public static final int raisingMotorPort = 13;
 
-            public static final int topLimitSwitchPort = 0;
-            public static final int bottomLimitSwitchPort = 0;
-            public static final int beamBreakPort = 0;
+            public static final int topLimitSwitchPort = 14;
+            public static final int bottomLimitSwitchPort = 15;
+            public static final int beamBreakPort = 16;
         }
     }
 
@@ -142,7 +141,7 @@ public final class Constants {
 
         public static final class ports {
             public static final int motorPort = 3;
-            public static final int encoderLimitSwitch = 0;
+            public static final int encoderLimitSwitch = 29;
         }
 
         public static final class motorSpeeds {

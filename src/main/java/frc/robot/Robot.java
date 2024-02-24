@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
 
   final Gyro gyro = new Gyro();
 
-  private Field2d field = new Field2d();
+  
 
 
 

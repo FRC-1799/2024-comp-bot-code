@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
@@ -23,6 +23,8 @@ public class DriveBase extends SubsystemBase {
   public final RelativeEncoder encoderR;
   public final RelativeEncoder encoderL;
 
+  private Field2d field = new Field2d();
+
 
 
   final MotorControllerGroup leftMotors = new MotorControllerGroup(
@@ -37,6 +39,7 @@ public class DriveBase extends SubsystemBase {
 
   public DriveBase() {
 
+    SmartDashboard.putData("Field", field);
 
     //left voltage ramping
     encoderR=sparkMaxRightFront.getEncoder();    
@@ -77,7 +80,7 @@ public class DriveBase extends SubsystemBase {
   public void drive(final double ySpeed, final double rotateValue) {
     SmartDashboard.putNumber("encoder", getEncoder());
     m_RobotDrive.arcadeDrive(ySpeed, rotateValue);
-
+    field.setRobotPose();
   }
 
 }
