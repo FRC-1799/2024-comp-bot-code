@@ -1,0 +1,20 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Field": "Field2d",
+      "/SmartDashboard/autos: ": "String Chooser",
+      "/SmartDashboard/control type": "String Chooser"
+    },
+    "windows": {
+      "/SmartDashboard/Field": {
+        "Robot": {
+          "image": "C:\\Users\\1261351\\Downloads\\image-removebg-preview.png"
+        },
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  }
+}

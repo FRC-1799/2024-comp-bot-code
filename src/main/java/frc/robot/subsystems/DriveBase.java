@@ -1,12 +1,15 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Constants;
+import frc.robot.semiAutoManager;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -25,6 +28,8 @@ public class DriveBase extends SubsystemBase {
 
   public final RelativeEncoder encoderR;
   public final RelativeEncoder encoderL;
+
+  private final Field2d field = new Field2d();
 
 
 
@@ -123,6 +128,11 @@ public class DriveBase extends SubsystemBase {
     else{
       changeRatio(Constants.drive.gearRatioLow);
     }
+  }
+
+  public void periodic(){
+    
+    SmartDashboard.putData("Field", field);
   }
 
 }
