@@ -19,31 +19,42 @@ import frc.robot.subsystems.WristIntake;
 public class scoreAmp extends SequentialCommandGroup{
     scoreAmp(DriveBase drive, Gyro gyro, Elevator elevator, WristIntake wrist, Intake intake){
         super(
+            //drives to amp
             new DriveStraight(drive, 1.93294),
-
-            new TurnTo(drive, -90, gyro),
-
+            new TurnTo(drive, 90, gyro),
+    
+            //configures for amp
             new ParallelCommandGroup(
                 new ElevatorToggle(elevator),
                 new WristMove(wrist, Constants.auto.scoreAmp)
             ),
+
+            //Scores :)
             new RepetitiveOutake(intake),
 
-            new TurnTo(drive, 141.5, gyro),
+            //turns to note
+            new TurnTo(drive, 128.9, gyro),
 
-            new ParallelRaceGroup(
+            //drives and gets note
+            new ParallelCommandGroup(
                 new DriveStraight(drive, 1.55),
                 new RepetitiveIntake(intake)
             ),
+
+            //turns around an reconfigures 
             new ParallelCommandGroup(
-                new TurnTo(drive, 180, gyro),
+                new TurnTo(drive, 141.5, gyro),
                 new ElevatorToggle(elevator)
             ),
 
-            new DriveStraight(drive, 3),
-
+            //drives back
+            new DriveStraight(drive, 1.55),
+            
+            //turns into amp
             new TurnTo(drive, 141.5, gyro),
 
+
+            //scores
             new RepetitiveOutake(intake)
         );
     }

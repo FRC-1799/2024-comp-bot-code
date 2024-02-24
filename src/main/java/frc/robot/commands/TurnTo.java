@@ -50,7 +50,6 @@ public class TurnTo extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        double setpoint = this.setpoint-gyro.getYaw().getDegrees();
         pid.setSetpoint(setpoint);
         SmartDashboard.getNumber("setpoint", setpoint);
         
