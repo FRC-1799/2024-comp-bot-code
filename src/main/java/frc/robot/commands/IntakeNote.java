@@ -21,21 +21,5 @@ public class IntakeNote extends Command {
     m_intake.intake();
       
   }
-
-  @Override
-  public void initialize(){
-
-  }
-
-  @Override
-  public void end(boolean wasInterupted){
-  
-  }
-
-  @Override
-  public boolean isFinished() { 
-    return true;
-
-  } 
       
 }

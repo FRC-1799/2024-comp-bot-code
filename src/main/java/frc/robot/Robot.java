@@ -15,7 +15,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.autoRoutines.*;
+import frc.robot.Constants.elevator;
+//import frc.robot.autoRoutines.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -33,6 +34,8 @@ public class Robot extends TimedRobot {
   final WristIntake wrist = new WristIntake();
 
   final DriveBase m_driveSubsystem = new DriveBase();
+  final Intake intake = new Intake();
+  final Elevator elevator = new Elevator();
 
   final Gyro gyro = new Gyro();
   final Midi midi = new Midi();
@@ -46,7 +49,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
 
 
-  controlInitalizer controlInitalizer = new controlInitalizer(m_driveSubsystem, gearBox, wrist);
+  controlInitalizer controlInitalizer = new controlInitalizer(m_driveSubsystem, gearBox, wrist, elevator, intake);
 
   final CommandXboxController controller1 = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController controller2 = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);

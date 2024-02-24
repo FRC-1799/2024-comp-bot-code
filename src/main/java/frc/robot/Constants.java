@@ -197,6 +197,8 @@ public final class Constants {
         public static final double kp = 0.06;
         public static final double ki = 0;
         public static final double kd = 0.05;
+        public static final double intakeEncoderVal = 0;
+        public static final double ampScoreEncoderVal = 0;
     }
 
     public static final int MOVEMENT_JOYSTICK = 0;

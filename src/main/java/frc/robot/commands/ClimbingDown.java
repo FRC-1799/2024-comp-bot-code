@@ -34,9 +34,9 @@ public class ClimbingDown extends Command {
 
   }
 
-  @Override
-  public void end(boolean wasInterupted){
-  }
+  // @Override
+  // public void end(boolean wasInterupted){
+  // } 
 
   @Override
   public boolean isFinished() { 
