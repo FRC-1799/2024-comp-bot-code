@@ -6,13 +6,14 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.LimitManager;
 
 public class SpeakerShooter extends SubsystemBase {
 	public final CANSparkMax speakerMotorTop = new CANSparkMax(Constants.speakerShooter.ports.topMotorPort, MotorType.kBrushless);
 	public final CANSparkMax speakerMotorBottom = new CANSparkMax(Constants.speakerShooter.ports.bottomMotorPort, MotorType.kBrushless);
 	public final MotorControllerGroup intakeMotors = new MotorControllerGroup(speakerMotorTop, speakerMotorBottom);
 
-	public final limitSwitch beamBreak = new limitSwitch(Constants.speakerShooter.ports.beamBreakPort);
+	public final limitSwitch beamBreak = LimitManager.getSwitch(Constants.speakerShooter.ports.beamBreakPort);
 	
 
 	public void revving(){

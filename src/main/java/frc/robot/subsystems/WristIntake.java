@@ -7,11 +7,12 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.LimitManager;
 
 public class WristIntake extends SubsystemBase {
 	public final CANSparkMax wristMotor = new CANSparkMax(Constants.wrist.ports.motorPort, MotorType.kBrushless);
 
-    public final limitSwitch wristLimitSwitch = new limitSwitch(Constants.wrist.ports.encoderLimitSwitch);
+    public final limitSwitch wristLimitSwitch = LimitManager.getSwitch(Constants.wrist.ports.encoderLimitSwitch);
 
     public final RelativeEncoder wristEncoder = wristMotor.getEncoder();
 

@@ -4,6 +4,13 @@
 
 package frc.robot;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+
+import frc.robot.subsystems.limitSwitch;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
  * numerical or boolean
@@ -161,4 +168,11 @@ public final class Constants {
     public static final int MANIPULATOR_JOYSTICK = 1;
     public static final int OneJoystick=2;
     public static double driveSpeedRatio;
+
+    public static switchInfoBox[] switchInfo = {};
+    public static class switchManager{
+        public static unsignedByte trueVal = new unsignedByte(255);
+        public static unsignedByte falseVal = new unsignedByte(0);
+        
+    }
 }

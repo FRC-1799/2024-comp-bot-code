@@ -22,7 +22,7 @@ public class ClimbingDown extends Command {
 
   @Override
   public void initialize() {
-    if (!climbArm.switchLeft.isOk()||!climbArm.switchRight.isOk()) {
+    if (!climbArm.switchLeft.getStatus()||!climbArm.switchRight.getStatus()) {
       CommandScheduler.getInstance().cancel(this);
 
     }

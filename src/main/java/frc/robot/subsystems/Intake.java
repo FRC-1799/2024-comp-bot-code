@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.LimitManager;
 
 public class Intake extends SubsystemBase {
 	public final CANSparkMax intakeMotorLeft = new CANSparkMax(Constants.intake.intakeNote.intakeMotorPortLeft, MotorType.kBrushless);
@@ -14,10 +15,10 @@ public class Intake extends SubsystemBase {
 
     public final CANSparkMax raiseMotor = new CANSparkMax(Constants.intake.raisingIntake.raisingMotorPort, MotorType.kBrushless);
 
-	public final limitSwitch topSwitch = new limitSwitch(Constants.intake.raisingIntake.topLimitSwitchPort);
-	public final limitSwitch bottomSwitch = new limitSwitch(Constants.intake.raisingIntake.bottomLimitSwitchPort);
+	public final limitSwitch topSwitch = LimitManager.getSwitch(Constants.intake.raisingIntake.topLimitSwitchPort);
+	public final limitSwitch bottomSwitch = LimitManager.getSwitch(Constants.intake.raisingIntake.bottomLimitSwitchPort);
 
-	public final limitSwitch beamBreak = new limitSwitch(Constants.intake.raisingIntake.beamBreakPort);
+	public final limitSwitch beamBreak = LimitManager.getSwitch(Constants.intake.raisingIntake.beamBreakPort);
 
 	public boolean isUp = false;
 	
