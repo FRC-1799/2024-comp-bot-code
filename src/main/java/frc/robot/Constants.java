@@ -84,19 +84,12 @@ public final class Constants {
     public static final class auto{
         public static final double fwdSpeed = 0.5;
         public static final double revSpeed = -0.4;
+
+        //needs to be updated
         public static final double wheelRadius=3;
-        public static final double TicksPerRotation= 4096;
+   
 
-        public static final class balancePID{
-            public static final double kP = 0.06;
-            public static final double kI = 0;
-            public static final double kD = 0.05;
-            public static final double outputMax = 1;
-            public static final double outputMin = -1;
-
-            public static final double positionTolerance = 2;
-            public static final double velocityTolerance = 2;
-        }
+        // }
         public static final class straightPID{
             public static final double kp = 0.09;
             public static final double ki = 0;
@@ -125,7 +118,7 @@ public final class Constants {
 
             public static final int topLimitSwitchPort = 0;
             public static final int bottomLimitSwitchPort = 0;
-            public static final int beamBreakPort = 0;
+            public static final int beamBreakPort = 2;
         }
     }
 
@@ -136,7 +129,7 @@ public final class Constants {
         public static final class ports {
             public static final int topMotorPort = 0;
             public static final int bottomMotorPort = 0;
-            public static final int beamBreakPort = 0;
+            public static final int beamBreakPort = 3;
         }
 
         public static final class motorSpeeds {
@@ -149,7 +142,7 @@ public final class Constants {
 
         public static final class ports {
             public static final int motorPort = 3;
-            public static final int encoderLimitSwitch = 0;
+            public static final int encoderLimitSwitchPort = 4;
         }
 
         public static final class motorSpeeds {
@@ -169,7 +162,13 @@ public final class Constants {
     public static final int OneJoystick=2;
     public static double driveSpeedRatio;
 
-    public static switchInfoBox[] switchInfo = {};
+    public static switchInfoBox[] switchInfo = {
+        new switchInfoBox(0, 2, 3, "elvator top"),
+        new switchInfoBox(1, 4, 5, "Elevator bottom"),
+        new switchInfoBox(2, 6, 7, "intake beam break"),
+        new switchInfoBox(3, 8,9, "shooter beam break"),
+        new switchInfoBox(4, 10, 11, "wristResetEncoder")
+    };
     public static class switchManager{
         public static unsignedByte trueVal = new unsignedByte(255);
         public static unsignedByte falseVal = new unsignedByte(0);

@@ -12,7 +12,7 @@ import frc.robot.LimitManager;
 public class WristIntake extends SubsystemBase {
 	public final CANSparkMax wristMotor = new CANSparkMax(Constants.wrist.ports.motorPort, MotorType.kBrushless);
 
-    public final limitSwitch wristLimitSwitch = LimitManager.getSwitch(Constants.wrist.ports.encoderLimitSwitch);
+    public final limitSwitch wristLimitSwitch = LimitManager.getSwitch(Constants.wrist.ports.encoderLimitSwitchPort);
 
     public final RelativeEncoder wristEncoder = wristMotor.getEncoder();
 
