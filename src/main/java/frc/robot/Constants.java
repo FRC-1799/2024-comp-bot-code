@@ -163,11 +163,11 @@ public final class Constants {
     public static double driveSpeedRatio;
 
     public static switchInfoBox[] switchInfo = {
-        new switchInfoBox(0, 2, 3, "elvator top"),
-        new switchInfoBox(1, 4, 5, "Elevator bottom"),
-        new switchInfoBox(2, 6, 7, "intake beam break"),
-        new switchInfoBox(3, 8,9, "shooter beam break"),
-        new switchInfoBox(4, 10, 11, "wristResetEncoder")
+        new switchInfoBox(0, 2, 3, true, "elvator top"),
+        new switchInfoBox(1, 4, 5, true,"Elevator bottom"),
+        new switchInfoBox(2, 6, 7, true, "intake beam break"),
+        new switchInfoBox(3, 8,9, true, "shooter beam break"),
+        new switchInfoBox(4, 10, 11, false, "wristResetEncoder")
     };
     public static class switchManager{
         public static unsignedByte trueVal = new unsignedByte(255);

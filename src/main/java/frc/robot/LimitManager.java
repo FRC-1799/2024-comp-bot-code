@@ -23,7 +23,24 @@ public class LimitManager {
         unsignedByte[] pack = new unsignedByte[Constants.switchInfo.length*3+7];
         //LOAD BYTE INTO BYTE PACK
         byte[] bytepack = new byte[Constants.switchInfo.length*3+7];
-        for (int i=4, n=0; n<Constants.switchInfo.length;i+=3, n++){
+
+        //start padding
+        pack[0]=new unsignedByte(0x00);
+        pack[1]=new unsignedByte(0x00);
+        pack[2]=new unsignedByte(0x00);
+
+        //byte count 
+        pack[3]=new unsignedByte(pack.length-6);
+
+        //final padding 
+        pack[-1]=new unsignedByte(0xFF);
+        pack[-2]=new unsignedByte(0xFF);
+        pack[-3]=new unsignedByte(0xFF);
+    
+
+
+
+        for (int i=4, n=0; n<pack.length-6;i+=3, n++){
             pack[i]=new unsignedByte(Constants.switchInfo[n].ID);
             pack[i+1]=new unsignedByte(Constants.switchInfo[n].statusPort);
             pack[i+2]=new unsignedByte(Constants.switchInfo[n].readPort);
@@ -43,6 +60,11 @@ public class LimitManager {
             new GetLimitPort(SerialPort.Port.kUSB2, pack)
             );
     }
+
+    public static void periodic(){
+        distributePack(getPackage());
+    }
+
 
     public static unsignedByte[] getPackage(){
         while (port.getBytesReceived()>0){

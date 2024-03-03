@@ -24,6 +24,7 @@ public class GetLimitPort extends Command{
         if (port==null){
             return;
         }
+
         byte[] checkPack;
         port.write(initPack, initPack.length);
         if (port.getBytesReceived()>0){

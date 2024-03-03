@@ -18,6 +18,7 @@ public class limitSwitch extends SubsystemBase{
     int id;
     boolean value=false;
     boolean status;
+    boolean defaultValue;
 
     ShuffleboardTab tab;
     GenericEntry valueWrite;
@@ -35,19 +36,27 @@ public class limitSwitch extends SubsystemBase{
         statusWrite = tab.add("Status", false).getEntry();
         statusRead = tab.add("manual status", true).getEntry();
 
+        this.value=info.defaultValue;
+        this.defaultValue=info.defaultValue;
     }
 
     public boolean getVal(){
         return value;
     }
     public boolean getStatus(){
-        //needs to be added later. should use the fact that the input pins will always have one active
+        
         return status;
     }
 
     public void update(boolean value, boolean status){
-        this.value=value;
         this.status = status&&statusRead.getBoolean(true);
+        if (status){
+            this.value=value;
+        }
+        else{
+            this.status=defaultValue;
+        }
+
         valueWrite.setBoolean(value);
         statusWrite.setBoolean(status);
     }
