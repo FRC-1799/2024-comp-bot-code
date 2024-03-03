@@ -170,6 +170,7 @@ public final class Constants {
         new switchInfoBox(4, 10, 11, false, "wristResetEncoder")
     };
     public static class switchManager{
+        public static final int ticksWithoutNewPackageBeforErrorState = 50;
         public static unsignedByte trueVal = new unsignedByte(255);
         public static unsignedByte falseVal = new unsignedByte(0);
         

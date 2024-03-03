@@ -16,6 +16,7 @@ public class unsignedByte {
     public int get(){
         return value;
     }
+    /**returns the value as an usinged byte, this will not work with java but will port perfectly into CPP*/
     public byte getAsByte(){
         
         return (byte) value;

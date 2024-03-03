@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
   
     SmartDashboard.putData("autos: ", autoChooser);
-
+    LimitManager.StartUp();
     //starts the control type chooser
     controlChooser.setDefaultOption("Two Controler", 0);
     controlChooser.addOption("One controler", 1);
