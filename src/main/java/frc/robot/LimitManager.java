@@ -6,10 +6,12 @@ import java.util.Hashtable;
 //import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import frc.robot.commands.GetLimitPort;
 import frc.robot.subsystems.limitSwitch;
 
 public class LimitManager {
-    public static SerialPort port;
+    public static SerialPort port=null;
     public static Dictionary<Integer, limitSwitch> switches = new Hashtable<>();
 
     public static void StartUp(){
@@ -18,11 +20,28 @@ public class LimitManager {
             switches.put(i.ID, new limitSwitch(i));
      
         }
-        port=getPort();
+        unsignedByte[] pack = new unsignedByte[Constants.switchInfo.length*3+7];
+        //LOAD BYTE INTO BYTE PACK
+        byte[] bytepack = new byte[Constants.switchInfo.length*3+7];
+        for (int i=4, n=0; n<Constants.switchInfo.length;i+=3, n++){
+            pack[i]=new unsignedByte(Constants.switchInfo[n].ID);
+            pack[i+1]=new unsignedByte(Constants.switchInfo[n].statusPort);
+            pack[i+2]=new unsignedByte(Constants.switchInfo[n].readPort);
+        }
+
+
+        for (int i=0; i<pack.length;i++){
+            bytepack[i]=pack[i].getAsByte();
+        }
+        getPort(bytepack);
     }
 
-    public static SerialPort getPort(){
-        return null;
+    public static void getPort(byte[] pack){
+        new ParallelRaceGroup(
+            new GetLimitPort(SerialPort.Port.kUSB, pack),
+            new GetLimitPort(SerialPort.Port.kUSB1, pack),
+            new GetLimitPort(SerialPort.Port.kUSB2, pack)
+            );
     }
 
     public static unsignedByte[] getPackage(){
@@ -97,6 +116,12 @@ public class LimitManager {
     }
     public static unsignedByte read(){
         return new unsignedByte(port.read(1)[0]);
+    }
+
+    public static void setPort(SerialPort portToBeSet){
+        if (port==null){
+            port=portToBeSet;
+        }
     }
 
 }
