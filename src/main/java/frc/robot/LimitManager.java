@@ -16,6 +16,24 @@ public class LimitManager {
     public static boolean hasStartedUp=false;
     public static int ticksWithoutNewPackage=0;
 
+    /*
+    * expeted file format for init
+    * 0x00, 0x00, 0x00 Pattern to help the reader identify the start of a package
+    * 1 byte to tell the compiler how long to expect the package to be, does not include headers or footers but does include the length value itself
+    * 4 byte packages for the deffinition of switches ordered ID, CheckPort, ValuePort
+    * 0x255, 0x255, 0x255 Pattern to conferm the ending of a package
+    * 
+    */
+
+    /* expected periodic format
+    * 3 0x00 bytes as a package init
+    * one bit to define the lenght of the package
+    * 3 byte groups to send data formated ID, status, Value
+    * 3 0xff bytes to finish the package
+    */
+
+
+
 
     /** starts up the limit manager, will only run once per power cycle */
     public static void StartUp(){
@@ -34,6 +52,10 @@ public class LimitManager {
         }
 
         //loads the structs to be used to create the init pack
+
+        
+
+
         unsignedByte[] pack = new unsignedByte[Constants.switchInfo.length*3+7];
         byte[] bytepack = new byte[Constants.switchInfo.length*3+7];
 
