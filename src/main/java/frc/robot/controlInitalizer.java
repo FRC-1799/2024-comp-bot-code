@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.*;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.ShiftableGearbox;
 import frc.robot.subsystems.WristIntake;
 
@@ -15,12 +17,16 @@ public class controlInitalizer {
 
     final ShiftableGearbox gearBox;
     final WristIntake wrist;
+    final Intake intake;
+    final Elevator elevator; 
 
     public controlInitalizer(
-        DriveBase m_driveSubsystem, ShiftableGearbox gearBox, WristIntake wrist){
+        DriveBase m_driveSubsystem, ShiftableGearbox gearBox, WristIntake wrist, Intake intake, Elevator elevator){
         this.gearBox=gearBox;
         this.m_driveSubsystem=m_driveSubsystem;
         this.wrist = wrist;
+        this.intake = intake;
+        this.elevator = elevator;
 
 
     }
@@ -55,10 +61,15 @@ public class controlInitalizer {
                   () -> ( movementController.getLeftY()),
                   () -> (-movementController.getRightX())
             ));
-        movementController.rightTrigger().onTrue(new shiftGears(false, gearBox)).onFalse(new shiftGears(true, gearBox));
+        movementController.x().onTrue(new shiftGears(false, gearBox)).onFalse(new shiftGears(true, gearBox));
 
-        movementController.leftTrigger().onTrue(new WristMove(wrist, 90));
-        movementController.leftBumper().onTrue(new WristMove(wrist, 45));
+        movementController.rightTrigger().whileTrue(new WristMove(wrist, Constants.wrist.motorSpeeds.motorUp));
+        movementController.leftTrigger().whileTrue(new WristMove(wrist, Constants.wrist.motorSpeeds.motorDown));
+        movementController.a().whileTrue(new IntakeNote(intake));
+        movementController.b().whileTrue(new ShootNote(intake));
+        movementController.rightBumper().whileTrue(new ElevatorMove(elevator, Constants.elevator.elevatorUp));
+        movementController.leftBumper().whileTrue(new ElevatorMove(elevator, Constants.elevator.elevatorDown));
+        movementController.povUp().whileTrue(new StayAtTop(elevator));
         
     }
 

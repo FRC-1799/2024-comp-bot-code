@@ -52,8 +52,8 @@ public final class Constants {
         public static final int topLimitSwitch = 0;
         public static final int bottomLimitSwitch = 1;
 
-        public static final int elevatorUp = 1;
-        public static final int elevatorDown = -1;
+        public static final double elevatorUp = 0.6;
+        public static final double elevatorDown = -0.3;
     }
   
     // Changing Solenoid Values idk 50/50 this'll work
@@ -147,8 +147,8 @@ public final class Constants {
         }
 
         public static final class motorSpeeds {
-            public static final double motorUp = 0.5;
-            public static final double motorDown = -0.5;
+            public static final double motorUp = -0.3;
+            public static final double motorDown = 0.2;
         }
 
         public static final double resetPosition = 0;

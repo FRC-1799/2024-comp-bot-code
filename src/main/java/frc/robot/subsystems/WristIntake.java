@@ -15,6 +15,8 @@ public class WristIntake extends SubsystemBase {
 
     public final RelativeEncoder wristEncoder = wristMotor.getEncoder();
 
+    //wristEncoder.setPositionConversionFactor();
+
 	public void move(double speed){
         SmartDashboard.putNumber("speed", speed);
     	wristMotor.set(speed);
