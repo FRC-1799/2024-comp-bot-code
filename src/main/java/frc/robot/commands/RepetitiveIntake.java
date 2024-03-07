@@ -19,7 +19,7 @@ public class RepetitiveIntake extends Command {
 
   @Override
   public void initialize() {
-    if (!intake.topSwitch.isOk()||!intake.bottomSwitch.isOk()) {
+    if (!intake.topSwitch.getStatus()||!intake.bottomSwitch.getStatus()) {
       CommandScheduler.getInstance().cancel(this);
     }
     counter = 0;

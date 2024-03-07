@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
   
     SmartDashboard.putData("autos: ", autoChooser);
-
+    LimitManager.StartUp();
     //starts the control type chooser
     controlChooser.setDefaultOption("Two Controler", 0);
     controlChooser.addOption("One controler", 1);
@@ -115,6 +115,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    LimitManager.periodic();
 
   }
 
