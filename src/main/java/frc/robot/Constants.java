@@ -51,7 +51,7 @@ public final class Constants {
         public static final int topLimitSwitch = 0;
         public static final int bottomLimitSwitch = 1;
 
-        public static final double elevatorUpSpeed = 0.1;
+        public static final double elevatorUpSpeed = -0.6;
         public static final double elevatorDownSpeed = -0.3;
         public static final double elevatorStayAtTopSpeed = 0.03;
     }

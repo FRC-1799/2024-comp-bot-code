@@ -23,6 +23,6 @@ public class WaitShootNote extends WaitCommand {
   @Override
   public void end(boolean interupted){
     super.end(interupted);
-    intake.stop();
+    //intake.stop();
   }
 }

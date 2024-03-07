@@ -65,7 +65,7 @@ public class controlInitalizer {
         //movementController.a().whileTrue(new RepetitiveIntake(intake));
         //movementController.x().whileTrue(new RepetitiveOutake(intake));
 
-        //movementController.y().onTrue(new ElevatorToggle(elevator));
+        movementController.y().onTrue(new ElevatorToggle(elevator));
         // movementController.b().onFalse(new WristMove(wrist, Constants.wrist.posits.scorePosit));
         
     }
