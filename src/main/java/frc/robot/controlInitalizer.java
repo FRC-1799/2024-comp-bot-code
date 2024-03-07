@@ -57,7 +57,8 @@ public class controlInitalizer {
             ));
         movementController.rightTrigger().onTrue(new shiftGears(false, gearBox)).onFalse(new shiftGears(true, gearBox));
 
-        movementController.leftTrigger().onTrue(new WristMove(wrist, 100));
+        movementController.leftTrigger().onTrue(new WristMove(wrist, 90));
+        movementController.leftBumper().onTrue(new WristMove(wrist, 45));
         
     }
 

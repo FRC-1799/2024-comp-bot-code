@@ -37,7 +37,6 @@ public class WristMove extends Command {
 
   @Override
   public void initialize() {
-    //SmartDashboard.putNumber("setpoint", setpoint);
     pid.setSetpoint(setpoint);
     pid.setTolerance(Constants.wrist.tolerance);
   }
@@ -53,12 +52,12 @@ public class WristMove extends Command {
   @Override
   public boolean isFinished() { 
     return pid.atSetpoint();
-
   } 
 
   @Override
   public void end(boolean interrupted){
     wrist.move(0);
+    wrist.resetEncoder();
   }
 
 }
