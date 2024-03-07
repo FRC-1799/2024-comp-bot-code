@@ -8,15 +8,11 @@ import frc.robot.LimitManager;
 public class GetLimitPort extends Command{
     SerialPort port;
     byte[] initPack;
+    SerialPort.Port portToTry;
 
     /** creates a command that will check if the arduino is on the inputed serial port */
     public GetLimitPort(SerialPort.Port portToTry, byte[] pack){
-        try{
-            port = new SerialPort(9600, portToTry);
-        }
-        catch(Exception e){
-            port=null;
-        }
+        this.portToTry=portToTry;
         initPack=pack;
         
 
@@ -24,7 +20,12 @@ public class GetLimitPort extends Command{
     @Override
     public void execute(){
         if (port==null){
-            return;
+            try{
+                port = new SerialPort(9600, portToTry);
+            }
+            catch(Exception e){
+                
+            }
         }
 
         byte[] checkPack;
@@ -38,6 +39,7 @@ public class GetLimitPort extends Command{
                 }
             }
             LimitManager.setPort(port);
+            CommandScheduler.getInstance().cancel(this);
         }
     }
 }

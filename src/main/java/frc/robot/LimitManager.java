@@ -75,7 +75,7 @@ public class LimitManager {
 
 
         //actual meat of the package
-        for (int i=4, n=0; n<pack.length-6;i+=3, n++){
+        for (int i=4, n=0; n<Constants.switchInfo.length;i+=3, n++){
             pack[i]=new unsignedByte(Constants.switchInfo[n].ID);
             pack[i+1]=new unsignedByte(Constants.switchInfo[n].statusPort);
             pack[i+2]=new unsignedByte(Constants.switchInfo[n].readPort);
