@@ -70,6 +70,7 @@ public class controlInitalizer {
         movementController.rightBumper().whileTrue(new ElevatorMove(elevator, Constants.elevator.elevatorUp));
         movementController.leftBumper().whileTrue(new ElevatorMove(elevator, Constants.elevator.elevatorDown));
         movementController.povUp().whileTrue(new StayAtTop(elevator));
+        movementController.y().whileTrue(new ElevatorToggle(elevator));
         
     }
 
