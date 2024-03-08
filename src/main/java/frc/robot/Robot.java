@@ -45,8 +45,8 @@ public class Robot extends TimedRobot {
 
   controlInitalizer controlInitalizer = new controlInitalizer(m_driveSubsystem, gearBox, wrist, intake, elevator);
 
-  final CommandXboxController controller1 = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
-  final CommandXboxController controller2 = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
+  final CommandXboxController controller1 = new CommandXboxController(Constants.joysticks.Port_0);
+  final CommandXboxController controller2 = new CommandXboxController(Constants.joysticks.Port_1);
   
   /**
    * This function is run when the robot is first started up and should be used for any

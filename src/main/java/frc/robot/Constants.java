@@ -18,39 +18,36 @@ package frc.robot;
  */
 public final class Constants {
 
-    // drive Constants
+    public static final class CAN{
+        public static final int Port_1 = 1;
+        public static final int Port_2 = 2;
+        public static final int Port_3 = 3;
+        public static final int Port_4 = 4;
+        public static final int Port_5 = 5;
+        public static final int Port_7 = 7;
+        public static final int Port_8 = 8;
+        public static final int Port_9 = 9; 
+        public static final int Port_10 = 10;
+        public static final int Port_11 = 11; 
+    }
+
+    public static final class DIO{
+        public static final int Port_0 = 0;
+        public static final int Port_1 = 1;
+        public static final int Port_2 = 2;
+        public static final int Port_20 = 20;
+    }
+
     public static final class drive {
-
-        // f: front
-        // t: top
-        // r: rear
-
-        // left
-        public static final int leftFrontMotor = 5;
-        public static final int leftBackMotor = 9;
-
-        // right
-        public static final int rightFrontMotor = 1;
-        public static final int rightBackMotor = 2;
         public static final double gearRatio=8.5;
         
-        
-        public static double rotationSpeedRatio= 0.6;
+        public static final double rotationSpeedRatio= 0.6;
         public static final double driveSpeedRatio= 1;
 
-        public static double rampspeed= .25;
-
-
-
+        public static final double rampspeed= .25;
     }
 
     public static final class elevator {
-        public static final int motorPortLeft = 3;
-        public static final int motorPortRight = 4;
-
-        public static final int topLimitSwitch = 1;
-        public static final int bottomLimitSwitch = 0;
-
         public static final double elevatorUpSpeed = 0.6;
         public static final double elevatorDownSpeed = -0.3;
         public static final double elevatorStayAtTopSpeed = 0.03;
@@ -58,21 +55,8 @@ public final class Constants {
   
     // Changing Solenoid Values idk 50/50 this'll work
     public static final class pneumatics{
-        public static final int hubID = 8;
-
         public static final int solenoidPortA=8;
-        public static final int solenoidPortB=9
-        ;
-    }                             
-
-
-    public static final class climbingArm{
-        public static final int motorPort = 0;
-
-        public static final int limitSwitchRight = 0;
-        public static final int limitSwitchLeft = 0;
-
-        public static final int armDownSpeed = 0;
+        public static final int solenoidPortB=9;
     }
 
     public static final class auto{
@@ -102,27 +86,12 @@ public final class Constants {
 
     public static final class intake {
         public static final int counterCap = 25; // this number is untested, it should run for 0.5 seconds after note is taken
-        public static final int beamBreakPort = 2;
 
         public static final class intakeSpeeds {
             public static final double intakeSpeed = 0.3;
             public static final double outakeSpeed = -1;
-            // public static final int intakeRaiseSpeed = 1;
         }
-
-        public static final class intakeNote {
-            public static final int intakeMotorPortLeft = 7;
-            public static final int intakeMotorPortRight = 11;
-        }
-        
-        // public static final class raisingIntake {
-        //     public static final int raisingMotorPort = 0;
-
-        //     public static final int topLimitSwitchPort = 0;
-        //     public static final int bottomLimitSwitchPort = 0;
-        // }
     }
-
 
     public static final class speakerShooter {
         public static int RevTimeCountInTicks = 0;
@@ -140,13 +109,6 @@ public final class Constants {
     }
 
     public static final class wrist {
-        
-
-        public static final class ports {
-            public static final int motorPort = 10;
-            public static final int encoderLimitSwitch = 20;
-        }
-
         public static final class positions{
             public static final double up = 90;
             public static final double intake = 0;
@@ -166,8 +128,11 @@ public final class Constants {
         public static final double gearRatio=40;
     }
 
-    public static final int MOVEMENT_JOYSTICK = 0;
-    public static final int MANIPULATOR_JOYSTICK = 1;
-    public static final int OneJoystick=2;
+    public static final class joysticks{
+        public static final int Port_0 = 0;
+        public static final int Port_1 = 1;
+        public static final int Port_2 = 2;
+    }
+
     public static double driveSpeedRatio;
 }

@@ -16,8 +16,8 @@ public class WristIntake extends SubsystemBase {
     
 
     public WristIntake(){
-        wristLimitSwitch = new limitSwitch(Constants.wrist.ports.encoderLimitSwitch);
-        wristMotor = new CANSparkMax(Constants.wrist.ports.motorPort, MotorType.kBrushless);
+        wristLimitSwitch = new limitSwitch(Constants.DIO.Port_20);
+        wristMotor = new CANSparkMax(Constants.CAN.Port_10, MotorType.kBrushless);
         encoder = wristMotor.getEncoder();
 
         encoder.setPositionConversionFactor(Constants.wrist.gearRatio/360);

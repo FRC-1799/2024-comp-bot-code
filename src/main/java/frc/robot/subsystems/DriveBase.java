@@ -12,12 +12,12 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class DriveBase extends SubsystemBase {
   // left side
-  public final CANSparkMax sparkMaxLeftBack = new CANSparkMax(Constants.drive.leftBackMotor, MotorType.kBrushless);
-  public final CANSparkMax sparkMaxLeftFront = new CANSparkMax(Constants.drive.leftFrontMotor, MotorType.kBrushless);
+  public final CANSparkMax sparkMaxLeftBack = new CANSparkMax(Constants.CAN.Port_9, MotorType.kBrushless);
+  public final CANSparkMax sparkMaxLeftFront = new CANSparkMax(Constants.CAN.Port_5, MotorType.kBrushless);
 
   //right side
-  public final CANSparkMax sparkMaxRightBack = new CANSparkMax(Constants.drive.rightBackMotor, MotorType.kBrushless);
-  public final CANSparkMax sparkMaxRightFront = new CANSparkMax(Constants.drive.rightFrontMotor, MotorType.kBrushless);
+  public final CANSparkMax sparkMaxRightBack = new CANSparkMax(Constants.CAN.Port_2, MotorType.kBrushless);
+  public final CANSparkMax sparkMaxRightFront = new CANSparkMax(Constants.CAN.Port_1, MotorType.kBrushless);
 
 
   public final RelativeEncoder encoderR;

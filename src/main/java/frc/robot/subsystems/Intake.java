@@ -8,15 +8,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
-	public final CANSparkMax intakeMotorLeft = new CANSparkMax(Constants.intake.intakeNote.intakeMotorPortLeft, MotorType.kBrushless);
-	public final CANSparkMax intakeMotorRight = new CANSparkMax(Constants.intake.intakeNote.intakeMotorPortRight, MotorType.kBrushless);
+	public final CANSparkMax intakeMotorLeft = new CANSparkMax(Constants.CAN.Port_7, MotorType.kBrushless);
+	public final CANSparkMax intakeMotorRight = new CANSparkMax(Constants.CAN.Port_11, MotorType.kBrushless);
 	public final MotorControllerGroup intakeMotors = new MotorControllerGroup(intakeMotorLeft, intakeMotorRight);
     // public final CANSparkMax raiseMotor = new CANSparkMax(Constants.intake.raisingIntake.raisingMotorPort, MotorType.kBrushless);
 
 	// public final limitSwitch topSwitch = new limitSwitch(Constants.intake.raisingIntake.topLimitSwitchPort);
 	// public final limitSwitch bottomSwitch = new limitSwitch(Constants.intake.raisingIntake.bottomLimitSwitchPort);
 
-	public final limitSwitch beamBreak = new limitSwitch(Constants.intake.beamBreakPort);
+	public final limitSwitch beamBreak = new limitSwitch(Constants.DIO.Port_2);
 
 	public boolean isUp = false;
 	

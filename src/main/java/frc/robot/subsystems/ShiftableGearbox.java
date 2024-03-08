@@ -8,7 +8,7 @@ import frc.robot.Constants;
 
 public class ShiftableGearbox extends SubsystemBase{
   
-  PneumaticHub hub = new PneumaticHub(Constants.pneumatics.hubID);
+  PneumaticHub hub = new PneumaticHub(Constants.CAN.Port_8);
 
   DoubleSolenoid shifter = hub.makeDoubleSolenoid(Constants.pneumatics.solenoidPortA, Constants.pneumatics.solenoidPortB);
   Compressor compressor = hub.makeCompressor();
