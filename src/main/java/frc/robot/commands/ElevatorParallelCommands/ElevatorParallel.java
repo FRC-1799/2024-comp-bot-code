@@ -1,7 +1,7 @@
-package frc.robot.commands;
+package frc.robot.commands.ElevatorParallelCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.commands.ElevatorParallelCommands.ElevatorMove;
+import frc.robot.commands.ElevatorToggle;
 import frc.robot.subsystems.Elevator;
 
 public class ElevatorParallel extends ParallelCommandGroup {

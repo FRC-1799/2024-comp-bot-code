@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.intake.intakeNote;
 import frc.robot.commands.*;
 import frc.robot.commands.ElevatorParallelCommands.ElevatorMove;
+import frc.robot.commands.ElevatorParallelCommands.ElevatorParallel;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;

@@ -18,9 +18,7 @@ public class RepetitiveOutake extends Command {
 
   @Override
   public void initialize(){
-    if (!intake.beamBreak.isOk()) {
-      CommandScheduler.getInstance().cancel(this);
-    }
+    checkRequirements();
     counter = 0;
     noteInIntake = false;
   }
@@ -50,5 +48,19 @@ public class RepetitiveOutake extends Command {
         intake.outake();
     }
     intake.stop();
+  }
+
+  public void checkRequirements(){
+    boolean status = true;
+
+    if (!intake.beamBreak.isOk()){
+      status = false;
+    }
+    else if (!intake.beamBreak.getVal()){
+      status = false;
+    }
+    if (!status){
+      CommandScheduler.getInstance();
+    }
   }
 }

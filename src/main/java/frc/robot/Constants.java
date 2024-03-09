@@ -125,7 +125,7 @@ public final class Constants {
 
 
     public static final class speakerShooter {
-        public static int RevTimeCountInTicks = 0;
+        public static final int minimumSpeed = 3600;
 
         public static final class ports {
             public static final int topMotorPort = 0;

@@ -7,23 +7,26 @@ import frc.robot.subsystems.SpeakerShooter;
 
 public class ShootSpeaker extends Command {
     final SpeakerShooter shooter;
-    final BooleanSupplier shootTrigger;
     
-    public ShootSpeaker(SpeakerShooter shooter, BooleanSupplier shootTrigger) {
+    public ShootSpeaker(SpeakerShooter shooter) {
         this.shooter = shooter;
-        this.shootTrigger = shootTrigger;
         addRequirements(shooter);
     }
 
 
     @Override
     public void execute() {
-        shooter.runIndex();
         shooter.revving();
+        if (shooter.canShoot()){
+            shooter.runIndex();
+        }
     }
 
     @Override
     public boolean isFinished() { 
-        return shootTrigger.getAsBoolean();
-    }    
+        return (!shooter.beamBreak.getVal());
+    }  
+    
+    
+    
 }

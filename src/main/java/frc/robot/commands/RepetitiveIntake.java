@@ -19,9 +19,7 @@ public class RepetitiveIntake extends Command {
 
   @Override
   public void initialize() {
-    if (!intake.beamBreak.isOk()) {
-      CommandScheduler.getInstance().cancel(this);
-    }
+
     counter = 0;
 
   }
@@ -48,4 +46,20 @@ public class RepetitiveIntake extends Command {
     }
     return counter > Constants.intake.counterCap;
   } 
+
+  public void checkRequirements(){
+    boolean status = true;
+
+    if (!intake.beamBreak.isOk()) {
+      status = false;
+    }
+
+    if (intake.beamBreak.getVal()){
+      status = false;
+    }
+
+    if (!status){
+      CommandScheduler.getInstance().cancel(this);
+    }
+  }
 }
