@@ -35,9 +35,7 @@ public class ShootSpeakerMain extends Command {
 
     @Override
     public void end(boolean wasInterupted){
-        if(!wasInterupted){
-            shooter.stop();
-        }
+        shooter.stop();
     }
     
 }
