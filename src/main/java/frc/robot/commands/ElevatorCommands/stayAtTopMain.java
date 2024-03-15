@@ -12,6 +12,7 @@ public class stayAtTopMain extends Command {
     public stayAtTopMain(Elevator elevator){
         this.elevator=elevator;
         this.topSwitch=elevator.topSwitch;
+        addRequirements(elevator);
     }
 
     @Override

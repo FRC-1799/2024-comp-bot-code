@@ -11,6 +11,7 @@ public class ElevatorToggleBack extends WaitCommand {
   public ElevatorToggleBack(Elevator elevator, double time) {
     super(time);
     this.elevator = elevator;
+    addRequirements(elevator);
   }
 
   @Override

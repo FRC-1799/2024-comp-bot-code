@@ -13,6 +13,7 @@ public class stayAtTopBack extends WaitCommand {
     public stayAtTopBack(Elevator elevator){
         super(20);
         this.elevator=elevator;
+        addRequirements(elevator);
 
     }
 

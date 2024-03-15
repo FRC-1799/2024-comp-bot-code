@@ -8,11 +8,13 @@ public class shooterIntakeMain extends Command{
 
     public shooterIntakeMain(SpeakerShooter shooter){
         this.shooter=shooter;
+        addRequirements(shooter);
 
     }
 
     @Override
     public void initialize(){
+        
         // if (!shooter.beamBreak.isOk()||shooter.beamBreak.getVal()){
         //     cancel();
         // }

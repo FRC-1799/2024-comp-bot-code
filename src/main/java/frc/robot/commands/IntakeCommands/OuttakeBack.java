@@ -10,6 +10,7 @@ public class OuttakeBack extends WaitCommand {
   public OuttakeBack(Intake intake) {
     super(Constants.intake.outtakeBackupTime);
     this.intake = intake;
+    addRequirements(intake);
 
 
   }
