@@ -44,9 +44,7 @@ public class WristIntake extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Encoder Wrist Value.", getEncoder());
-        // if (wristLimitSwitch.getVal()){
-        //     resetEncoder();
-        // }
+        SmartDashboard.putBoolean("wristReset", wristLimitSwitch.getVal());
     }
 }
 

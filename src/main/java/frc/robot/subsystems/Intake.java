@@ -19,11 +19,6 @@ public class Intake extends SubsystemBase {
 
 	public final limitSwitch beamBreak = new limitSwitch(Constants.intake.beamBreakPort);
 
-	
-	public Intake(){
-		//intakeMotorLeft.setInverted(true);
-
-	}
 
 
 	public void intake(){

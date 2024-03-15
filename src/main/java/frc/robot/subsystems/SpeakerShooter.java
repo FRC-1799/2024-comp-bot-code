@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -18,6 +19,11 @@ public class SpeakerShooter extends SubsystemBase {
 
 	public final limitSwitch beamBreak = new limitSwitch(Constants.speakerShooter.ports.beamBreakPort);
 	
+	@Override
+	public void periodic() {
+		SmartDashboard.putBoolean("shooterBeamBreak", beamBreak.getVal());
+	}
+
 
 	public void revving(){
     	flyWheel.set(Constants.speakerShooter.motorSpeeds.topMotorSpeed);

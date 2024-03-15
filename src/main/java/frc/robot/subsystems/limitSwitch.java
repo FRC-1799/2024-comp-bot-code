@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import java.util.function.BooleanSupplier;
 
-public class limitSwitch extends SubsystemBase{
+public class limitSwitch{
 
     private DigitalInput limit;
     BooleanSupplier valSupplier = () -> this.getVal();
@@ -31,12 +31,6 @@ public class limitSwitch extends SubsystemBase{
         new SequentialCommandGroup(new WaitUntilCommand(valSupplier), runner);
     }
 
-
-    @Override
-    public void periodic(){
-        SmartDashboard.putBoolean(String.valueOf(index), limit.get());
-
-    }
     
 
 }
