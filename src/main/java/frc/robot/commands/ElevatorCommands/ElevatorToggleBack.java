@@ -7,6 +7,7 @@ import frc.robot.subsystems.Elevator;
 public class ElevatorToggleBack extends WaitCommand {
   private final Elevator elevator;
   private double speed;
+  boolean canRun=true;
 
   public ElevatorToggleBack(Elevator elevator, double time) {
     super(time);
@@ -24,14 +25,10 @@ public class ElevatorToggleBack extends WaitCommand {
     }
 
     if (elevator.isUp){
-      if (elevator.topSwitch.isOk()){
-        cancel();
-      }
+      canRun=!elevator.topSwitch.isOk();
     }
     else{
-      if(elevator.bottomSwitch.isOk()){
-        cancel();
-      }
+      canRun=!elevator.bottomSwitch.isOk();
     }
   }
 
@@ -45,9 +42,14 @@ public class ElevatorToggleBack extends WaitCommand {
 
   @Override
   public void end(boolean interupted) {
+    elevator.moveElevator(0);
+
     if( !interupted){
       elevator.isUp=!elevator.isUp;
-      elevator.moveElevator(0);
     }
+  }
+
+  public boolean isFinished(){
+    return (!canRun||super.isFinished());
   }
 }

@@ -7,6 +7,7 @@ import frc.robot.subsystems.SpeakerShooter;
 
 public class ShootSpeakerMain extends Command {
     final SpeakerShooter shooter;
+    boolean canRun;
     
     public ShootSpeakerMain(SpeakerShooter shooter) {
         this.shooter = shooter;
@@ -15,22 +16,22 @@ public class ShootSpeakerMain extends Command {
 
     @Override
     public void initialize(){
-        if(!shooter.beamBreak.isOk()||!shooter.beamBreak.getVal()){
-            cancel();
-        }
+        canRun=shooter.beamBreak.isOk()||shooter.beamBreak.getVal();
+        
     }
 
     @Override
     public void execute() {
         shooter.revving();
-        if (shooter.canShoot()){
-            shooter.runIndex();
-        }
+        shooter.runIndex();
+        // if (shooter.canShoot()){
+        //     shooter.runIndex();
+        // }
     }
 
     @Override
     public boolean isFinished() { 
-        return (!shooter.beamBreak.getVal());
+        return false;
     }  
 
     @Override

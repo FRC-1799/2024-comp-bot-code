@@ -8,8 +8,7 @@ import frc.robot.subsystems.Intake;
 public class OuttakeMain extends Command {
   Intake intake;
   double speed;
-  int counter;
-  boolean noteInIntake;
+  boolean canRun;
 
   public OuttakeMain(Intake intake) {
     this.intake = intake;
@@ -18,37 +17,22 @@ public class OuttakeMain extends Command {
 
   @Override
   public void initialize(){
-    if (!intake.beamBreak.isOk()||intake.beamBreak.getVal()) {
-      cancel();
-    }
-    counter = 0;
-    noteInIntake = false;
+    canRun=intake.beamBreak.isOk()||!intake.beamBreak.getVal();
+
   }
 
   @Override
   public void execute() {
-    noteInIntake = intake.beamBreak.getVal();
-
-    if (noteInIntake){
-      intake.outake();
-    }
-    else if (counter <= Constants.intake.counterCap) {
-      intake.outake();
-      counter++;
-    } 
+    intake.outake();
   }
 
   @Override
   public boolean isFinished() { 
-    return counter > Constants.intake.counterCap;
+    return intake.beamBreak.getVal()||!canRun;
   } 
 
   @Override
   public void end(boolean wasInterupted){
-    while (counter <= Constants.intake.counterCap){
-        counter++;
-        intake.outake();
-    }
     intake.stop();
   }
 }

@@ -6,6 +6,6 @@ import frc.robot.subsystems.Intake;
 
 public class intake extends SequentialCommandGroup{
     public intake(Intake intake){
-        super(new IntakeMain(intake));
+        super(new IntakeMain(intake), new IntakeBack(intake));
     }
 }

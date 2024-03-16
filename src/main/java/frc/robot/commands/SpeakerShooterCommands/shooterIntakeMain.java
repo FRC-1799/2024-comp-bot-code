@@ -5,6 +5,7 @@ import frc.robot.subsystems.SpeakerShooter;
 
 public class shooterIntakeMain extends Command{
     SpeakerShooter shooter;
+    boolean canRun;
 
     public shooterIntakeMain(SpeakerShooter shooter){
         this.shooter=shooter;
@@ -15,9 +16,8 @@ public class shooterIntakeMain extends Command{
     @Override
     public void initialize(){
         
-        // if (!shooter.beamBreak.isOk()||shooter.beamBreak.getVal()){
-        //     cancel();
-        // }
+        canRun = shooter.beamBreak.isOk()||!shooter.beamBreak.getVal();
+
     }
 
     public void execute(){
@@ -25,7 +25,7 @@ public class shooterIntakeMain extends Command{
     }
 
     public boolean isFinished(){
-        return shooter.beamBreak.getVal();
+        return shooter.beamBreak.getVal()||!canRun;
     }
 
     public void end(){

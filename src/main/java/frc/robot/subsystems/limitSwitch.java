@@ -20,7 +20,7 @@ public class limitSwitch{
     }
 
     public Boolean getVal(){
-        return limit.get();
+        return !limit.get();
     }
     public boolean isOk(){
         //needs to be added later. should use the fact that the input pins will always have one active

@@ -61,17 +61,18 @@ public final class Constants {
         public static final double elevatorBackupDownSpeed=0.01;
         public static final double elevatorBackupUpSpeed=-0.3;
         public static final double elevatorBackupTime = 1.3;
-        public static final double elevatorClimbUpSpeed = -1;
-        public static final double elevatorClimbDownSpeed = 1;
+        public static final double elevatorClimbSpeed = 0.6;
     }
   
     // Changing Solenoid Values idk 50/50 this'll work
     public static final class pneumatics{
         public static final int hubID = 8;
 
-        public static final int solenoidPortA=6;
-        public static final int solenoidPortB=7
+        public static final int solenoidPortA=1;
+        public static final int solenoidPortB=0;
         ;
+
+        public static final int elevatorPistonID = 5;
     }                             
 
 
@@ -136,13 +137,13 @@ public final class Constants {
         public static final class ports {
             public static final int topMotorPort = 13;
             public static final int bottomMotorPort = 12;
-            public static final int beamBreakPort = 4;
+            public static final int beamBreakPort = 3;
         }
 
         public static final class motorSpeeds {
-            public static final double topMotorSpeed = 1;
-            public static final double bottomMotorSpeed = 0.5; // slower than top speed
-            public static final double intakeSpeed = 0.3;
+            public static final double topMotorSpeed = 0.3;
+            public static final double bottomMotorSpeed = 0.3; // slower than top speed
+            public static final double intakeSpeed = -0.3;
         }
     }
 

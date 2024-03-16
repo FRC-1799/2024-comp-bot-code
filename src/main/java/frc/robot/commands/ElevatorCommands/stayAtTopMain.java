@@ -8,6 +8,7 @@ import frc.robot.subsystems.limitSwitch;
 public class stayAtTopMain extends Command {
     limitSwitch topSwitch;
     Elevator elevator;
+    boolean canRun;
 
     public stayAtTopMain(Elevator elevator){
         this.elevator=elevator;
@@ -17,9 +18,8 @@ public class stayAtTopMain extends Command {
 
     @Override
     public void initialize(){
-        if (!elevator.isUp||!topSwitch.isOk()){
-            cancel();
-        }
+        canRun=elevator.isUp||topSwitch.isOk();
+ 
     }
 
     @Override
@@ -35,5 +35,9 @@ public class stayAtTopMain extends Command {
     @Override
     public void end(boolean wasInterupted){
         elevator.moveElevator(0);
+    }
+
+    public boolean isFinished(){
+        return !canRun;
     }
 }

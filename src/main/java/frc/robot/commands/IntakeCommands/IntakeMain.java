@@ -8,6 +8,7 @@ import frc.robot.subsystems.Intake;
 public class IntakeMain extends Command {
   Intake intake;
   int counter;
+  boolean canRun;
 
   boolean noteInIntake;
   
@@ -19,9 +20,8 @@ public class IntakeMain extends Command {
 
   @Override
   public void initialize() {
-    if (!intake.beamBreak.isOk()||intake.beamBreak.getVal()) {
-      cancel();
-    }
+    canRun=intake.beamBreak.isOk()||!intake.beamBreak.getVal();
+
 
   }
 
@@ -38,6 +38,6 @@ public class IntakeMain extends Command {
 
   @Override
   public boolean isFinished() { 
-    return intake.beamBreak.getVal();  
+    return intake.beamBreak.getVal()||!canRun;  
   }
 }

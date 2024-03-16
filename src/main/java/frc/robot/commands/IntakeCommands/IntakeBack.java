@@ -8,6 +8,7 @@ import frc.robot.subsystems.Intake;
 
 public class IntakeBack extends WaitCommand {
   private final Intake intake;
+  public boolean canRun=true;
 
   public IntakeBack(Intake intake) {
     super(Constants.intake.backupTime);
@@ -19,10 +20,7 @@ public class IntakeBack extends WaitCommand {
 
   @Override
   public void initialize(){
-    if (intake.beamBreak.isOk()){
-      cancel();
-      SmartDashboard.putBoolean("cancle", false);
-    }
+    canRun=!intake.beamBreak.isOk();
   }
 
 
@@ -36,13 +34,15 @@ public class IntakeBack extends WaitCommand {
 
   @Override
   public void end(boolean interupted){
-    super.end(interupted);
+    //super.end(interupted);
     SmartDashboard.putString("ended", "true");
     intake.stop();
   }
 
   @Override
   public boolean isFinished(){
-    return true;
+    return (!canRun||super.isFinished());
+
   }
+
 }

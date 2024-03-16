@@ -8,6 +8,6 @@ import frc.robot.subsystems.Elevator;
 public class ElevatorToggle extends SequentialCommandGroup {
 
     public ElevatorToggle(Elevator elevator) {
-        addCommands(new ElevatorToggleMain(elevator), new ElevatorToggleBack(elevator, Constants.elevator.elevatorBackupTime));
+        addCommands(new ElevatorToggleMain(elevator));
     }
 }

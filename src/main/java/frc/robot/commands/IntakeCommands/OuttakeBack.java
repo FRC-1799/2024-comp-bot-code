@@ -6,6 +6,7 @@ import frc.robot.subsystems.Intake;
 
 public class OuttakeBack extends WaitCommand {
   private final Intake intake;
+  boolean canRun=true;
 
   public OuttakeBack(Intake intake) {
     super(Constants.intake.outtakeBackupTime);
@@ -15,13 +16,11 @@ public class OuttakeBack extends WaitCommand {
 
   }
 
+
   @Override
   public void initialize(){
-    if (intake.beamBreak.isOk()){
-      cancel();
-    }
+    canRun=intake.beamBreak.isOk();
   }
-
 
   // Called repeatedly when this Command is scheduled to run
   @Override
@@ -32,8 +31,12 @@ public class OuttakeBack extends WaitCommand {
 
   @Override
   public void end(boolean interupted){
-    if(!interupted){
-      intake.stop();
-    }
+    intake.stop();
+    
+  }
+
+  @Override
+  public boolean isFinished(){
+    return (!canRun||super.isFinished());
   }
 }
