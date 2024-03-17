@@ -26,6 +26,7 @@ public class climb extends Command {
 
     if (!wasInterupted){
       elevator.isUp=!elevator.isUp;
+      new stayClimbing(elevator).schedule();
     }
   }
 
