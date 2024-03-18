@@ -54,6 +54,7 @@ public class SpeakerShooter extends SubsystemBase {
 	}
 
 	public boolean canShoot(){
+		SmartDashboard.putNumber("shooterVel", topEncoder.getVelocity());
 		return (topEncoder.getVelocity()>Constants.speakerShooter.minimumSpeed);
 
 	}

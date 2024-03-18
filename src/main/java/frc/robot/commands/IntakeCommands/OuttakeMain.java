@@ -9,6 +9,7 @@ public class OuttakeMain extends Command {
   Intake intake;
   double speed;
   boolean canRun;
+  int count=0;
 
   public OuttakeMain(Intake intake) {
     this.intake = intake;
@@ -18,6 +19,7 @@ public class OuttakeMain extends Command {
   @Override
   public void initialize(){
     canRun=intake.beamBreak.isOk()||!intake.beamBreak.getVal();
+    count=0;
 
   }
 
@@ -28,7 +30,11 @@ public class OuttakeMain extends Command {
 
   @Override
   public boolean isFinished() { 
-    return intake.beamBreak.getVal()||!canRun;
+    if (intake.beamBreak.getVal()){
+      count++;
+    }
+
+    return count>50||!canRun;
   } 
 
   @Override

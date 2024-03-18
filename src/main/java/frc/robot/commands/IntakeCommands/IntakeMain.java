@@ -38,6 +38,6 @@ public class IntakeMain extends Command {
 
   @Override
   public boolean isFinished() { 
-    return intake.beamBreak.getVal()||!canRun;  
+    return !intake.beamBreak.getVal()||!canRun;  
   }
 }

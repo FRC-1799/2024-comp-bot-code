@@ -131,7 +131,7 @@ public final class Constants {
 
 
     public static final class speakerShooter {
-        public static final double minimumSpeed = 3600;
+        public static final double minimumSpeed = 6000;
         public static final double intakeTime = 5;
         
 
@@ -159,13 +159,13 @@ public final class Constants {
         public static final class positions{
             public static final double up = 0;
             public static final double intake = 121;
-            public static final double amp = 49;
+            public static final double amp = 99;
         }
 
         public static final class motorSpeeds {
             public static final double motorUp = 0.3;
             public static final double motorDown = -0.2;
-            public static final double maxSpeed = 0.3;
+            public static final double maxSpeed = 0.7;
         }
 
         public static final double resetPosition = 0;

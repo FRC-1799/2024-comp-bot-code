@@ -19,16 +19,17 @@ public class shooterIntakeMain extends Command{
         canRun = shooter.beamBreak.isOk()||!shooter.beamBreak.getVal();
 
     }
-
+    @Override
     public void execute(){
         shooter.intake();
     }
 
+    @Override
     public boolean isFinished(){
         return shooter.beamBreak.getVal()||!canRun;
     }
-
-    public void end(){
+    @Override
+    public void end(boolean wasInteruped){
         shooter.stop();
     }
 }
