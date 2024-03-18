@@ -23,10 +23,10 @@ public class ShootSpeakerMain extends Command {
     @Override
     public void execute() {
         shooter.revving();
-        shooter.runIndex();
-        // if (shooter.canShoot()){
-        //     shooter.runIndex();
-        // }
+        //shooter.runIndex();
+        if (shooter.canShoot()){
+            shooter.runIndex();
+        }
     }
 
     @Override

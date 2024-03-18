@@ -25,16 +25,16 @@ public class controlInitalizer {
     final WristIntake wrist;
     final Intake intake;
     final Elevator elevator;
-    final SpeakerShooter shooter=null;
+    final SpeakerShooter shooter;
 
     public controlInitalizer(
-        DriveBase m_driveSubsystem, Pnumatics gearBox, WristIntake wrist, Intake intake, Elevator elevator){
+        DriveBase m_driveSubsystem, Pnumatics gearBox, WristIntake wrist, Intake intake, Elevator elevator, SpeakerShooter shooter){
         this.gearBox=gearBox;
         this.m_driveSubsystem=m_driveSubsystem;
         this.wrist = wrist;
         this.intake = intake;
         this.elevator = elevator;
-        //this.shooter=shooter;
+        this.shooter=shooter;
 
 
     }
@@ -81,9 +81,9 @@ public class controlInitalizer {
         movementController.a().onTrue(new intake(intake));
         movementController.x().onTrue(new outtake(intake));
         movementController.rightBumper().onTrue(new ElevatorToggle(elevator));
-        //movementController.y().onTrue(new shooterIntakeMain(shooter));
-        //movementController.b().onTrue(new ShootSpeakerMain(shooter));   
-        //movementController.leftBumper().onTrue(new shooterIntakeMain(shooter));   
+        //movementController.y().onTrue(new shootSpeaker(shooter));
+        movementController.b().onTrue(new ShootSpeakerMain(shooter));   
+        movementController.leftBumper().onTrue(new shooterIntakeMain(shooter));   
         //movementController.rightTrigger().onTrue(new climb(elevator));
     }
 }
