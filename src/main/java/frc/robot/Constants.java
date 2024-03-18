@@ -42,7 +42,7 @@ public final class Constants {
 
         public static final double Wheelcircumference =0.05715;
         public static final double lowGearRatio=5.392;
-        public static final double highGearRatio=12.255;
+        public static final double highGearRatio=12.255/Math.PI*2*Wheelcircumference;
 
 
 
@@ -62,15 +62,15 @@ public final class Constants {
         public static final double elevatorBackupUpSpeed=-0.3;
         public static final double elevatorBackupTime = 1.3;
         public static final double elevatorClimbSpeed = 0.6;
-        public static final double elevatorStayClimbingSpeed = 0.2;
+        public static final double elevatorStayClimbingSpeed = 0.4;
     }
   
     // Changing Solenoid Values idk 50/50 this'll work
     public static final class pneumatics{
         public static final int hubID = 8;
 
-        public static final int solenoidPortA=1;
-        public static final int solenoidPortB=0;
+        public static final int solenoidPortA=0;
+        public static final int solenoidPortB=1;
         ;
 
         public static final int elevatorPistonID = 5;
@@ -142,7 +142,7 @@ public final class Constants {
         }
 
         public static final class motorSpeeds {
-            public static final double topMotorSpeed = 0.3;
+            public static final double topMotorSpeed = 1;
             public static final double bottomMotorSpeed = 0.3; // slower than top speed
             public static final double intakeSpeed = -0.3;
         }

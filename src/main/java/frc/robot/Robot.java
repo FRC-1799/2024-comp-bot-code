@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   final WristIntake wrist = new WristIntake();
   final Intake intake = new Intake();
   final Elevator elevator = new Elevator();
-  final SpeakerShooter shooter =  new SpeakerShooter();
+  //final SpeakerShooter shooter =  new SpeakerShooter();
 
   final Gyro gyro = new Gyro();
 
@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
 
 
-  controlInitalizer controlInitalizer = new controlInitalizer(m_driveSubsystem, gearBox, wrist, intake, elevator, shooter);
+  controlInitalizer controlInitalizer = new controlInitalizer(m_driveSubsystem, gearBox, wrist, intake, elevator);
 
   final CommandXboxController controller1 = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController controller2 = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);

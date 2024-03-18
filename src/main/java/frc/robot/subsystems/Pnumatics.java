@@ -35,16 +35,18 @@ public class Pnumatics extends SubsystemBase{
   }
 
   public void shift(boolean isHigh){
-    SmartDashboard.putBoolean("pnumatics2", isHigh);
-    count++;
-    SmartDashboard.putNumber("count", count);
-    //drive.shift(isHigh);
-    if (isHigh){
-      shifter.set(DoubleSolenoid.Value.kForward);
-    } 
-    else{
-        shifter.set(DoubleSolenoid.Value.kReverse);
-    }
+    shifter.set(DoubleSolenoid.Value.kForward);
+
+    // SmartDashboard.putBoolean("pnumatics2", isHigh);
+    // count++;
+    // SmartDashboard.putNumber("count", count);
+    // //drive.shift(isHigh);
+    // if (isHigh){
+    //   shifter.set(DoubleSolenoid.Value.kForward);
+    // } 
+    // else{
+    //     shifter.set(DoubleSolenoid.Value.kReverse);
+    // }
   }
 
 

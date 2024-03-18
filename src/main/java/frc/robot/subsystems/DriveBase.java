@@ -20,9 +20,10 @@ public class DriveBase extends SubsystemBase {
   public final CANSparkMax sparkMaxRightFront = new CANSparkMax(Constants.drive.rightFrontMotor, MotorType.kBrushless);
 
 
-  public final gearBoxEncoder encoderR;
-  public final gearBoxEncoder encoderL;
-
+  //public final gearBoxEncoder encoderR;
+  //public final gearBoxEncoder encoderL;
+  public final RelativeEncoder encoderR;
+  public final RelativeEncoder encoderL;
 
 
   final MotorControllerGroup leftMotors = new MotorControllerGroup(
@@ -39,8 +40,11 @@ public class DriveBase extends SubsystemBase {
 
 
     //left voltage ramping
-    encoderR=new gearBoxEncoder(sparkMaxRightBack, Constants.drive.lowGearRatio, Constants.drive.highGearRatio, Constants.drive.Wheelcircumference);    
-    encoderL= new gearBoxEncoder(sparkMaxLeftBack, Constants.drive.lowGearRatio, Constants.drive.highGearRatio, Constants.drive.Wheelcircumference);
+    //encoderR=new gearBoxEncoder(sparkMaxRightBack, Constants.drive.lowGearRatio, Constants.drive.highGearRatio, Constants.drive.Wheelcircumference);    
+    //encoderL= new gearBoxEncoder(sparkMaxLeftBack, Constants.drive.lowGearRatio, Constants.drive.highGearRatio, Constants.drive.Wheelcircumference);
+    encoderL=sparkMaxLeftBack.getEncoder();
+    encoderR=sparkMaxRightBack.getEncoder();
+
     sparkMaxLeftBack.setInverted(true);
     sparkMaxLeftFront.setInverted(true);
 
@@ -50,6 +54,8 @@ public class DriveBase extends SubsystemBase {
     //right voltage ramping
     sparkMaxRightBack.setOpenLoopRampRate(Constants.drive.rampspeed);
     sparkMaxRightFront.setOpenLoopRampRate(Constants.drive.rampspeed);
+    encoderL.setPositionConversionFactor(Constants.drive.highGearRatio);
+    encoderR.setPositionConversionFactor(Constants.drive.highGearRatio);
 
 
     //leftMotors.setInverted(true);
@@ -69,8 +75,8 @@ public class DriveBase extends SubsystemBase {
   }
 
   public void resetEncoder(){
-    encoderL.resetEncoderPosition();;
-    encoderR.resetEncoderPosition();;
+    encoderL.setPosition(0);
+    encoderR.setPosition(0);
   }
 
 
@@ -81,8 +87,8 @@ public class DriveBase extends SubsystemBase {
   }
 
   public void shift(boolean isHigh){
-    encoderL.shift(isHigh);
-    encoderR.shift(isHigh);
+    // encoderL.shift(isHigh);
+    // encoderR.shift(isHigh);
   }
 
 }
