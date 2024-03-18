@@ -19,7 +19,7 @@ public class OuttakeBack extends WaitCommand {
 
   @Override
   public void initialize(){
-    canRun=!intake.beamBreak.isOk();
+    canRun=intake.beamBreak.isOk();
   }
 
   // Called repeatedly when this Command is scheduled to run
