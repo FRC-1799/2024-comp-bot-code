@@ -120,11 +120,9 @@ public class DriveToPoint extends Command{
         
         if(!isInOuterRing&&getDistance(current)<Constants.semiAuto.outerRingDistance){
             isInOuterRing=true;
-            straightPID=innerStraightPID;
         }
         else if(isInOuterRing&&getDistance(current)>Constants.semiAuto.outerRingDistance){
             isInOuterRing=false;
-            straightPID=outerStraightPID;
         }
 
         SmartDashboard.putBoolean("is in inner ring", isInInnerRing);
@@ -155,7 +153,7 @@ public class DriveToPoint extends Command{
 
         
 
-        if (current.getRotation().getDegrees()>90||current.getRotation().getDegrees()<-90){
+        if (current.getRotation().getDegrees()>100||current.getRotation().getDegrees()<-100){
             predictedBack=predictedFieldForward;
             predictedForward=predictedFieldBack;
         }

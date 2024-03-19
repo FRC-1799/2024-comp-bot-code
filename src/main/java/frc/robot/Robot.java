@@ -122,7 +122,6 @@ final DigitalInput testingFucker = new DigitalInput(7);
 
     else if (controlChooser.getSelected()==2){
       controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2);
-
     }
     else if (controlChooser.getSelected()==3){
       controlInitalizer.initalizeMIDIAloneControl(midi);

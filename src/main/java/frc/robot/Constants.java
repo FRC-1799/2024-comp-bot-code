@@ -37,15 +37,7 @@ public final class Constants {
         // t: top
         // r: rear
 
-        // left
-        public static final int lf = 3;
-        public static final int lt = 4;
-        public static final int lr = 9;
-
-        // right
-        public static final int rf = 7;
-        public static final int rt = 5;
-        public static final int rr = 8;
+  
         
         public static final int leftFrontMotor = 5;
         public static final int leftBackMotor = 9;
@@ -74,7 +66,7 @@ public final class Constants {
 
 
     public static final class elevator {
-        public static final int motorPortLeft = 5;
+        public static final int motorPortLeft = 3;
         public static final int motorPortRight = 4;
 
         public static final int topLimitSwitch = 1;
@@ -271,7 +263,7 @@ public final class Constants {
         public static final class turn{
             public static final double finalKp = 1;
             public static final double finalKi = 0.9;
-            public static final double finalKd= 0.4;
+            public static final double finalKd= 0.3;
             
             public static final double driveTurnKp = 0.8;
             public static final double driveTurnKi = 0;
@@ -287,9 +279,9 @@ public final class Constants {
             public static final double innerKi = 0.1;
             public static final double innerKd= 0.1;
 
-            public static final double outerKp=0.7;
-            public static final double outerKi=0;
-            public static final double outerKd=0.2;
+            public static final double outerKp=1;
+            public static final double outerKi=0.1;
+            public static final double outerKd=0.1;
 
 
 
