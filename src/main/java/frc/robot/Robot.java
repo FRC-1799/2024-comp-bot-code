@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants.auto;
 import frc.robot.subsystems.*;
+import frc.robot.commands.*;
 
 
 /**
@@ -60,6 +62,7 @@ public class Robot extends TimedRobot {
     
     // starts the auto selector
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
+    autoChooser.addOption("testEverything", new testEverything(intake, wrist, elevator));
   
     SmartDashboard.putData("autos: ", autoChooser);
 
