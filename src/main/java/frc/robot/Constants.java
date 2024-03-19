@@ -52,8 +52,8 @@ public final class Constants {
         public static final int motorPortLeft = 3;
         public static final int motorPortRight = 4;
 
-        public static final int topLimitSwitch = 1;
-        public static final int bottomLimitSwitch = 2;
+        public static final int topLimitSwitch = 2;
+        public static final int bottomLimitSwitch = 1;
 
         public static final double elevatorUpSpeed = -0.6;
         public static final double elevatorDownSpeed = 0.3;
@@ -106,7 +106,7 @@ public final class Constants {
 
     public static final class intake {
         public static final int counterCap = 25; // this number is untested, it should run for 0.5 seconds after note is taken
-        public static final int beamBreakPort = 0;
+        public static final int beamBreakPort = 8;
         public static final double backupTime = 5;
         public static final double outtakeBackupTime = 1;
 
@@ -138,7 +138,7 @@ public final class Constants {
         public static final class ports {
             public static final int topMotorPort = 13;
             public static final int bottomMotorPort = 12;
-            public static final int beamBreakPort = 3;
+            public static final int beamBreakPort = 5;
         }
 
         public static final class motorSpeeds {
@@ -153,7 +153,7 @@ public final class Constants {
 
         public static final class ports {
             public static final int motorPort = 10;
-            public static final int encoderLimitSwitch = 5;
+            public static final int encoderLimitSwitch = 4;
         }
 
         public static final class positions{

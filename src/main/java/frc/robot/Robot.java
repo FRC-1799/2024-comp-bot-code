@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
   final SpeakerShooter shooter =  new SpeakerShooter();
 
   final Gyro gyro = new Gyro();
+  DigitalInput fucker = new DigitalInput(9);
 
 
 
@@ -120,6 +122,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    SmartDashboard.putBoolean("testing fucker", fucker.get());
 
   }
 
