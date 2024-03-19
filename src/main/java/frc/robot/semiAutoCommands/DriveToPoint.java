@@ -97,7 +97,7 @@ public class DriveToPoint extends Command{
             return 0;
         } 
         return turnPID.calculate(current.getRotation().getRadians());
-        
+          
     }
 
     
@@ -108,13 +108,13 @@ public class DriveToPoint extends Command{
             turnPID=turnStationaryPID;
         }
         else if (!isInInnerRing){
-            turnPID.setSetpoint(getAngle(current, goal));
+            turnPID.setSetpoint(getAngleSmart(current, goal));
 
         }
         else if(isInInnerRing&&getDistance(current)>Constants.semiAuto.goalRingDistance){
             isInInnerRing=false;
             turnPID=turnDrivePID;
-            turnPID.setSetpoint(getAngle(current, goal));
+            turnPID.setSetpoint(getAngleSmart(current, goal));
              
         }
         
@@ -236,6 +236,16 @@ public class DriveToPoint extends Command{
 
     public double square(double toSquare){
         return Math.pow(toSquare, 2);
+    }
+
+
+    public double getAngleSmart(Pose2d current, Pose2d  rotationB){
+        double base = getAngle(current, rotationB);
+        double inverse= -(PI-base);
+        if (Math.abs(base-current.getRotation().getRadians())>Math.abs(inverse-current.getRotation().getRadians())){
+            return inverse;
+        }
+        return base;
     }
     
 }

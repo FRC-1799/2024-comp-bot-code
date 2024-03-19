@@ -285,7 +285,7 @@ public final class Constants {
         public static final class straight{
             public static final double innerKp = 1;
             public static final double innerKi = 0.05;
-            public static final double innerKd= 0.5;
+            public static final double innerKd= 0.2;
 
             public static final double outerKp=0.7;
             public static final double outerKi=0;
