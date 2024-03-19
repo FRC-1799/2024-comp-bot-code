@@ -153,7 +153,7 @@ public class DriveToPoint extends Command{
 
         
 
-        if (current.getRotation().getDegrees()>100||current.getRotation().getDegrees()<-100){
+        if (current.getRotation().getDegrees()>90||current.getRotation().getDegrees()<-90){
             predictedBack=predictedFieldForward;
             predictedForward=predictedFieldBack;
         }
@@ -166,7 +166,7 @@ public class DriveToPoint extends Command{
         // if (current.getRotation().getDegrees()>90 || current.getRotation().getDegrees()<-90){
         //     predictedForward = new Pose2d(current.getX()-Math.cos(getAngle(current, goal))*0.1, current.getY()-Math.sin(getAngle(current, goal))*0.1, current.getRotation());
         //     predictedBack = new Pose2d(current.getX()+Math.cos(getAngle(current, goal))*0.1, current.getY()+Math.sin(getAngle(current, goal))*0.1, current.getRotation());
-        // }
+        // } 
 
 
 
