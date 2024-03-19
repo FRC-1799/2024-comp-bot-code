@@ -5,6 +5,7 @@ import javax.management.modelmbean.ModelMBean;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.speakerShooter;
 import frc.robot.Constants.intake.intakeNote;
+import frc.robot.commands.testEverything;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.*;
@@ -92,7 +93,7 @@ public class controlInitalizer {
         movementController.b().onTrue(new wristReset(wrist));
         //movementController.y().onTrue(new shootSpeaker(shooter));
         //movementController.b().onTrue(new ShootSpeakerMain(shooter));   
-        movementController.leftBumper().onTrue(new shooterIntakeMain(shooter));   
+        movementController.leftBumper().onTrue(new testEverything(intake, wrist, elevator));   
 
 
         //movementController.rightTrigger().onTrue(new climb(elevator));
