@@ -52,7 +52,7 @@ public class DriveToPoint extends Command{
         turnStationaryPID.setTolerance(Constants.semiAuto.turn.finalTolerence);
     
         turnStationaryPID.enableContinuousInput(-PI, PI);
-        turnDrivePID.enableContinuousInput(-PI, PI); 
+        turnDrivePID.enableContinuousInput(-PI/2, PI/2); 
         turnDrivePID.setTolerance((Constants.semiAuto.turn.driveTolerence));
         //gearbox.shift(false);
 
@@ -141,14 +141,14 @@ public class DriveToPoint extends Command{
         Pose2d predictedBack;
         Pose2d predictedFieldForward = new Pose2d(current.getX()+Math.cos(getAngle(current, goal))*0.1, current.getY()+Math.sin(getAngle(current, goal))*0.1, current.getRotation());
         Pose2d predictedFieldBack = new Pose2d(current.getX()-Math.cos(getAngle(current, goal))*0.1, current.getY()-Math.sin(getAngle(current, goal))*0.1, current.getRotation());
-        // if (current.getRotation().getDegrees()>90||current.getRotation().getDegrees()<-90){
-        //     predictedBack=predictedFieldForward;
-        //     predictedForward=predictedFieldBack;
-        // }
-        // else{
-        //     predictedBack=predictedFieldBack;
-        //     predictedForward=predictedFieldForward;
-        // }
+        if (current.getRotation().getDegrees()>90||current.getRotation().getDegrees()<-90){
+            predictedBack=predictedFieldForward;
+            predictedForward=predictedFieldBack;
+        }
+        else{
+            predictedBack=predictedFieldBack;
+            predictedForward=predictedFieldForward;
+        }
 
 
         // if (current.getRotation().getDegrees()>90 || current.getRotation().getDegrees()<-90){
@@ -158,11 +158,11 @@ public class DriveToPoint extends Command{
 
 
 
-        if (getDistance(current)>getDistance(predictedFieldForward)){
+        if (getDistance(current)>getDistance(predictedForward)){
             SmartDashboard.putBoolean("forwardDrive", true);
             return straightPID.calculate(-getDistance(current));
         }
-        else if(getDistance(current)>getDistance(predictedFieldBack)){
+        else if(getDistance(current)>getDistance(predictedBack)){
             SmartDashboard.putBoolean("forwardDrive", false);
             return straightPID.calculate(getDistance(current));
         }
