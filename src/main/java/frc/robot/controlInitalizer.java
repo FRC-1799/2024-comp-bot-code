@@ -136,7 +136,17 @@ public class controlInitalizer {
                   () -> (-movementController.getLeftX())
             ));
 
-        
+        //midi.getButtonFromDict("button1").buttonTrigger.onFalse(getNote);
+        midi.getButtonFromDict("button2").buttonTrigger.onTrue(new ScoreAmp(driveSubsystem, elevator, intake, gearBox));
+        midi.getButtonFromDict("button3").buttonTrigger.onFalse(new intake(intake));
+        midi.getButtonFromDict("button4").buttonTrigger.onFalse(new outtake(intake));
+        midi.getButtonFromDict("button5").buttonTrigger.onFalse(new ToggleElevator(elevator));
+        midi.getButtonFromDict("button6").buttonTrigger.onFalse(new WristMoveAuto(wrist, Constants.wrist.positions.up));
+        midi.getButtonFromDict("button7").buttonTrigger.onFalse(new WristMoveAuto(wrist, Constants.wrist.positions.amp));
+        midi.getButtonFromDict("button8").buttonTrigger.onFalse(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
+        //midi.getButtonFromDict("pause").buttonTrigger.onFalse(new climb(elevator));
+
+
         midi.getButtonFromDict("button9").buttonTrigger.onFalse(cancel);
     }
 

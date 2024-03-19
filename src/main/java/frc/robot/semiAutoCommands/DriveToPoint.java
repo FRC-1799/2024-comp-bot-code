@@ -141,6 +141,20 @@ public class DriveToPoint extends Command{
         Pose2d predictedBack;
         Pose2d predictedFieldForward = new Pose2d(current.getX()+Math.cos(getAngle(current, goal))*0.1, current.getY()+Math.sin(getAngle(current, goal))*0.1, current.getRotation());
         Pose2d predictedFieldBack = new Pose2d(current.getX()-Math.cos(getAngle(current, goal))*0.1, current.getY()-Math.sin(getAngle(current, goal))*0.1, current.getRotation());
+
+        // if (Math.abs(Math.abs(current.getRotation().getDegrees())-90)<20){
+        //     if (current.getRotation().getDegrees()>0){
+        //         predictedFieldBack= new Pose2d(predictedFieldForward.getY(), predictedFieldForward.getX(), predictedFieldForward.getRotation());
+        //         predictedFieldForward= new Pose2d(predictedFieldBack.getY(), predictedFieldBack.getX(), predictedFieldBack.getRotation());
+        //     }
+        //     else{
+        //         predictedFieldForward= new Pose2d(predictedFieldForward.getY(), predictedFieldForward.getX(), predictedFieldForward.getRotation());
+        //         predictedFieldBack= new Pose2d(predictedFieldBack.getY(), predictedFieldBack.getX(), predictedFieldBack.getRotation());
+        //     }
+        // }
+
+        
+
         if (current.getRotation().getDegrees()>90||current.getRotation().getDegrees()<-90){
             predictedBack=predictedFieldForward;
             predictedForward=predictedFieldBack;

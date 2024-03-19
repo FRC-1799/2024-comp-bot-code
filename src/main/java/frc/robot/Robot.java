@@ -42,6 +42,7 @@ public class Robot extends TimedRobot {
   final Timer timer = new Timer();
   final Limelight lime = new Limelight();
   final speakerShooter shooter = new speakerShooter();
+final DigitalInput testingFucker = new DigitalInput(7);
 
 
  
@@ -150,6 +151,8 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     semiAutoManager.periodic();
+    SmartDashboard.putBoolean("testingFucker", testingFucker.get());
+
 
     
     

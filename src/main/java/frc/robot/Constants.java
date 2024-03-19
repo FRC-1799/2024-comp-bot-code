@@ -74,7 +74,7 @@ public final class Constants {
 
 
     public static final class elevator {
-        public static final int motorPortLeft = 3;
+        public static final int motorPortLeft = 5;
         public static final int motorPortRight = 4;
 
         public static final int topLimitSwitch = 1;
@@ -107,7 +107,7 @@ public final class Constants {
 
     public static final class intake {
         public static final int counterCap = 25; // this number is untested, it should run for 0.5 seconds after note is taken
-        public static final int beamBreakPort = 2;
+        public static final int beamBreakPort = 0;
         public static final double backupTime = 5;
         public static final double outtakeBackupTime = 1;
 
@@ -140,7 +140,7 @@ public final class Constants {
         public static final class ports {
             public static final int topMotorPort = 13;
             public static final int bottomMotorPort = 12;
-            public static final int beamBreakPort = 0;
+            public static final int beamBreakPort = 6;
         }
 
         public static final class motorSpeeds {
@@ -232,7 +232,7 @@ public final class Constants {
 
         public static final class ports {
             public static final int motorPort = 10;
-            public static final int encoderLimitSwitch = 0;
+            public static final int encoderLimitSwitch = 3;
         }
 
         public static final class positions{
@@ -266,7 +266,7 @@ public final class Constants {
     public static final class semiAuto{
 
         public static final double goalRingDistance = 0.18;
-        public static final double outerRingDistance = 0.75;
+        public static final double outerRingDistance = 1;
 
         public static final class turn{
             public static final double finalKp = 1;
@@ -284,8 +284,8 @@ public final class Constants {
         }
         public static final class straight{
             public static final double innerKp = 1;
-            public static final double innerKi = 0.05;
-            public static final double innerKd= 0.5;
+            public static final double innerKi = 0.1;
+            public static final double innerKd= 0.1;
 
             public static final double outerKp=0.7;
             public static final double outerKi=0;
