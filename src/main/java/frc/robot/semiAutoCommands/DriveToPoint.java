@@ -238,14 +238,14 @@ public class DriveToPoint extends Command{
         return Math.pow(toSquare, 2);
     }
 
-    public Pose2d isBehind (Pose2d current, Pose2d goal){
-        double xDif = current.getX()-goal.getX();
-        double yDif = current.getY()-goal.getY();
-        double rotationDiff = current.getRotation().getRadians()-goal.getRotation().getRadians();
-        Pose2d refferental = new Pose2d();
-        noteRotation=math.radians(robotRotation)+math.atan(noteY/noteX);
-        noteDisance=math.sqrt(noteX**2+noteY**2);
-        return [math.cos(noteRotation)*noteDisance+robotX, math.sin(noteRotation)*noteDisance+robotY];
+
+    public double getAngleSmart(Pose2d current, Pose2d  rotationB){
+        double base = getAngle(current, rotationB);
+        double inverse= -(PI-base);
+        if (Math.abs(base-current.getRotation().getRadians())>Math.abs(inverse-current.getRotation().getRadians())){
+            return inverse;
+        }
+        return base;
     }
     
 }
