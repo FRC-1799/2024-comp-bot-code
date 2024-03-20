@@ -31,6 +31,4 @@ public class limitSwitch{
         new SequentialCommandGroup(new WaitUntilCommand(valSupplier), runner);
     }
 
-    
-
 }

@@ -1,5 +1,6 @@
 package frc.robot.commands.DriveCommands;
 
+
 import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,7 +10,6 @@ import frc.robot.subsystems.Pnumatics;
 
 public class shiftGears extends RunCommand {
 
-    
     public shiftGears(BooleanSupplier isHigh, Pnumatics gearBox){
         super(
             ()->{
@@ -19,6 +19,7 @@ public class shiftGears extends RunCommand {
             gearBox
           );
           //addRequirements(gearBox);
+
     }
 
 }

@@ -10,15 +10,22 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+
 import frc.robot.Constants.auto;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
+
+//import frc.robot.autoRoutines.*;
+import frc.robot.controlInitalizer;
+import frc.robot.Constants.speakerShooter;
+
 
 
 /**
@@ -29,18 +36,23 @@ import frc.robot.commands.*;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+
+
+ // final Pneumatics pneumatics = new Pneumatics();
   final DriveBase m_driveSubsystem = new DriveBase();
-  final Pnumatics gearBox = new Pnumatics(m_driveSubsystem);
-  final WristIntake wrist = new WristIntake();
+
   final Intake intake = new Intake();
-  final Elevator elevator = new Elevator();
-  final SpeakerShooter shooter =  new SpeakerShooter();
-
+ // final ToggleCompressor toggleCompressor = new ToggleCompressor(pneumatics);
   final Gyro gyro = new Gyro();
-  DigitalInput fucker = new DigitalInput(9);
+  final Timer timer = new Timer();
+  final Limelight lime = new Limelight();
+  final speakerShooter shooter = new speakerShooter();
+  final Pnumatics gearBox = new Pnumatics(m_driveSubsystem);
 
+  final WristIntake wrist = new WristIntake();
+  final Elevator elevator = new Elevator();
 
-
+  final Midi midi = new Midi();
 
 
  
@@ -48,11 +60,10 @@ public class Robot extends TimedRobot {
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
 
 
-  controlInitalizer controlInitalizer = new controlInitalizer(m_driveSubsystem, gearBox, wrist, intake, elevator, shooter);
+
 
   final CommandXboxController controller1 = new CommandXboxController(Constants.MOVEMENT_JOYSTICK);
   final CommandXboxController controller2 = new CommandXboxController(Constants.MANIPULATOR_JOYSTICK);
-  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -61,29 +72,44 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    semiAutoManager.configureSemiAutoManager(m_driveSubsystem, gyro, lime, timer);
+
+    controlInitalizer.controlInitalizerFromRobot(m_driveSubsystem, gearBox, wrist, intake, elevator, shooter);
+
+    configureControls();
+    midi.InitButtons();
     
     // starts the auto selector
+
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
     autoChooser.addOption("testEverything", new testEverything(intake, wrist, elevator));
   
     SmartDashboard.putData("autos: ", autoChooser);
 
+
+
     //starts the control type chooser
     controlChooser.setDefaultOption("Two Controler", 0);
     controlChooser.addOption("One controler", 1);
     controlChooser.addOption("jace control", 2);
+    controlChooser.addOption("MidiControl alone", 3);
+    controlChooser.addOption("autoDriveTest", 4);
+
 
     SmartDashboard.putData("control type", controlChooser);
 
+    
     //start cameraServer
-    CameraServer.startAutomaticCapture();
-    CameraServer.startAutomaticCapture();
 
-    configureControls();
+    
 
-    gyro.log();
+    //configureControls();
+
+
+    //gyro.reset();
 
     m_driveSubsystem.resetEncoder();
+    semiAutoManager.resetAudomity();
   }
 
   private void configureControls() {
@@ -101,6 +127,12 @@ public class Robot extends TimedRobot {
     else if (controlChooser.getSelected()==2){
       controlInitalizer.initalizeJaceControllWithSecondController(controller1, controller2);
 
+    }
+    else if (controlChooser.getSelected()==3){
+      controlInitalizer.initalizeMIDIAloneControl(midi);
+    }
+    else if (controlChooser.getSelected()==4){
+      controlInitalizer.autoDriveTest(controller1);
     }
      
 
@@ -122,9 +154,11 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    SmartDashboard.putBoolean("testing fucker", fucker.get());
+
+    semiAutoManager.periodic();
 
   }
+
 
   /**
    * This function is called once each time the robot enters Disabled mode.
@@ -171,6 +205,7 @@ public class Robot extends TimedRobot {
       CommandScheduler.getInstance().cancelAll();
     }
     configureControls();
+
     
   }
 
