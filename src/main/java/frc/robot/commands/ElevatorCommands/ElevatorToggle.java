@@ -10,9 +10,9 @@ public class ElevatorToggle extends ParallelCommandGroup {
     double speed;
     
 
-    public ElevatorToggle(Elevator elevator, double speed) {
+    public ElevatorToggle(Elevator elevator) {
         this.elevator = elevator;
-        this.speed = speed;
+
 
         addCommands(new ElevatorToggleBack(elevator, Constants.elevator.elevatorBackupTime), new ElevatorToggleMain(elevator));
     }

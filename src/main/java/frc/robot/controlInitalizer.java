@@ -43,7 +43,7 @@ public class controlInitalizer {
         intake = Intake;
         shooter=Shooter;
         elevator = Elevator;
-        testRoutine = new testRoutineRunner(driveSubsystem, GearBox);
+
 
 
 
@@ -105,8 +105,8 @@ public class controlInitalizer {
         //movementController.b().whileTrue(new ShootNote(intake));
         movementController.a().onTrue(new IntakeMain(intake));
         movementController.b().onTrue(new OuttakeMain(intake));
-        movementController.rightBumper().whileTrue(new ElevatorToggle(elevator, Constants.elevator.elevatorUpSpeed));
-        movementController.leftBumper().whileTrue(new ElevatorToggle(elevator, Constants.elevator.elevatorDownSpeed));
+        movementController.rightBumper().whileTrue(new ElevatorToggle(elevator));
+        movementController.leftBumper().whileTrue(new ElevatorToggle(elevator));
         movementController.y().onTrue(new wristReset(wrist));
         movementController.povUp().whileTrue(new stayAtTopMain(elevator));
         
@@ -149,7 +149,7 @@ public class controlInitalizer {
             )); 
 
         controller.y().onTrue(cancel);
-        controller.x().onFalse(testRoutine);
+        controller.x().onFalse(new testRoutineRunner(driveSubsystem));
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
 

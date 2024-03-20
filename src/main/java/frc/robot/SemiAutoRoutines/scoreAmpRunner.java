@@ -6,20 +6,28 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.semiAutoManager;
+import frc.robot.Constants.elevator;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.ShiftableGearbox;
+import frc.robot.subsystems.WristIntake;
 
-public class testRoutineRunner extends InstantCommand{
+public class scoreAmpRunner extends InstantCommand{
     public DriveBase drive;
-    public ShiftableGearbox gearbox;
-    public testRoutineRunner(DriveBase drive){
+    public Elevator elevator;
+    public Intake intake;
+    public WristIntake wrist;
+    public scoreAmpRunner (DriveBase drive, Elevator elevator, Intake intake, WristIntake wrist){
         this.drive=drive;    
-        this.gearbox=gearbox;
+        this.elevator = elevator;
+        this.intake = intake;
+        this.wrist=wrist;
     }
 
     @Override
     public void initialize(){
-        Command command = new testRoutine(drive);
+        Command command = new scoreAmp(drive, elevator, intake, wrist);
         if (semiAutoManager.getCurrent()!=null){
             CommandScheduler.getInstance().cancel(semiAutoManager.getCurrent());
         }

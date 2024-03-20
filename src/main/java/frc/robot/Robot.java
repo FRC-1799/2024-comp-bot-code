@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -54,6 +55,7 @@ public class Robot extends TimedRobot {
  
   SendableChooser<Command> autoChooser = new SendableChooser<Command>();
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
+  SendableChooser<Pose2d> poseChooser  = new SendableChooser<Pose2d>();
 
 
 
@@ -74,12 +76,13 @@ public class Robot extends TimedRobot {
 
     configureControls();
     midi.InitButtons();
+
     
     // starts the auto selector
 
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
   
-    SmartDashboard.putData("autos: ", autoChooser);
+   
 
 
 
@@ -91,8 +94,15 @@ public class Robot extends TimedRobot {
     controlChooser.addOption("autoDriveTest", 4);
 
 
-    SmartDashboard.putData("control type", controlChooser);
+    poseChooser.setDefaultOption("leftCorner", FeildPosits.startingPosit.cornerStart);
+    poseChooser.addOption("leftSpeaker", FeildPosits.startingPosit.leftSpeakerStart);
+    poseChooser.addOption("middleSpeaker", FeildPosits.startingPosit.middleSpeakerStart);
+    poseChooser.addOption("rightSpeaker", FeildPosits.startingPosit.rightSpeakerStart);
 
+
+    SmartDashboard.putData("control type", controlChooser);
+    SmartDashboard.putData("autos: ", autoChooser);
+    SmartDashboard.putData("startingPose", poseChooser);
     
     //start cameraServer
 
@@ -104,7 +114,7 @@ public class Robot extends TimedRobot {
     //gyro.reset();
 
     m_driveSubsystem.resetEncoder();
-    semiAutoManager.resetAudomity();
+    semiAutoManager.resetAudomity(poseChooser.getSelected());
   }
 
   private void configureControls() {

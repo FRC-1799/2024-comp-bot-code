@@ -35,7 +35,7 @@ public  class semiAutoManager{
         gyro=Gyro;
         limelight=Limelight;
         timer=Timer;
-        startingPose=Constants.fieldPosits.leftStart;
+        startingPose=new Pose2d();
 
 
         poseEstimator = new DifferentialDrivePoseEstimator(
@@ -84,8 +84,8 @@ public  class semiAutoManager{
         current = newCommand;
     }
 
-    public static void resetAudomity(){
-        poseEstimator.resetPosition(gyro.getRoll(), drive.getLeftEncoder(), drive.getRightEncoder(), startingPose);
+    public static void resetAudomity(Pose2d pose){
+        poseEstimator.resetPosition(gyro.getRoll(), drive.getLeftEncoder(), drive.getRightEncoder(), pose);
     }
     
 

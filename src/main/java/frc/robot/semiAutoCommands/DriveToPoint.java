@@ -33,14 +33,14 @@ public class DriveToPoint extends Command{
     boolean isInOuterRing=false;
 
     final double PI = Math.PI;
-    ShiftableGearbox gearbox;
+
 
     
 
-    public DriveToPoint(DriveBase drive, Pose2d goal, ShiftableGearbox gearBox){
+    public DriveToPoint(DriveBase drive, Pose2d goal){
         this.drive=drive;
         this.goal=goal;
-        this.gearbox=gearBox;
+
 
         addRequirements(drive);
     }

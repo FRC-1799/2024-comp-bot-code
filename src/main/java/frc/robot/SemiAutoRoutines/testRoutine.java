@@ -8,6 +8,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
+import frc.robot.FeildPosits;
 import frc.robot.semiAutoManager;
 import frc.robot.semiAutoCommands.DriveToPoint;
 //import frc.robot.commands.testDriveStraight;
@@ -15,9 +16,9 @@ import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.ShiftableGearbox;
 
 public class testRoutine extends SequentialCommandGroup{
-    public testRoutine(DriveBase drive, ShiftableGearbox gearbox){
+    public testRoutine(DriveBase drive){
         super(
-            new DriveToPoint(drive, Constants.fieldPosits.testPosit, gearbox)
+            new DriveToPoint(drive, FeildPosits.ampScore)
         );
     }
 }
