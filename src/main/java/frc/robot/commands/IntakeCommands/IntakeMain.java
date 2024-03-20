@@ -20,7 +20,7 @@ public class IntakeMain extends Command {
 
   @Override
   public void initialize() {
-    canRun=intake.beamBreak.isOk()||!intake.beamBreak.getVal();
+    canRun=intake.beamBreak.isOk()||!intake.getBeamBreak();
 
 
   }
@@ -38,6 +38,6 @@ public class IntakeMain extends Command {
 
   @Override
   public boolean isFinished() { 
-    return !intake.beamBreak.getVal()||!canRun;  
+    return intake.getBeamBreak()||!canRun;  
   }
 }

@@ -18,7 +18,7 @@ public class OuttakeMain extends Command {
 
   @Override
   public void initialize(){
-    canRun=intake.beamBreak.isOk()||!intake.beamBreak.getVal();
+    canRun=intake.beamBreak.isOk()||!intake.getBeamBreak();
     count=0;
 
   }
@@ -30,7 +30,7 @@ public class OuttakeMain extends Command {
 
   @Override
   public boolean isFinished() { 
-    if (intake.beamBreak.getVal()){
+    if (!intake.getBeamBreak()){
       count++;
     }
 

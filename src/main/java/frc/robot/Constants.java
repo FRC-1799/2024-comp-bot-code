@@ -53,7 +53,7 @@ public final class Constants {
         public static final int motorPortRight = 4;
 
         public static final int topLimitSwitch = 2;
-        public static final int bottomLimitSwitch = 1;
+        public static final int bottomLimitSwitch = 0;
 
         public static final double elevatorUpSpeed = -0.6;
         public static final double elevatorDownSpeed = 0.3;
@@ -106,12 +106,12 @@ public final class Constants {
 
     public static final class intake {
         public static final int counterCap = 25; // this number is untested, it should run for 0.5 seconds after note is taken
-        public static final int beamBreakPort = 8;
+        public static final int beamBreakPort = 1;
         public static final double backupTime = 5;
         public static final double outtakeBackupTime = 1;
 
         public static final class intakeSpeeds {
-            public static final double intakeSpeed = 0.3;
+            public static final double intakeSpeed = 0.5;
             public static final double outakeSpeed = -1;
             // public static final int intakeRaiseSpeed = 1;
         }
@@ -143,7 +143,7 @@ public final class Constants {
 
         public static final class motorSpeeds {
             public static final double topMotorSpeed = 1;
-            public static final double bottomMotorSpeed = 0.3; // slower than top speed
+            public static final double bottomMotorSpeed = 1; // slower than top speed
             public static final double intakeSpeed = -0.3;
         }
     }
@@ -153,19 +153,19 @@ public final class Constants {
 
         public static final class ports {
             public static final int motorPort = 10;
-            public static final int encoderLimitSwitch = 4;
+            public static final int encoderLimitSwitch = 3;
         }
 
         public static final class positions{
             public static final double up = 0;
-            public static final double intake = 121;
-            public static final double amp = 99;
+            public static final double intake = 115;
+            public static final double amp = 56;
         }
 
         public static final class motorSpeeds {
             public static final double motorUp = 0.3;
             public static final double motorDown = -0.2;
-            public static final double maxSpeed = 0.7;
+            public static final double maxSpeed = 0.3;
         }
 
         public static final double resetPosition = 0;

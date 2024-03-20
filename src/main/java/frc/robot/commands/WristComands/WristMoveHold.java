@@ -32,7 +32,7 @@ public class WristMoveHold extends Command {
    */
   public WristMoveHold(WristIntake wrist, double setpoint) {
     this.wrist = wrist;
-    this.setpoint=Math.toRadians(setpoint);
+    this.setpoint=setpoint;
     
     addRequirements(wrist);
     pid.enableContinuousInput(-PI, PI);

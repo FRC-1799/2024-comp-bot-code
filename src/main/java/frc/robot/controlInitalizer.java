@@ -93,7 +93,7 @@ public class controlInitalizer {
         movementController.b().onTrue(new wristReset(wrist));
         //movementController.y().onTrue(new shootSpeaker(shooter));
         //movementController.b().onTrue(new ShootSpeakerMain(shooter));   
-        movementController.leftBumper().onTrue(new testEverything(intake, wrist, elevator));   
+        //movementController.leftBumper().onTrue(new testEverything(intake, wrist, elevator));   
 
 
         //movementController.rightTrigger().onTrue(new climb(elevator));
