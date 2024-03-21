@@ -5,27 +5,27 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.limitSwitch;
 
-public class stayAtTopMain extends Command {
-    limitSwitch topSwitch;
+public class stayClimbing extends Command {
+    limitSwitch bottomSwitch;
     Elevator elevator;
     boolean canRun;
 
-    public stayAtTopMain(Elevator elevator){
+    public stayClimbing(Elevator elevator){
         this.elevator=elevator;
-        this.topSwitch=elevator.topSwitch;
+        this.bottomSwitch=elevator.bottomSwitch;
         addRequirements(elevator);
     }
 
     @Override
     public void initialize(){
-        canRun=elevator.isUp||topSwitch.isOk();
+        canRun=elevator.isUp||bottomSwitch.isOk();
  
     }
 
     @Override
     public void execute(){
-        if (!topSwitch.getVal()){
-            elevator.moveElevator(Constants.elevator.elevatorStayAtTopSpeed);
+        if (bottomSwitch.getVal()){
+            elevator.moveElevator(Constants.elevator.elevatorStayClimbingSpeed);
         }
         else{
             elevator.moveElevator(0);
@@ -41,3 +41,5 @@ public class stayAtTopMain extends Command {
         return !canRun;
     }
 }
+
+

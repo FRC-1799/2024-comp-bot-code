@@ -10,6 +10,7 @@ public class ElevatorToggleMain extends Command {
   Elevator elevator;
   limitSwitch activeSwitch;
   double speed;
+  boolean canRun;
 
   public ElevatorToggleMain(Elevator elevator) {
     this.elevator = elevator;
@@ -34,16 +35,16 @@ public class ElevatorToggleMain extends Command {
       speed = Constants.elevator.elevatorUpSpeed;
     }
 
-    if(!activeSwitch.isOk()){
-      cancel();
-    }
+    canRun=activeSwitch.isOk();
+
+
   }
 
   @Override
   public void end(boolean wasInterupted) {
+    elevator.stop();
 
     if (!wasInterupted){
-      elevator.stop();
       elevator.isUp=!elevator.isUp;
       if (elevator.isUp){
         new stayAtTopMain(elevator).schedule();
@@ -56,6 +57,6 @@ public class ElevatorToggleMain extends Command {
 
   @Override
   public boolean isFinished() { 
-    return !activeSwitch.getVal();
+    return activeSwitch.getVal()||!canRun;
   }
 }

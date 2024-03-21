@@ -20,10 +20,12 @@ import frc.robot.subsystems.Blinkin;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.ShiftableGearbox;
+
+
 
 public class ScoreAmp extends SequentialCommandGroup {
-    public ScoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake, ShiftableGearbox gearbox){
+    public ScoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake){
+
         
         super(
             //Init
@@ -34,7 +36,8 @@ public class ScoreAmp extends SequentialCommandGroup {
             //MainLoop
             new BlinkinRed(),
             new ParallelCommandGroup(
-                new DriveToPoint(drive, Constants.fieldPosits.ampScore, gearbox),
+             new DriveToPoint(drive, Constants.fieldPosits.ampScore),
+
                        new ToggleElevator(intakeElevator)
             ),
 

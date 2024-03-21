@@ -4,11 +4,12 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelPositions;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticHub;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ShiftableGearbox extends SubsystemBase{
+public class Pnumatics extends SubsystemBase{
   
   PneumaticHub hub = new PneumaticHub(Constants.pneumatics.hubID);
 
@@ -16,8 +17,10 @@ public class ShiftableGearbox extends SubsystemBase{
   Compressor compressor = hub.makeCompressor();
   DriveBase drive;
 
-  public ShiftableGearbox(DriveBase drive){
+
+  public Pnumatics(DriveBase drive){
     compressor.disable();
+
     this.drive=drive;
   }
 
@@ -32,14 +35,22 @@ public class ShiftableGearbox extends SubsystemBase{
   }
 
   public void shift(boolean isHigh){
+
+
+    shifter.set(DoubleSolenoid.Value.kForward);
+
     //SmartDashboard.putBoolean("isHigh", isHigh);
-    drive.shift(isHigh);
+
+
+    //SmartDashboard.putBoolean("isHigh", isHigh);
+
     if (isHigh){
       shifter.set(DoubleSolenoid.Value.kForward);
     } 
     else{
         shifter.set(DoubleSolenoid.Value.kReverse);
     }
+
   }
 
 

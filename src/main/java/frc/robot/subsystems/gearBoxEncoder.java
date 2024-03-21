@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class gearBoxEncoder extends SubsystemBase{
@@ -50,7 +51,11 @@ public class gearBoxEncoder extends SubsystemBase{
     @Override
     public void periodic(){
         count+=encoder.getPosition()/currentRatio;
+        count++;
+        SmartDashboard.putNumber("rawEncoder",encoder.getPosition()/currentRatio);
         encoder.setPosition(0);
+
+        SmartDashboard.putNumber("an encoder", count);
     }
 
     public void shift(boolean isGoingHigh){

@@ -1,19 +1,13 @@
 package frc.robot.commands.ElevatorCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.subsystems.Elevator;
 
-public class ElevatorToggle extends ParallelCommandGroup {
-    
-    final Elevator elevator;
-    double speed;
-    
+public class ElevatorToggle extends SequentialCommandGroup {
 
-    public ElevatorToggle(Elevator elevator, double speed) {
-        this.elevator = elevator;
-        this.speed = speed;
-
-        addCommands(new ElevatorToggleBack(elevator, Constants.elevator.elevatorBackupTime), new ElevatorToggleMain(elevator));
+    public ElevatorToggle(Elevator elevator) {
+        super(new ElevatorToggleMain(elevator));
     }
 }

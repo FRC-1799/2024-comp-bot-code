@@ -9,6 +9,7 @@ import frc.robot.subsystems.SpeakerShooter;
 
 public class shooterIntakeBack extends WaitCommand {
     final SpeakerShooter shooter;
+    boolean canRun;
     
     public shooterIntakeBack(SpeakerShooter shooter) {
         super(Constants.speakerShooter.intakeTime);
@@ -20,9 +21,7 @@ public class shooterIntakeBack extends WaitCommand {
 
     @Override
     public void initialize(){
-        if (shooter.beamBreak.isOk()){
-            cancel();
-        }
+        canRun=!shooter.beamBreak.isOk();
     }
 
 
@@ -34,9 +33,12 @@ public class shooterIntakeBack extends WaitCommand {
 
     @Override
     public void end(boolean wasInterupted){
-        if(!wasInterupted){
-            shooter.stop();
-        }
+        shooter.stop();
+        
     }
     
+    @Override
+    public boolean isFinished(){
+        return (!canRun||super.isFinished());
+    }
 }

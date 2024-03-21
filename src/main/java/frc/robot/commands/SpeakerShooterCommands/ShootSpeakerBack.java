@@ -8,6 +8,7 @@ import frc.robot.subsystems.SpeakerShooter;
 public class ShootSpeakerBack extends Command {
     final SpeakerShooter shooter;
     int count=0;
+    boolean canRun=false;
     
     public ShootSpeakerBack(SpeakerShooter shooter) {
         this.shooter = shooter;
@@ -16,9 +17,8 @@ public class ShootSpeakerBack extends Command {
 
     @Override
     public void initialize(){
-        if (shooter.beamBreak.isOk()){
-            cancel();
-        }
+        canRun=!shooter.beamBreak.isOk();
+        
     }
 
     @Override
@@ -33,16 +33,17 @@ public class ShootSpeakerBack extends Command {
         }
     }
 
-    @Override
-    public boolean isFinished() { 
-        return count>10;
-    }  
 
     @Override
     public void end(boolean wasInterupted){
-        if(!wasInterupted){
-            shooter.stop();
-        }
+        shooter.stop();
+        
+    }
+
+    @Override
+    public boolean isFinished(){
+        return canRun||super.isFinished()||!canRun;
+
     }
     
 }
