@@ -7,7 +7,6 @@ import frc.robot.commands.ElevatorCommands.climb;
 import frc.robot.commands.IntakeCommands.intake;
 import frc.robot.commands.IntakeCommands.outtake;
 import frc.robot.commands.SpeakerShooterCommands.shootIntake;
-import frc.robot.commands.SpeakerShooterCommands.shootSpeaker;
 import frc.robot.commands.WristComands.WristMoveAuto;
 import frc.robot.commands.WristComands.wristReset;
 import frc.robot.subsystems.*;

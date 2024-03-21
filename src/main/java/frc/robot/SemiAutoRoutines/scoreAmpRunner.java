@@ -10,7 +10,7 @@ import frc.robot.Constants.elevator;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.ShiftableGearbox;
+
 import frc.robot.subsystems.WristIntake;
 
 public class scoreAmpRunner extends InstantCommand{
@@ -27,7 +27,7 @@ public class scoreAmpRunner extends InstantCommand{
 
     @Override
     public void initialize(){
-        Command command = new scoreAmp(drive, elevator, intake, wrist);
+        Command command = new ScoreAmp(drive, elevator, intake, wrist);
         if (semiAutoManager.getCurrent()!=null){
             CommandScheduler.getInstance().cancel(semiAutoManager.getCurrent());
         }

@@ -23,12 +23,13 @@ import frc.robot.subsystems.Blinkin;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.WristIntake;
 
 
 
 
 public class ScoreAmp extends SequentialCommandGroup {
-    public ScoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake){        
+    public ScoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake, WristIntake wrist){        
         super(
             //Init
             
