@@ -5,6 +5,7 @@ import java.util.List;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
@@ -48,7 +49,7 @@ public class ScoreAmp extends SequentialCommandGroup {
             new WristMoveAuto(wrist, Constants.wrist.positions.amp),
 
             //Ending set
-            new ParallelCommandGroup(
+            new ParallelRaceGroup(
                 new OuttakeMain(intake),
                 new stealDriveCommand(drive)
             )
