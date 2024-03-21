@@ -15,7 +15,7 @@ public final class FeildPosits {
         public static final Pose2d leftSpeakerStart = new Pose2d();
         public static final Pose2d middleSpeakerStart = new Pose2d();
         public static final Pose2d rightSpeakerStart = new Pose2d();
-        public static final Pose2d farRightStartForPosits = new Pose2d(0, 8.2042, new Rotation2d(0));
+        public static final Pose2d farRightStartForPosits = new Pose2d(.05, 7.764, new Rotation2d(0));
     }
     public static final Pose2d ampScore = new Pose2d();
     public static final Pose2d speakerScore = new Pose2d();
