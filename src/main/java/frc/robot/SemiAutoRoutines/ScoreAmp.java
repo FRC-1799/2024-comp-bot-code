@@ -14,6 +14,7 @@ import frc.robot.commands.ToggleElevator;
 import frc.robot.commands.ElevatorCommands.elevatorMoveTo;
 import frc.robot.commands.IntakeCommands.OuttakeMain;
 import frc.robot.commands.WristComands.WristMoveAuto;
+import frc.robot.commands.WristComands.wristReset;
 import frc.robot.semiAutoCommands.BlinkinGreen;
 import frc.robot.semiAutoCommands.BlinkinRed;
 import frc.robot.semiAutoCommands.BlinkinYellow;
@@ -39,7 +40,7 @@ public class ScoreAmp extends SequentialCommandGroup {
 
                 new DriveToPoint(drive, FeildPosits.ampScore),
                 new elevatorMoveTo(intakeElevator, true),
-                new WristMoveAuto(wrist, Constants.wrist.positions.up)
+                new wristReset(wrist)
 
 
             ),

@@ -28,12 +28,11 @@ public class doubleAmp extends SequentialCommandGroup{
                 new elevatorMoveTo(elevator, false),
                 new wristReset(wrist)
             ),
-            new elevatorMoveTo(elevator, false),
-            new WristMoveHold(wrist, Constants.wrist.positions.intake),
+            
+            new WristMoveAuto(wrist, Constants.wrist.positions.intake),
             
             new ParallelRaceGroup(
                 new DriveToPoint(drive, FeildPosits.startingNotes.rightNote),
-
                 new intake(intake)
             ),
             new ScoreAmp(drive, elevator, intake, wrist)
