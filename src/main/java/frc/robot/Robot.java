@@ -28,6 +28,7 @@ import frc.robot.Constants.speakerShooter;
 
 
 
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -47,11 +48,11 @@ public class Robot extends TimedRobot {
   final Timer timer = new Timer();
   final Limelight lime = new Limelight();
   final speakerShooter shooter = new speakerShooter();
+
   final Pnumatics gearBox = new Pnumatics(m_driveSubsystem);
 
   final WristIntake wrist = new WristIntake();
   final Elevator elevator = new Elevator();
-
   final Midi midi = new Midi();
 
 
@@ -154,6 +155,10 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    semiAutoManager.periodic();
+
+    
+    
 
     semiAutoManager.periodic();
 

@@ -9,17 +9,22 @@ import frc.robot.semiAutoManager;
 import frc.robot.subsystems.DriveBase;
 
 
+
 public class testRoutineRunner extends InstantCommand{
     public DriveBase drive;
 
     public testRoutineRunner(DriveBase drive){
         this.drive=drive;    
 
+
+
     }
 
     @Override
     public void initialize(){
+
         Command command = new testRoutine(drive);
+
         if (semiAutoManager.getCurrent()!=null){
             CommandScheduler.getInstance().cancel(semiAutoManager.getCurrent());
         }

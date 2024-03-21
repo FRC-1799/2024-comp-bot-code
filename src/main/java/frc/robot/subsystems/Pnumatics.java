@@ -17,11 +17,10 @@ public class Pnumatics extends SubsystemBase{
   Compressor compressor = hub.makeCompressor();
   DriveBase drive;
 
-  
 
-  
   public Pnumatics(DriveBase drive){
-    compressor.enableDigital();
+    compressor.disable();
+
     this.drive=drive;
   }
 
@@ -37,7 +36,11 @@ public class Pnumatics extends SubsystemBase{
 
   public void shift(boolean isHigh){
 
+
     shifter.set(DoubleSolenoid.Value.kForward);
+
+    //SmartDashboard.putBoolean("isHigh", isHigh);
+
 
     //SmartDashboard.putBoolean("isHigh", isHigh);
 

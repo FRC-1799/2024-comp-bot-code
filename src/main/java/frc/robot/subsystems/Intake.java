@@ -18,6 +18,7 @@ public class Intake extends SubsystemBase {
 	// public final limitSwitch bottomSwitch = new limitSwitch(Constants.intake.raisingIntake.bottomLimitSwitchPort);
 
 	public final limitSwitch beamBreak = new limitSwitch(Constants.intake.beamBreakPort);
+	//public boolean isUp = false;
 
 
 	public void intake(){

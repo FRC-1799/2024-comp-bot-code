@@ -102,6 +102,7 @@ public final class Constants {
         
 
         public static final int elevatorPistonID = 5;
+
     }                             
 
 
@@ -111,6 +112,7 @@ public final class Constants {
         public static final double wheelRadius=0.054;
         public static final double gearRatio=8.5;
         public static final double SemiAutoRoutineWaitTimes = 0.25;
+
 
     }
 
@@ -141,23 +143,7 @@ public final class Constants {
 
 
 
-    public static final class speakerShooter {
-        public static final double minimumSpeed = 6000;
-        public static final double intakeTime = 5;
-        
 
-        public static final class ports {
-            public static final int topMotorPort = 13;
-            public static final int bottomMotorPort = 12;
-            public static final int beamBreakPort = 5;
-        }
-
-        public static final class motorSpeeds {
-            public static final double topMotorSpeed = 1;
-            public static final double bottomMotorSpeed = 1; // slower than top speed
-            public static final double intakeSpeed = -0.3;
-        }
-    }
 
     public static final class climbingArm{
         public static final int motorPort = 0;
@@ -193,6 +179,7 @@ public final class Constants {
 
             public static final double positionTolerance = 1;
         }
+
     }
     public static final class Midi{
         public static final String[] buttonNames={
@@ -235,7 +222,32 @@ public final class Constants {
             "rightSilverDial",
             "leftSilverDial"};
     }
+
+
     //work please git
+
+
+
+    public static final class speakerShooter {
+        public static final double minimumSpeed = 3600;
+        public static final double intakeTime = 5;
+        
+
+        public static final class ports {
+            public static final int topMotorPort = 13;
+            public static final int bottomMotorPort = 12;
+            public static final int beamBreakPort = 0;
+        }
+
+        public static final class motorSpeeds {
+            public static final int topMotorSpeed = 1;
+            public static final int bottomMotorSpeed = 1; // slower than top speed
+            public static final double intakeSpeed = -0.3;
+        }
+    }
+
+
+
     public static final class wrist {
         
 
@@ -278,8 +290,10 @@ public final class Constants {
         public static final double outerRingDistance = 0.75;
 
         public static final class turn{
-            public static final double finalKp = 1;
-            public static final double finalKi = 0.9;
+
+            public static final double finalKp = 0.7;
+            public static final double finalKi = 0.5;
+
             public static final double finalKd= 0.4;
             
             public static final double driveTurnKp = 0.8;
@@ -294,7 +308,9 @@ public final class Constants {
         public static final class straight{
             public static final double innerKp = 1;
             public static final double innerKi = 0.05;
-            public static final double innerKd= 0.5;
+
+            public static final double innerKd= 0.2;
+
 
             public static final double outerKp=0.7;
             public static final double outerKi=0;

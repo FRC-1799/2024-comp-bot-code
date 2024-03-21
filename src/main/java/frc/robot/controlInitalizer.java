@@ -1,14 +1,13 @@
 package frc.robot;
 
-
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.SemiAutoRoutines.*;
 import frc.robot.commands.*;
 import frc.robot.semiAutoCommands.CancelCurrentRoutine;
-
 import frc.robot.Constants.speakerShooter;
 import frc.robot.Constants.intake.intakeNote;
+
 import frc.robot.commands.testEverything;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.ElevatorCommands.*;
@@ -23,6 +22,7 @@ import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 
+
 import frc.robot.subsystems.Pnumatics;
 import frc.robot.subsystems.SpeakerShooter;
 
@@ -33,6 +33,7 @@ import frc.robot.subsystems.WristIntake;
 
 //object to deal with all ofthe dirty work of multiple control schemes
 public class controlInitalizer {
+
 
     static DriveBase driveSubsystem;
     static Pnumatics gearBox;
@@ -56,7 +57,6 @@ public class controlInitalizer {
         shooter=Shooter;
         elevator = Elevator;
         testRoutine = new testRoutineRunner(driveSubsystem);
-
 
 
     }
@@ -102,6 +102,7 @@ public class controlInitalizer {
     }
 
 
+
     public static final void initalizeJaceControllWithSecondController(CommandXboxController movementController, CommandXboxController manipulatorController){
         driveSubsystem.setDefaultCommand(
 
@@ -135,6 +136,18 @@ public class controlInitalizer {
 
 
         //movementController.rightTrigger().onTrue(new climb(elevator));
+
+
+        movementController.leftTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
+        //movementController.a().whileTrue(new IntakeNote(intake));
+        //movementController.b().whileTrue(new ShootNote(intake));
+        movementController.a().onTrue(new IntakeMain(intake));
+        movementController.b().onTrue(new OuttakeMain(intake));
+        movementController.rightBumper().whileTrue(new ElevatorToggle(elevator));
+        movementController.leftBumper().whileTrue(new ElevatorToggle(elevator));
+        movementController.y().onTrue(new wristReset(wrist));
+        movementController.povUp().whileTrue(new stayAtTopMain(elevator));
+        
 
     }
 

@@ -41,20 +41,16 @@ public class DriveBase extends SubsystemBase {
     sparkMaxLeftBack.setInverted(true);
     sparkMaxLeftFront.setInverted(true);
 
-    sparkMaxLeftBack.setOpenLoopRampRate(Constants.drive.rampspeed);
+
 
     sparkMaxLeftFront.setOpenLoopRampRate(Constants.drive.rampspeed);
     sparkMaxRightFront.setOpenLoopRampRate(Constants.drive.rampspeed);
     sparkMaxRightBack.setOpenLoopRampRate(Constants.drive.rampspeed);
     sparkMaxRightFront.setOpenLoopRampRate(Constants.drive.rampspeed);
-    encoderL.setPositionConversionFactor(Constants.drive.highGearRatio);
-    encoderR.setPositionConversionFactor(Constants.drive.highGearRatio);
+
 
     encoderL.setPositionConversionFactor(Constants.drive.encoderToMetersRatio);
     encoderR.setPositionConversionFactor(Constants.drive.encoderToMetersRatio);
-
-    sparkMaxLeftBack.setInverted(true);
-    sparkMaxLeftFront.setInverted(true);
 
     m_RobotDrive = new DifferentialDrive(leftMotors, rightMotors);
     resetEncoder();

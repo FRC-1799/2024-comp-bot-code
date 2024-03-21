@@ -22,8 +22,10 @@ import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 
 
+
 public class ScoreAmp extends SequentialCommandGroup {
     public ScoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake){
+
         
         super(
             //Init
@@ -34,7 +36,8 @@ public class ScoreAmp extends SequentialCommandGroup {
             //MainLoop
             new BlinkinRed(),
             new ParallelCommandGroup(
-                new DriveToPoint(drive, Constants.fieldPosits.ampScore),
+             new DriveToPoint(drive, Constants.fieldPosits.ampScore),
+
                        new ToggleElevator(intakeElevator)
             ),
 
