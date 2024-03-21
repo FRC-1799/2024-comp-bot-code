@@ -9,19 +9,19 @@ import frc.robot.subsystems.limitSwitch;
 public class stayAtTopBack extends WaitCommand {
 
     Elevator elevator;
+    boolean canRun=true;
 
     public stayAtTopBack(Elevator elevator){
         super(20);
         this.elevator=elevator;
+        addRequirements(elevator);
 
     }
 
 
     @Override
     public void initialize(){
-        if (!elevator.isUp||elevator.topSwitch.isOk()){
-            cancel();
-        }
+        canRun=elevator.isUp||!elevator.topSwitch.isOk();
     }
 
 
@@ -33,5 +33,13 @@ public class stayAtTopBack extends WaitCommand {
     @Override public void end(boolean wasInterupted){
         elevator.moveElevator(0);
     }
+
+    @Override
+    public boolean isFinished(){
+      
+      return super.isFinished()||!canRun;
+    }
+  
+
 
 }

@@ -18,13 +18,8 @@ public class Intake extends SubsystemBase {
 	// public final limitSwitch bottomSwitch = new limitSwitch(Constants.intake.raisingIntake.bottomLimitSwitchPort);
 
 	public final limitSwitch beamBreak = new limitSwitch(Constants.intake.beamBreakPort);
+	//public boolean isUp = false;
 
-	public boolean isUp = false;
-	
-	public Intake(){
-		//intakeMotorLeft.setInverted(true);
-
-	}
 
 	public void intake(){
     	intakeMotors.set(Constants.intake.intakeSpeeds.intakeSpeed);
@@ -40,12 +35,16 @@ public class Intake extends SubsystemBase {
 
 
 	public void periodic(){
-		SmartDashboard.putBoolean("Intake Beam Break", beamBreak.getVal());
+		SmartDashboard.putBoolean("Intake Beam Break", getBeamBreak());
 	}
 
     // public void raiseIntake(){
 	// 	raiseMotor.set(Constants.intake.intakeSpeeds.intakeRaiseSpeed);
     // }
+
+	public boolean getBeamBreak(){
+		return !beamBreak.getVal();
+	}
 
 }
 

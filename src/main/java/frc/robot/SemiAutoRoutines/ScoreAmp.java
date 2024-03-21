@@ -23,21 +23,24 @@ import frc.robot.subsystems.Blinkin;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.ShiftableGearbox;
-import frc.robot.subsystems.WristIntake;
 
-public class scoreAmp extends SequentialCommandGroup {
-    public scoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake, WristIntake wrist){
-        
+
+
+
+public class ScoreAmp extends SequentialCommandGroup {
+    public ScoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake){        
         super(
             //Init
             
 
             //MainLoop
             new ParallelCommandGroup(
+
                 new DriveToPoint(drive, FeildPosits.ampScore),
                 new elevatorMoveTo(intakeElevator, true),
                 new WristMoveAuto(wrist, Constants.wrist.positions.up)
+
+
             ),
 
             new WristMoveAuto(wrist, Constants.wrist.positions.amp),

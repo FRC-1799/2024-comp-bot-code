@@ -7,19 +7,24 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.semiAutoManager;
 import frc.robot.subsystems.DriveBase;
-import frc.robot.subsystems.ShiftableGearbox;
+
+
 
 public class testRoutineRunner extends InstantCommand{
     public DriveBase drive;
-    public ShiftableGearbox gearbox;
+
     public testRoutineRunner(DriveBase drive){
         this.drive=drive;    
-        this.gearbox=gearbox;
+
+
+
     }
 
     @Override
     public void initialize(){
+
         Command command = new testRoutine(drive);
+
         if (semiAutoManager.getCurrent()!=null){
             CommandScheduler.getInstance().cancel(semiAutoManager.getCurrent());
         }

@@ -64,11 +64,13 @@ public final class Constants {
         public static final double encoderToMetersRatio= (robotStats.wheelRadius*Math.PI*2)/drive.highGearRatio;
         public static final double encoderToWheelRatio = 1/(robotStats.gearRatio);
         public static final double Wheelcircumference =0.05715;
+
         public static final double highGearRatio=5.392;
         public static final double lowGearRatio=12.255;
         public static final DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(Constants.robotStats.trackWidth);
         public static final double ksVolts = 1.22;
         public static final double kvVoltSecondsPerMeter = 2.402;
+
 
     }
 
@@ -77,8 +79,8 @@ public final class Constants {
         public static final int motorPortLeft = 3;
         public static final int motorPortRight = 4;
 
-        public static final int topLimitSwitch = 1;
-        public static final int bottomLimitSwitch = 20;
+        public static final int topLimitSwitch = 2;
+        public static final int bottomLimitSwitch = 0;
 
         public static final double elevatorUpSpeed = -0.6;
         public static final double elevatorDownSpeed = 0.3;
@@ -86,14 +88,21 @@ public final class Constants {
         public static final double elevatorBackupDownSpeed=0.01;
         public static final double elevatorBackupUpSpeed=-0.3;
         public static final double elevatorBackupTime = 1.3;
+        public static final double elevatorClimbSpeed = 0.6;
+        public static final double elevatorStayClimbingSpeed = 0.4;
     }
   
     // Changing Solenoid Values idk 50/50 this'll work
     public static final class pneumatics{
         public static final int hubID = 8;
 
-        public static final int solenoidPortA=8;
-        public static final int solenoidPortB=9;
+
+        public static final int solenoidPortA=0;
+        public static final int solenoidPortB=1;
+        
+
+        public static final int elevatorPistonID = 5;
+
     }                             
 
 
@@ -103,16 +112,18 @@ public final class Constants {
         public static final double wheelRadius=0.054;
         public static final double gearRatio=8.5;
         public static final double SemiAutoRoutineWaitTimes = 0.25;
+
+
     }
 
     public static final class intake {
         public static final int counterCap = 25; // this number is untested, it should run for 0.5 seconds after note is taken
-        public static final int beamBreakPort = 2;
+        public static final int beamBreakPort = 1;
         public static final double backupTime = 5;
         public static final double outtakeBackupTime = 1;
 
         public static final class intakeSpeeds {
-            public static final double intakeSpeed = 0.3;
+            public static final double intakeSpeed = 0.5;
             public static final double outakeSpeed = -1;
             // public static final int intakeRaiseSpeed = 1;
         }
@@ -132,23 +143,7 @@ public final class Constants {
 
 
 
-    public static final class speakerShooter {
-        public static final double minimumSpeed = 3600;
-        public static final double intakeTime = 5;
-        
 
-        public static final class ports {
-            public static final int topMotorPort = 13;
-            public static final int bottomMotorPort = 12;
-            public static final int beamBreakPort = 0;
-        }
-
-        public static final class motorSpeeds {
-            public static final int topMotorSpeed = 1;
-            public static final int bottomMotorSpeed = 1; // slower than top speed
-            public static final double intakeSpeed = -0.3;
-        }
-    }
 
     public static final class climbingArm{
         public static final int motorPort = 0;
@@ -184,6 +179,7 @@ public final class Constants {
 
             public static final double positionTolerance = 1;
         }
+
     }
     public static final class Midi{
         public static final String[] buttonNames={
@@ -227,18 +223,43 @@ public final class Constants {
             "leftSilverDial"};
     }
 
+
+    //work please git
+
+
+
+    public static final class speakerShooter {
+        public static final double minimumSpeed = 3600;
+        public static final double intakeTime = 5;
+        
+
+        public static final class ports {
+            public static final int topMotorPort = 13;
+            public static final int bottomMotorPort = 12;
+            public static final int beamBreakPort = 0;
+        }
+
+        public static final class motorSpeeds {
+            public static final int topMotorSpeed = 1;
+            public static final int bottomMotorSpeed = 1; // slower than top speed
+            public static final double intakeSpeed = -0.3;
+        }
+    }
+
+
+
     public static final class wrist {
         
 
         public static final class ports {
             public static final int motorPort = 10;
-            public static final int encoderLimitSwitch = 0;
+            public static final int encoderLimitSwitch = 3;
         }
 
         public static final class positions{
             public static final double up = 0;
-            public static final double intake = 121;
-            public static final double amp = 49;
+            public static final double intake = 115;
+            public static final double amp = 56;
         }
 
         public static final class motorSpeeds {
@@ -269,8 +290,10 @@ public final class Constants {
         public static final double outerRingDistance = 0.75;
 
         public static final class turn{
-            public static final double finalKp = 1;
-            public static final double finalKi = 0.9;
+
+            public static final double finalKp = 0.7;
+            public static final double finalKi = 0.5;
+
             public static final double finalKd= 0.4;
             
             public static final double driveTurnKp = 0.8;
@@ -285,7 +308,9 @@ public final class Constants {
         public static final class straight{
             public static final double innerKp = 1;
             public static final double innerKi = 0.05;
-            public static final double innerKd= 0.5;
+
+            public static final double innerKd= 0.2;
+
 
             public static final double outerKp=0.7;
             public static final double outerKi=0;

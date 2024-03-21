@@ -1,16 +1,26 @@
 package frc.robot.commands.DriveCommands;
 
+
+
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.ShiftableGearbox;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import frc.robot.subsystems.Pnumatics;
 
-public class shiftGears extends InstantCommand {
-    
-    public shiftGears(boolean isHigh, ShiftableGearbox gearBox){
-        super(()->{
-            //SmartDashboard.putBoolean("isHigh2", isHigh);
+public class shiftGears extends RunCommand {
 
-            gearBox.shift(isHigh);
-        }, gearBox);
+    public shiftGears(BooleanSupplier isHigh, Pnumatics gearBox){
+        super(
+            ()->{
+              SmartDashboard.putBoolean("Pnumatics", isHigh.getAsBoolean());
+              gearBox.shift(isHigh.getAsBoolean());
+            },
+            gearBox
+          );
+          //addRequirements(gearBox);
+
     }
+
 }

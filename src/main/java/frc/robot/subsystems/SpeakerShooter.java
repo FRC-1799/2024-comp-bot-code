@@ -19,6 +19,11 @@ public class SpeakerShooter extends SubsystemBase {
 
 	public final limitSwitch beamBreak = new limitSwitch(Constants.speakerShooter.ports.beamBreakPort);
 	
+	@Override
+	public void periodic() {
+		SmartDashboard.putBoolean("shooterBeamBreak", beamBreak.getVal());
+	}
+
 
 	public void revving(){
     	flyWheel.set(Constants.speakerShooter.motorSpeeds.topMotorSpeed);
@@ -49,14 +54,13 @@ public class SpeakerShooter extends SubsystemBase {
 	}
 
 	public boolean canShoot(){
+		SmartDashboard.putNumber("shooterVel", topEncoder.getVelocity());
 		return (topEncoder.getVelocity()>Constants.speakerShooter.minimumSpeed);
 
 	}
 
-	@Override
-	public void periodic(){
-		SmartDashboard.putBoolean("shooterBeamBreak", beamBreak.getVal());
-	}
+	
+
 
 
 

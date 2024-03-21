@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import java.util.function.BooleanSupplier;
 
-public class limitSwitch extends SubsystemBase{
+public class limitSwitch{
 
     private DigitalInput limit;
     BooleanSupplier valSupplier = () -> this.getVal();
@@ -20,7 +20,7 @@ public class limitSwitch extends SubsystemBase{
     }
 
     public Boolean getVal(){
-        return limit.get();
+        return !limit.get();
     }
     public boolean isOk(){
         //needs to be added later. should use the fact that the input pins will always have one active
@@ -30,4 +30,5 @@ public class limitSwitch extends SubsystemBase{
     public void runWhenHit(Command runner){
         new SequentialCommandGroup(new WaitUntilCommand(valSupplier), runner);
     }
+
 }

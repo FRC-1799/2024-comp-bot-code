@@ -9,17 +9,16 @@ import frc.robot.subsystems.limitSwitch;
 
 public class wristReset extends Command{
     WristIntake wrist;
-    limitSwitch limitSwitch;
     public wristReset(WristIntake wrist){
         this.wrist=wrist;
-        limitSwitch=wrist.wristLimitSwitch;
+        addRequirements(wrist);
     }
 
     @Override
     public void initialize(){
-        if (limitSwitch.isOk()){
-            cancel();
-        }
+        // if (limitSwitch.isOk()){
+        //     cancel();
+        // }
     }
 
     @Override
@@ -29,7 +28,7 @@ public class wristReset extends Command{
 
     @Override
     public boolean isFinished(){
-        return !limitSwitch.getVal();
+        return wrist.getLimit();
     }
 
     @Override

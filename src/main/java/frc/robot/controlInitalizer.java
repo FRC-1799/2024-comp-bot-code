@@ -7,23 +7,36 @@ import frc.robot.commands.*;
 import frc.robot.semiAutoCommands.CancelCurrentRoutine;
 import frc.robot.Constants.speakerShooter;
 import frc.robot.Constants.intake.intakeNote;
-import frc.robot.commands.*;
+
+import frc.robot.commands.testEverything;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.*;
+import frc.robot.commands.SpeakerShooterCommands.ShootSpeakerMain;
+import frc.robot.commands.SpeakerShooterCommands.SpeakerManual;
+import frc.robot.commands.SpeakerShooterCommands.shootIntake;
+
+import frc.robot.commands.SpeakerShooterCommands.shooterIntakeMain;
 import frc.robot.commands.WristComands.*;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
+
+
+import frc.robot.subsystems.Pnumatics;
+import frc.robot.subsystems.SpeakerShooter;
+
 import frc.robot.subsystems.Midi;
-import frc.robot.subsystems.ShiftableGearbox;
+
 import frc.robot.subsystems.WristIntake;
 
 
 //object to deal with all ofthe dirty work of multiple control schemes
 public class controlInitalizer {
+
+
     static DriveBase driveSubsystem;
-    static ShiftableGearbox gearBox;
+    static Pnumatics gearBox;
     static WristIntake wrist;
     static Intake intake;
     static Elevator elevator;
@@ -35,7 +48,7 @@ public class controlInitalizer {
 
 
     public static void controlInitalizerFromRobot(
-        DriveBase DriveSubsystem, ShiftableGearbox GearBox, WristIntake Wrist, Intake Intake, Elevator Elevator, speakerShooter Shooter){
+        DriveBase DriveSubsystem, Pnumatics GearBox, WristIntake Wrist, Intake Intake, Elevator Elevator, speakerShooter Shooter){
         hasBeenInitalizedFromRobot=true;
         gearBox=GearBox;
         driveSubsystem=DriveSubsystem;
@@ -43,8 +56,6 @@ public class controlInitalizer {
         intake = Intake;
         shooter=Shooter;
         elevator = Elevator;
-
-
 
 
     }
@@ -89,16 +100,42 @@ public class controlInitalizer {
         
     }
 
+
+
     public static final void initalizeJaceControllWithSecondController(CommandXboxController movementController, CommandXboxController manipulatorController){
         driveSubsystem.setDefaultCommand(
+
             new ArcadeDrive(
                   driveSubsystem,
                   () -> ( movementController.getLeftY()),
                   () -> (-movementController.getRightX())
             ));
-        movementController.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
 
-        movementController.x().onTrue(new shiftGears(false, gearBox)).onFalse(new shiftGears(true, gearBox));
+
+        // gearBox.setDefaultCommand(
+        //     new shiftGears(() -> ( movementController.rightTrigger().getAsBoolean()), gearBox));
+
+        //movementController.x().onTrue(new shiftGears(false, gearBox)).onFalse(new shiftGears(true, gearBox));
+        // shooter.setDefaultCommand(
+        //     new SpeakerManual(shooter, () -> (movementController.getRightTriggerAxis()), () -> movementController.getLeftTriggerAxis())
+        // );
+        //movementController.leftTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
+        // movementController.a().whileTrue(new IntakeNote(intake));
+        // movementController.b().whileTrue(new ShootNote(intake));
+        movementController.a().onTrue(new intake(intake));
+        movementController.x().onTrue(new outtake(intake));
+        movementController.rightBumper().onTrue(new ElevatorToggle(elevator));
+        movementController.y().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.amp));
+        movementController.rightTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
+        movementController.leftTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.up));
+        movementController.b().onTrue(new wristReset(wrist));
+        //movementController.y().onTrue(new shootSpeaker(shooter));
+        //movementController.b().onTrue(new ShootSpeakerMain(shooter));   
+        //movementController.leftBumper().onTrue(new testEverything(intake, wrist, elevator));   
+
+
+        //movementController.rightTrigger().onTrue(new climb(elevator));
+
 
         movementController.leftTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
         //movementController.a().whileTrue(new IntakeNote(intake));
@@ -110,6 +147,7 @@ public class controlInitalizer {
         movementController.y().onTrue(new wristReset(wrist));
         movementController.povUp().whileTrue(new stayAtTopMain(elevator));
         
+
     }
 
 

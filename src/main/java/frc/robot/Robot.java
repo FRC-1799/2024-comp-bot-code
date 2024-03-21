@@ -18,11 +18,16 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-//import frc.robot.autoRoutines.*;
-import frc.robot.commands.*;
+
+import frc.robot.Constants.auto;
 import frc.robot.subsystems.*;
+import frc.robot.commands.*;
+
+//import frc.robot.autoRoutines.*;
 import frc.robot.controlInitalizer;
 import frc.robot.Constants.speakerShooter;
+
+
 
 
 /**
@@ -37,6 +42,7 @@ public class Robot extends TimedRobot {
 
  // final Pneumatics pneumatics = new Pneumatics();
   final DriveBase m_driveSubsystem = new DriveBase();
+
   final Intake intake = new Intake();
  // final ToggleCompressor toggleCompressor = new ToggleCompressor(pneumatics);
   final Gyro gyro = new Gyro();
@@ -44,13 +50,12 @@ public class Robot extends TimedRobot {
   final Limelight lime = new Limelight();
   final speakerShooter shooter = new speakerShooter();
 
+  final Pnumatics gearBox = new Pnumatics(m_driveSubsystem);
 
- 
-
-  final ShiftableGearbox gearBox = new ShiftableGearbox(m_driveSubsystem);
   final WristIntake wrist = new WristIntake();
   final Elevator elevator = new Elevator();
   final Midi midi = new Midi();
+
 
  
   SendableChooser<Command> autoChooser = new SendableChooser<Command>();
@@ -81,6 +86,7 @@ public class Robot extends TimedRobot {
     // starts the auto selector
 
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
+    autoChooser.addOption("testEverything", new testEverything(intake, wrist, elevator));
   
    
 
@@ -163,6 +169,8 @@ public class Robot extends TimedRobot {
 
     
     
+
+    semiAutoManager.periodic();
 
   }
 

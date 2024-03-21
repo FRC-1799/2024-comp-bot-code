@@ -1,24 +1,26 @@
 package frc.robot.commands.IntakeCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 public class IntakeBack extends WaitCommand {
   private final Intake intake;
+  public boolean canRun=true;
 
   public IntakeBack(Intake intake) {
     super(Constants.intake.backupTime);
     this.intake = intake;
+    addRequirements(intake);
 
 
   }
 
   @Override
   public void initialize(){
-    if (intake.beamBreak.isOk()){
-      cancel();
-    }
+    canRun=!intake.beamBreak.isOk();
   }
 
 
@@ -26,13 +28,21 @@ public class IntakeBack extends WaitCommand {
   @Override
   public void execute() {
       super.execute();
+      SmartDashboard.putString("ended", "false");
       this.intake.intake();
   }
 
   @Override
   public void end(boolean interupted){
-    if(!interupted){
-      intake.stop();
-    }
+    //super.end(interupted);
+    SmartDashboard.putString("ended", "true");
+    intake.stop();
   }
+
+  @Override
+  public boolean isFinished(){
+    return (!canRun||super.isFinished());
+
+  }
+
 }

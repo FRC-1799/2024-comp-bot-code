@@ -24,6 +24,7 @@ public class DriveBase extends SubsystemBase {
 
   final MotorControllerGroup leftMotors = new MotorControllerGroup(sparkMaxLeftFront, sparkMaxLeftBack);
   final MotorControllerGroup rightMotors = new MotorControllerGroup(sparkMaxRightFront, sparkMaxRightBack);
+
   final DifferentialDrive m_RobotDrive;
 
   public DriveBase() {
@@ -31,16 +32,25 @@ public class DriveBase extends SubsystemBase {
     encoderL=sparkMaxLeftBack.getEncoder();
     encoderR=sparkMaxRightBack.getEncoder();
 
+
+    //left voltage ramping
+    //encoderR=new gearBoxEncoder(sparkMaxRightBack, Constants.drive.lowGearRatio, Constants.drive.highGearRatio, Constants.drive.Wheelcircumference);    
+    //encoderL= new gearBoxEncoder(sparkMaxLeftBack, Constants.drive.lowGearRatio, Constants.drive.highGearRatio, Constants.drive.Wheelcircumference);
+
+
+    sparkMaxLeftBack.setInverted(true);
+    sparkMaxLeftFront.setInverted(true);
+
+
+
     sparkMaxLeftFront.setOpenLoopRampRate(Constants.drive.rampspeed);
     sparkMaxRightFront.setOpenLoopRampRate(Constants.drive.rampspeed);
     sparkMaxRightBack.setOpenLoopRampRate(Constants.drive.rampspeed);
     sparkMaxRightFront.setOpenLoopRampRate(Constants.drive.rampspeed);
 
+
     encoderL.setPositionConversionFactor(Constants.drive.encoderToMetersRatio);
     encoderR.setPositionConversionFactor(Constants.drive.encoderToMetersRatio);
-
-    sparkMaxLeftBack.setInverted(true);
-    sparkMaxLeftFront.setInverted(true);
 
     m_RobotDrive = new DifferentialDrive(leftMotors, rightMotors);
     resetEncoder();
@@ -72,9 +82,5 @@ public class DriveBase extends SubsystemBase {
   }
 
 
-  public void shift(boolean isHigh){
-  //   encoderL.shift(isHigh);
-  //   encoderR.shift(isHigh);
-  }
 
 }
