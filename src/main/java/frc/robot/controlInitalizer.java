@@ -7,8 +7,6 @@ import frc.robot.commands.*;
 import frc.robot.semiAutoCommands.CancelCurrentRoutine;
 import frc.robot.Constants.speakerShooter;
 import frc.robot.Constants.intake.intakeNote;
-
-import frc.robot.commands.testEverything;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.*;
@@ -174,8 +172,19 @@ public class controlInitalizer {
                   () -> (-movementController.getLeftX())
             ));
 
-        
+        midi.getButtonFromDict("button1").buttonTrigger.onFalse(new grabNoteFromGroundRunner(driveSubsystem, elevator, intake, wrist));
+        midi.getButtonFromDict("button2").buttonTrigger.onFalse(new scoreAmpRunner(driveSubsystem, elevator, intake, wrist));
+        midi.getButtonFromDict("button3").buttonTrigger.onFalse(new intake(intake));
+        midi.getButtonFromDict("button4").buttonTrigger.onFalse(new outtake(intake));
+        midi.getButtonFromDict("button5").buttonTrigger.onFalse(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
+        midi.getButtonFromDict("button6").buttonTrigger.onFalse(new WristMoveAuto(wrist, Constants.wrist.positions.amp));
+        midi.getButtonFromDict("button7").buttonTrigger.onFalse(new WristMoveAuto(wrist, Constants.wrist.positions.up));
+        midi.getButtonFromDict("button8").buttonTrigger.onFalse(new wristReset(wrist));
         midi.getButtonFromDict("button9").buttonTrigger.onFalse(cancel);
+
+        midi.getButtonFromDict("play").buttonTrigger.onFalse(new ToggleElevator(elevator));
+        midi.getButtonFromDict("pause").buttonTrigger.onFalse(new climb(elevator));
+        
     }
 
     public static final void autoDriveTest(CommandXboxController controller){
@@ -190,6 +199,9 @@ public class controlInitalizer {
         controller.x().onFalse(new testRoutineRunner(driveSubsystem));
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
+
+
+  
 
 
 

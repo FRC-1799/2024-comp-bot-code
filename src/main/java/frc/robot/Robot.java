@@ -93,17 +93,19 @@ public class Robot extends TimedRobot {
 
 
     //starts the control type chooser
-    controlChooser.setDefaultOption("Two Controler", 0);
+    controlChooser.addOption("Two Controler", 0);
     controlChooser.addOption("One controler", 1);
     controlChooser.addOption("jace control", 2);
     controlChooser.addOption("MidiControl alone", 3);
     controlChooser.addOption("autoDriveTest", 4);
+    controlChooser.setDefaultOption("Comp Controlls", 5);
 
 
     poseChooser.setDefaultOption("leftCorner", FeildPosits.startingPosit.cornerStart);
     poseChooser.addOption("leftSpeaker", FeildPosits.startingPosit.leftSpeakerStart);
     poseChooser.addOption("middleSpeaker", FeildPosits.startingPosit.middleSpeakerStart);
     poseChooser.addOption("rightSpeaker", FeildPosits.startingPosit.rightSpeakerStart);
+    poseChooser.addOption("right corner", FeildPosits.startingPosit.farRightStartForPosits);
 
 
     SmartDashboard.putData("control type", controlChooser);
@@ -144,6 +146,10 @@ public class Robot extends TimedRobot {
     }
     else if (controlChooser.getSelected()==4){
       controlInitalizer.autoDriveTest(controller1);
+    }
+
+    else if (controlChooser.getSelected()==5){
+      controlInitalizer.jaceControllWithMidi(controller1, midi);
     }
      
 
