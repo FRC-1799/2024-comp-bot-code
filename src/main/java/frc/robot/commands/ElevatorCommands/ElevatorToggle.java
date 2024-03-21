@@ -9,5 +9,6 @@ public class ElevatorToggle extends SequentialCommandGroup {
 
     public ElevatorToggle(Elevator elevator) {
         super(new ElevatorToggleMain(elevator));
+
     }
 }

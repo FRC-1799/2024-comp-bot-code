@@ -38,12 +38,12 @@ public class DriveToPoint extends Command{
     final double PI = Math.PI;
 
 
-
     
 
     public DriveToPoint(DriveBase drive, Pose2d goal){
         this.drive=drive;
         this.goal=goal;
+
         addRequirements(drive);
     }
 

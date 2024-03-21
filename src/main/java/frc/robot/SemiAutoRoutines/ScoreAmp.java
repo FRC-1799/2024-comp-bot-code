@@ -8,9 +8,12 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
+import frc.robot.FeildPosits;
 import frc.robot.semiAutoManager;
 import frc.robot.commands.ToggleElevator;
+import frc.robot.commands.ElevatorCommands.elevatorMoveTo;
 import frc.robot.commands.IntakeCommands.OuttakeMain;
+import frc.robot.commands.WristComands.WristMoveAuto;
 import frc.robot.semiAutoCommands.BlinkinGreen;
 import frc.robot.semiAutoCommands.BlinkinRed;
 import frc.robot.semiAutoCommands.BlinkinYellow;
@@ -23,34 +26,32 @@ import frc.robot.subsystems.Intake;
 
 
 
-public class ScoreAmp extends SequentialCommandGroup {
-    public ScoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake){
 
-        
+public class ScoreAmp extends SequentialCommandGroup {
+    public ScoreAmp(DriveBase drive, Elevator intakeElevator, Intake intake){        
         super(
             //Init
-            new BlinkinYellow(),
-            new WaitCommand(Constants.robotStats.SemiAutoRoutineWaitTimes),
             
 
             //MainLoop
-            new BlinkinRed(),
             new ParallelCommandGroup(
-             new DriveToPoint(drive, Constants.fieldPosits.ampScore),
 
-                       new ToggleElevator(intakeElevator)
+                new DriveToPoint(drive, FeildPosits.ampScore),
+                new elevatorMoveTo(intakeElevator, true),
+                new WristMoveAuto(wrist, Constants.wrist.positions.up)
+
+
             ),
 
-            //Ending set
-            new BlinkinYellow(),
+            new WristMoveAuto(wrist, Constants.wrist.positions.amp),
 
+            //Ending set
             new ParallelCommandGroup(
             new OuttakeMain(intake),
             new stealDriveCommand(drive)
-            ),
+            )
 
             //passOff
-            new BlinkinGreen()
         );
 
     }

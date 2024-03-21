@@ -56,7 +56,6 @@ public class controlInitalizer {
         intake = Intake;
         shooter=Shooter;
         elevator = Elevator;
-        testRoutine = new testRoutineRunner(driveSubsystem);
 
 
     }
@@ -188,7 +187,7 @@ public class controlInitalizer {
             )); 
 
         controller.y().onTrue(cancel);
-        controller.x().onFalse(testRoutine);
+        controller.x().onFalse(new testRoutineRunner(driveSubsystem));
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
 
