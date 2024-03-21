@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.FeildPosits;
 import frc.robot.semiAutoManager;
 import frc.robot.commands.IntakeCommands.intake;
+import frc.robot.commands.WristComands.WristMoveAuto;
 import frc.robot.commands.WristComands.wristReset;
 import frc.robot.commands.ElevatorCommands.elevatorMoveTo;
 import frc.robot.semiAutoCommands.DriveToPoint;
@@ -24,6 +25,7 @@ public class grabNoteGround extends SequentialCommandGroup {
                         new elevatorMoveTo(elevator, false),
                         new wristReset(wrist)
                     ),
+                    new WristMoveAuto(wrist, Constants.wrist.positions.intake),
                     new intake(intake)
                 )
             )
