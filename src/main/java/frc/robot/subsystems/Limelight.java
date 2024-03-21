@@ -22,17 +22,21 @@ NetworkTable table;
             && DriverStation.getAlliance().get() == DriverStation.Alliance.Blue);
 
     if (table.getEntry("tid").getDouble(-1)==-1){
+        SmartDashboard.putBoolean("getting lime data", false);
         return null;
     }
     else if(isBlue){
             
         double[] coordsList = table.getEntry("botpose_wpiblue").getDoubleArray(new double[6]);
-        return new Pose2d(coordsList[0], coordsList[1], new Rotation2d(Math.toDegrees(coordsList[5]))); 
+        SmartDashboard.putBoolean("getting lime data", true);
+
+        return new Pose2d(coordsList[0], coordsList[1], new Rotation2d(Math.toRadians(coordsList[5]))); 
         
     }
     else{
+        SmartDashboard.putBoolean("getting lime data", true);
         double[] coordsList = table.getEntry("botpose_wpired").getDoubleArray(new double[6]);
-        return new Pose2d(coordsList[0], coordsList[1], new Rotation2d(Math.toDegrees(coordsList[5]))); 
+        return new Pose2d(coordsList[0], coordsList[1], new Rotation2d(Math.toRadians(coordsList[5]))); 
     }
     
    }
