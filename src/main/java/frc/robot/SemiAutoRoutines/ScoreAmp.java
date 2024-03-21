@@ -49,8 +49,8 @@ public class ScoreAmp extends SequentialCommandGroup {
 
             //Ending set
             new ParallelCommandGroup(
-            new OuttakeMain(intake),
-            new stealDriveCommand(drive)
+                new OuttakeMain(intake),
+                new stealDriveCommand(drive)
             )
 
             //passOff
