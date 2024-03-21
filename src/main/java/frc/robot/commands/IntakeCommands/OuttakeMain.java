@@ -35,7 +35,7 @@ public class OuttakeMain extends Command {
       count++;
     }
 
-    return count>50||!canRun;
+    return count>10||!canRun;
   } 
 
   @Override
