@@ -20,7 +20,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.WristIntake;
 
 public class doubleAmp extends SequentialCommandGroup{
-    doubleAmp(DriveBase drive, Elevator elevator, Intake intake, WristIntake wrist){
+    public doubleAmp(DriveBase drive, Elevator elevator, Intake intake, WristIntake wrist){
         super(
             new ScoreAmp(drive, elevator, intake, wrist),
 

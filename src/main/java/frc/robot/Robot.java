@@ -25,6 +25,7 @@ import frc.robot.commands.*;
 
 //import frc.robot.autoRoutines.*;
 import frc.robot.controlInitalizer;
+import frc.robot.autoRoutines.doubleAmp;
 import frc.robot.Constants.speakerShooter;
 
 
@@ -41,7 +42,7 @@ public class Robot extends TimedRobot {
 
 
  // final Pneumatics pneumatics = new Pneumatics();
-  final DriveBase m_driveSubsystem = new DriveBase();
+  final DriveBase drive = new DriveBase();
 
   final Intake intake = new Intake();
  // final ToggleCompressor toggleCompressor = new ToggleCompressor(pneumatics);
@@ -50,7 +51,7 @@ public class Robot extends TimedRobot {
   final Limelight lime = new Limelight();
   final speakerShooter shooter = new speakerShooter();
 
-  final Pnumatics gearBox = new Pnumatics(m_driveSubsystem);
+  final Pnumatics gearBox = new Pnumatics(drive);
 
   final WristIntake wrist = new WristIntake();
   final Elevator elevator = new Elevator();
@@ -75,9 +76,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    semiAutoManager.configureSemiAutoManager(m_driveSubsystem, gyro, lime, timer);
+    semiAutoManager.configureSemiAutoManager(drive, gyro, lime, timer);
 
-    controlInitalizer.controlInitalizerFromRobot(m_driveSubsystem, gearBox, wrist, intake, elevator, shooter);
+    controlInitalizer.controlInitalizerFromRobot(drive, gearBox, wrist, intake, elevator, shooter);
 
     configureControls();
     midi.InitButtons();
@@ -87,6 +88,7 @@ public class Robot extends TimedRobot {
 
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
     autoChooser.addOption("testEverything", new testEverything(intake, wrist, elevator));
+    autoChooser.addOption("double amp", new doubleAmp(drive, elevator, intake, wrist));
   
    
 
@@ -121,7 +123,7 @@ public class Robot extends TimedRobot {
 
     //gyro.reset();
 
-    m_driveSubsystem.resetEncoder();
+    drive.resetEncoder();
     semiAutoManager.resetAudomity(poseChooser.getSelected());
   }
 
