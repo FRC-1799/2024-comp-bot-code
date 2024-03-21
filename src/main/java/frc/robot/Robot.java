@@ -173,11 +173,12 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     semiAutoManager.periodic();
-
+    midi.readInputs();
     
     
 
-    semiAutoManager.periodic();
+    //semiAutoManager.periodic();
+    //midi.periodic();
 
   }
 
