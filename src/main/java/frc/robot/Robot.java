@@ -81,7 +81,6 @@ public class Robot extends TimedRobot {
     controlInitalizer.controlInitalizerFromRobot(drive, gearBox, wrist, intake, elevator, shooter);
 
     configureControls();
-    midi.InitButtons();
 
     
     // starts the auto selector

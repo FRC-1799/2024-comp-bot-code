@@ -20,10 +20,11 @@ public class Midi {
 
 
 
+
     // Cast the values to their respective types
     //dict.put();
 
-    public void InitButtons(){
+    public Midi(){
         for (String name: Constants.Midi.buttonNames) {
             buttons.put(name, new MidiButton(name, this));
             values.put(name, 0.0);

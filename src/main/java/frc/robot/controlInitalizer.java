@@ -169,7 +169,7 @@ public class controlInitalizer {
             new ArcadeDrive(
                   driveSubsystem,
                   () -> ( movementController.getLeftY()),
-                  () -> (-movementController.getLeftX())
+                  () -> (-movementController.getRightX())
             ));
 
         midi.getButtonFromDict("button1").buttonTrigger.onFalse(new grabNoteFromGroundRunner(driveSubsystem, elevator, intake, wrist));

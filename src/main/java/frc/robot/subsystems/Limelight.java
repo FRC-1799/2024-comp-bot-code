@@ -18,8 +18,7 @@ NetworkTable table;
     }
 
    public Pose2d getCoords(){
-    isBlue=(DriverStation.getAlliance().isPresent() 
-            && DriverStation.getAlliance().get() == DriverStation.Alliance.Blue);
+    isBlue=(DriverStation.getAlliance().isPresent() && DriverStation.getAlliance().get() == DriverStation.Alliance.Blue);
 
     if (table.getEntry("tid").getDouble(-1)==-1){
         SmartDashboard.putBoolean("getting lime data", false);

@@ -23,9 +23,10 @@ public class climb extends Command {
   @Override
   public void end(boolean wasInterupted) {
     elevator.stop();
+    elevator.isUp=!elevator.isUp;
+
 
     if (!wasInterupted){
-      elevator.isUp=!elevator.isUp;
       new stayClimbing(elevator).schedule();
     }
   }
