@@ -201,6 +201,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    semiAutoManager.resetAudomity(poseChooser.getSelected());
+
     m_autonomousCommand = autoChooser.getSelected();
 
     // schedule the autonomous command (example)
@@ -228,6 +230,8 @@ public class Robot extends TimedRobot {
       CommandScheduler.getInstance().cancelAll();
     }
     configureControls();
+    semiAutoManager.resetAudomity(poseChooser.getSelected());
+
 
     
   }

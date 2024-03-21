@@ -27,12 +27,12 @@ NetworkTable table;
     else if(isBlue){
             
         double[] coordsList = table.getEntry("botpose_wpiblue").getDoubleArray(new double[6]);
-        return new Pose2d(coordsList[0], coordsList[1], new Rotation2d(coordsList[2])); 
+        return new Pose2d(coordsList[0], coordsList[1], new Rotation2d(Math.toDegrees(coordsList[5]))); 
         
     }
     else{
         double[] coordsList = table.getEntry("botpose_wpired").getDoubleArray(new double[6]);
-        return new Pose2d(coordsList[0], coordsList[1], new Rotation2d(coordsList[2])); 
+        return new Pose2d(coordsList[0], coordsList[1], new Rotation2d(Math.toDegrees(coordsList[5]))); 
     }
     
    }

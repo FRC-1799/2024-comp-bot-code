@@ -17,7 +17,7 @@ public class Gyro extends SubsystemBase{
   public Gyro(){
     gyro.reset();
     //addChild("Gyro", gyro);
-    //gyro.calibrate();
+  
   }
 
   public void reset() {
@@ -38,6 +38,6 @@ public class Gyro extends SubsystemBase{
 
   public Rotation2d getYaw(){
     log();
-    return new Rotation2d(Math.toRadians(gyro.getYaw()));
+    return new Rotation2d(Math.toRadians(-gyro.getYaw()));
   }
 }

@@ -43,13 +43,12 @@ public class Pnumatics extends SubsystemBase{
 
 
     //SmartDashboard.putBoolean("isHigh", isHigh);
-
-    if (isHigh){
-      shifter.set(DoubleSolenoid.Value.kForward);
-    } 
-    else{
-        shifter.set(DoubleSolenoid.Value.kReverse);
-    }
+    // if (isHigh){
+    //   shifter.set(DoubleSolenoid.Value.kForward);
+    // } 
+    // else{
+    //     shifter.set(DoubleSolenoid.Value.kReverse);
+    // }
 
   }
 

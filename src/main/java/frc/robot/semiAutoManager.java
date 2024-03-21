@@ -10,6 +10,7 @@ import edu.wpi.first.math.estimator.DifferentialDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
@@ -20,6 +21,7 @@ import frc.robot.subsystems.Limelight;
 import edu.wpi.first.math.trajectory.Trajectory;
 
 public  class semiAutoManager{
+    private static Field2d m_field = new Field2d();
     public static DriveBase drive;
     public static Gyro gyro;
     public static Limelight limelight;
@@ -36,7 +38,7 @@ public  class semiAutoManager{
         limelight=Limelight;
         timer=Timer;
         startingPose=new Pose2d();
-
+        SmartDashboard.putData("Field", m_field);
 
         poseEstimator = new DifferentialDrivePoseEstimator(
             Constants.drive.kinematics,
@@ -52,6 +54,7 @@ public  class semiAutoManager{
 
 
     public static void periodic(){
+        m_field.setRobotPose(poseEstimator.getEstimatedPosition());
         poseEstimator.update(gyro.getYaw(), drive.getLeftEncoder(), drive.getRightEncoder());
 
         Pose2d visionCoords=limelight.getCoords();

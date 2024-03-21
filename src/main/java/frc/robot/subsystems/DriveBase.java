@@ -38,8 +38,10 @@ public class DriveBase extends SubsystemBase {
     //encoderL= new gearBoxEncoder(sparkMaxLeftBack, Constants.drive.lowGearRatio, Constants.drive.highGearRatio, Constants.drive.Wheelcircumference);
 
 
-    sparkMaxLeftBack.setInverted(true);
-    sparkMaxLeftFront.setInverted(true);
+    sparkMaxRightBack.setInverted(true);
+    sparkMaxRightFront.setInverted(true);
+    sparkMaxLeftBack.setInverted(false);
+    sparkMaxLeftFront.setInverted(false);
 
 
 
@@ -66,7 +68,7 @@ public class DriveBase extends SubsystemBase {
     SmartDashboard.putNumber("encoder", getEncoderAvrg());
     SmartDashboard.putNumber("speed", ySpeed);
     SmartDashboard.putNumber("rotate", -rotateValue);
-    m_RobotDrive.arcadeDrive(ySpeed, -rotateValue);
+    m_RobotDrive.arcadeDrive(-ySpeed, -rotateValue);
   }
 
   public double getEncoderAvrg(){
