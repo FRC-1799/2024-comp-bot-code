@@ -203,6 +203,7 @@ public class controlInitalizer {
         controller.a().onFalse(new scoreAmpRunner(driveSubsystem, elevator, intake, wrist));
         controller.b().onFalse(new grabNoteFromGroundRunner(driveSubsystem, elevator, intake, wrist));
         controller.rightTrigger().onTrue(new elevatorMoveTo(elevator, false));
+        controller.leftTrigger().onTrue(new ElevatorToggle(elevator));
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
 

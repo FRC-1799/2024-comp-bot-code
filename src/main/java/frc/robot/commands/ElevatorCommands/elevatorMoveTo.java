@@ -48,6 +48,7 @@ public class elevatorMoveTo extends Command{
 
     @Override 
     public void end(boolean wasInterupted){
+        SmartDashboard.putBoolean("hewwo", true);
         elevator.stop();
 
         if (!wasInterupted){
