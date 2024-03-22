@@ -25,12 +25,12 @@ public class elevatorMoveTo extends Command{
         canRun=elevator.isUp!=goingUp;
         SmartDashboard.putBoolean("canrun", canRun);
         if (goingUp){
-            speed=Constants.elevator.elevatorUpSpeed;
-            activeSwitch=elevator.topSwitch;
-        }
-        else{
             speed=Constants.elevator.elevatorDownSpeed;
             activeSwitch=elevator.bottomSwitch;
+        }
+        else{
+            speed=Constants.elevator.elevatorUpSpeed;
+            activeSwitch=elevator.topSwitch;
         }
     }
 
@@ -50,12 +50,16 @@ public class elevatorMoveTo extends Command{
     public void end(boolean wasInterupted){
         SmartDashboard.putBoolean("hewwo", true);
         elevator.stop();
-
+            SmartDashboard.putString("finished normaly", "yes");
         if (!wasInterupted){
           elevator.isUp=!elevator.isUp;
           if (elevator.isUp){
             new stayAtTopMain(elevator).schedule();
           }
+        }
+        else{
+            SmartDashboard.putString("finished normaly", "no");
+
         }
     }
 }
