@@ -17,20 +17,18 @@ public class elevatorMoveTo extends Command{
         this.elevator=elevator;
         this.goingUp=goingUp;
         addRequirements(elevator);
-        SmartDashboard.putBoolean("hello", false);
     }
 
     @Override
     public void initialize(){
         canRun=elevator.isUp!=goingUp;
-        SmartDashboard.putBoolean("canrun", canRun);
         if (goingUp){
-            speed=Constants.elevator.elevatorDownSpeed;
-            activeSwitch=elevator.bottomSwitch;
-        }
-        else{
             speed=Constants.elevator.elevatorUpSpeed;
             activeSwitch=elevator.topSwitch;
+        }
+        else{
+            speed=Constants.elevator.elevatorDownSpeed;
+            activeSwitch=elevator.bottomSwitch;
         }
     }
 
@@ -42,24 +40,18 @@ public class elevatorMoveTo extends Command{
 
     @Override 
     public boolean isFinished(){
-        SmartDashboard.putBoolean("hello", true);
         return activeSwitch.getVal()||!canRun;
     }
 
     @Override 
     public void end(boolean wasInterupted){
-        SmartDashboard.putBoolean("hewwo", true);
         elevator.stop();
-            SmartDashboard.putString("finished normaly", "yes");
-        if (!wasInterupted){
-          elevator.isUp=!elevator.isUp;
-          if (elevator.isUp){
+        if (!wasInterupted&&canRun){
+          elevator.isUp=goingUp;
+        }
+        if (elevator.isUp){
             new stayAtTopMain(elevator).schedule();
-          }
         }
-        else{
-            SmartDashboard.putString("finished normaly", "no");
 
-        }
     }
 }
