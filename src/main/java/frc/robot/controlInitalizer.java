@@ -42,11 +42,11 @@ public class controlInitalizer {
     static boolean hasBeenInitalizedFromRobot=false;
     static boolean hasBeenInitalizedFromSemiAutoManager=false;
     public static Command testRoutine;
-    public static speakerShooter shooter;
+    public static SpeakerShooter shooter;
 
 
     public static void controlInitalizerFromRobot(
-        DriveBase DriveSubsystem, Pnumatics GearBox, WristIntake Wrist, Intake Intake, Elevator Elevator, speakerShooter Shooter){
+        DriveBase DriveSubsystem, Pnumatics GearBox, WristIntake Wrist, Intake Intake, Elevator Elevator, SpeakerShooter Shooter){
         hasBeenInitalizedFromRobot=true;
         gearBox=GearBox;
         driveSubsystem=DriveSubsystem;
@@ -127,7 +127,8 @@ public class controlInitalizer {
         manipulatorController.rightTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
         manipulatorController.leftTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.up));
         manipulatorController.b().onTrue(new wristReset(wrist));
-        manipulatorController.leftBumper().onTrue(new climb(elevator));
+        //manipulatorController.leftBumper().onTrue(new climb(elevator));
+        manipulatorController.leftBumper().onTrue(new ShootSpeakerMain(shooter));
         //movementController.y().onTrue(new shootSpeaker(shooter));
         //movementController.b().onTrue(new ShootSpeakerMain(shooter));   
         //movementController.leftBumper().onTrue(new testEverything(intake, wrist, elevator));   
@@ -173,8 +174,8 @@ public class controlInitalizer {
                   () -> (-movementController.getRightX())
             ));
 
-        midi.getButtonFromDict("button1").buttonTrigger.onFalse(new grabNoteFromGroundRunner(driveSubsystem, elevator, intake, wrist));
-        midi.getButtonFromDict("button2").buttonTrigger.onFalse(new scoreAmpRunner(driveSubsystem, elevator, intake, wrist));
+        //midi.getButtonFromDict("button1").buttonTrigger.onFalse(new grabNoteFromGroundRunner(driveSubsystem, elevator, intake, wrist));
+        //midi.getButtonFromDict("button2").buttonTrigger.onFalse(new scoreAmpRunner(driveSubsystem, elevator, intake, wrist));
         midi.getButtonFromDict("button3").buttonTrigger.onFalse(new intake(intake));
         midi.getButtonFromDict("button4").buttonTrigger.onFalse(new outtake(intake));
         midi.getButtonFromDict("button5").buttonTrigger.onFalse(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
@@ -183,8 +184,9 @@ public class controlInitalizer {
         midi.getButtonFromDict("button8").buttonTrigger.onFalse(new wristReset(wrist));
         midi.getButtonFromDict("button9").buttonTrigger.onFalse(cancel);
 
-        midi.getButtonFromDict("play").buttonTrigger.onFalse(new ToggleElevator(elevator));
-        midi.getButtonFromDict("pause").buttonTrigger.onFalse(new climb(elevator));
+        midi.getButtonFromDict("leftSilverDial").buttonTrigger.onTrue(new ElevatorToggle(elevator));
+        midi.getButtonFromDict("rightSilverDial").buttonTrigger.onFalse(new climb(elevator));
+        
         
     }
 
@@ -198,6 +200,9 @@ public class controlInitalizer {
 
         controller.y().onTrue(cancel);
         controller.x().onFalse(new testRoutineRunner(driveSubsystem));
+        controller.a().onFalse(new scoreAmpRunner(driveSubsystem, elevator, intake, wrist));
+        controller.b().onFalse(new grabNoteFromGroundRunner(driveSubsystem, elevator, intake, wrist));
+        controller.rightTrigger().onTrue(new elevatorMoveTo(elevator, false));
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
 

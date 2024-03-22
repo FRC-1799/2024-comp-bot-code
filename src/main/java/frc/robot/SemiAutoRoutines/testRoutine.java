@@ -19,7 +19,7 @@ public class testRoutine extends SequentialCommandGroup{
     public testRoutine(DriveBase drive){
         super(
 
-            new DriveToPoint(drive, FeildPosits.ampScore)
+            new DriveToPoint(drive, FeildPosits.testPosit)
 
 
         );

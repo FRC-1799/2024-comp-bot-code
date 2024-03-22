@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -22,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.auto;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
-
+import frc.robot.semiAutoCommands.DriveToPoint;
 //import frc.robot.autoRoutines.*;
 import frc.robot.controlInitalizer;
 import frc.robot.autoRoutines.doubleAmp;
@@ -49,7 +50,7 @@ public class Robot extends TimedRobot {
   final Gyro gyro = new Gyro();
   final Timer timer = new Timer();
   final Limelight lime = new Limelight();
-  final speakerShooter shooter = new speakerShooter();
+  final SpeakerShooter shooter = new SpeakerShooter();
 
   final Pnumatics gearBox = new Pnumatics(drive);
 
@@ -88,6 +89,7 @@ public class Robot extends TimedRobot {
     autoChooser.setDefaultOption("doNothing", new InstantCommand());
     autoChooser.addOption("testEverything", new testEverything(intake, wrist, elevator));
     autoChooser.addOption("double amp", new doubleAmp(drive, elevator, intake, wrist));
+    autoChooser.addOption("drive forward",new DriveToPoint(drive, new Pose2d(1, 1, new Rotation2d(0))));
   
    
 
@@ -114,6 +116,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("startingPose", poseChooser);
     
     //start cameraServer
+    CameraServer.startAutomaticCapture();
 
     
 

@@ -88,7 +88,7 @@ public  class semiAutoManager{
     }
 
     public static void resetAudomity(Pose2d pose){
-        poseEstimator.resetPosition(gyro.getRoll(), drive.getLeftEncoder(), drive.getRightEncoder(), pose);
+        poseEstimator.resetPosition(gyro.getYaw(), drive.getLeftEncoder(), drive.getRightEncoder(), pose);
     }
     
 

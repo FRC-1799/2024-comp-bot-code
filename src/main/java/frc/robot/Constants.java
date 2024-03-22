@@ -236,7 +236,7 @@ public final class Constants {
         public static final class ports {
             public static final int topMotorPort = 13;
             public static final int bottomMotorPort = 12;
-            public static final int beamBreakPort = 0;
+            public static final int beamBreakPort = 5;
         }
 
         public static final class motorSpeeds {

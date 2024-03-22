@@ -20,7 +20,6 @@ public class ElevatorToggleMain extends Command {
   @Override
   public void execute() {
     elevator.moveElevator(speed);
-    SmartDashboard.putNumber("elevator switch", activeSwitch.index);
   }
 
   @Override
