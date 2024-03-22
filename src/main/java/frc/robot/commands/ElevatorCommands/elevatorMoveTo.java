@@ -21,7 +21,6 @@ public class elevatorMoveTo extends Command{
 
     @Override
     public void initialize(){
-        canRun=elevator.isUp!=goingUp;
         if (goingUp){
             speed=Constants.elevator.elevatorUpSpeed;
             activeSwitch=elevator.topSwitch;
@@ -46,7 +45,7 @@ public class elevatorMoveTo extends Command{
     @Override 
     public void end(boolean wasInterupted){
         elevator.stop();
-        if (!wasInterupted&&canRun){
+        if (!wasInterupted){
           elevator.isUp=goingUp;
         }
         if (elevator.isUp){
