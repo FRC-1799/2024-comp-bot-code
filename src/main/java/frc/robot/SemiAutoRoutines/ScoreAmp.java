@@ -40,14 +40,10 @@ public class ScoreAmp extends SequentialCommandGroup {
             new ParallelCommandGroup(
 
                 new DriveToPoint(drive, FeildPosits.ampScore),
-                new elevatorMoveTo(intakeElevator, true),
-                new wristReset(wrist)
+                new scoreAmpPosit(intakeElevator, wrist)
 
 
             ),
-
-            new WristMoveAuto(wrist, Constants.wrist.positions.amp),
-
             //Ending set
             new ParallelRaceGroup(
                 new OuttakeMain(intake),

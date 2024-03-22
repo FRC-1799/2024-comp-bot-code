@@ -24,10 +24,10 @@ public class shooterIntakeMain extends Command{
         shooter.intake();
     }
 
-    @Override
-    public boolean isFinished(){
-        return shooter.beamBreak.getVal()||!canRun;
-    }
+    // @Override
+    // public boolean isFinished(){
+    //     return shooter.beamBreak.getVal()||!canRun;
+    // }
     @Override
     public void end(boolean wasInteruped){
         shooter.stop();

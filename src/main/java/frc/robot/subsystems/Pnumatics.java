@@ -20,7 +20,6 @@ public class Pnumatics extends SubsystemBase{
 
   public Pnumatics(DriveBase drive){
     compressor.disable();
-
     this.drive=drive;
   }
 
@@ -37,18 +36,18 @@ public class Pnumatics extends SubsystemBase{
   public void shift(boolean isHigh){
 
 
-    shifter.set(DoubleSolenoid.Value.kForward);
+    //shifter.set(DoubleSolenoid.Value.kForward);
 
     //SmartDashboard.putBoolean("isHigh", isHigh);
 
 
     //SmartDashboard.putBoolean("isHigh", isHigh);
-    // if (isHigh){
-    //   shifter.set(DoubleSolenoid.Value.kForward);
-    // } 
-    // else{
-    //     shifter.set(DoubleSolenoid.Value.kReverse);
-    // }
+    if (isHigh){
+      shifter.set(DoubleSolenoid.Value.kForward);
+    } 
+    else{
+        shifter.set(DoubleSolenoid.Value.kReverse);
+    }
 
   }
 

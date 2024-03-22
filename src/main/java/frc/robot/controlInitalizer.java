@@ -120,15 +120,17 @@ public class controlInitalizer {
         //movementController.leftTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
         // movementController.a().whileTrue(new IntakeNote(intake));
         // movementController.b().whileTrue(new ShootNote(intake));
-        manipulatorController.a().onTrue(new intake(intake));
-        manipulatorController.x().onTrue(new outtake(intake));
-        manipulatorController.rightBumper().onTrue(new ElevatorToggle(elevator));
-        manipulatorController.y().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.amp));
-        manipulatorController.rightTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
-        manipulatorController.leftTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.up));
-        manipulatorController.b().onTrue(new wristReset(wrist));
-        //manipulatorController.leftBumper().onTrue(new climb(elevator));
-        manipulatorController.leftBumper().onTrue(new ShootSpeakerMain(shooter));
+        movementController.a().onTrue(new intake(intake));
+        movementController.x().onTrue(new outtake(intake));
+        movementController.rightBumper().onTrue(new ElevatorToggle(elevator));
+        movementController.y().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.amp));
+        //manipulatorController.rightTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
+        //manipulatorController.leftTrigger().onTrue(new WristMoveAuto(wrist, Constants.wrist.positions.up));
+        movementController.rightTrigger().onTrue(new scoreAmpPositRunner(elevator, wrist));
+        movementController.leftTrigger().onTrue(new autoIntakeRunner(elevator, wrist, intake));
+        movementController.b().onTrue(new wristReset(wrist));
+        movementController.leftBumper().onTrue(new climb(elevator));
+        //manipulatorController.leftBumper().onTrue(new ShootSpeakerMain(shooter));
         //movementController.y().onTrue(new shootSpeaker(shooter));
         //movementController.b().onTrue(new ShootSpeakerMain(shooter));   
         //movementController.leftBumper().onTrue(new testEverything(intake, wrist, elevator));   
@@ -173,9 +175,17 @@ public class controlInitalizer {
                   () -> ( movementController.getLeftY()),
                   () -> (-movementController.getRightX())
             ));
+        
+        gearBox.setDefaultCommand(
+            new shiftGears(() -> (!movementController.rightTrigger().getAsBoolean()), gearBox));
 
+         movementController.y().onTrue(new toggleCompressor(gearBox));
+ 
         //midi.getButtonFromDict("button1").buttonTrigger.onFalse(new grabNoteFromGroundRunner(driveSubsystem, elevator, intake, wrist));
         //midi.getButtonFromDict("button2").buttonTrigger.onFalse(new scoreAmpRunner(driveSubsystem, elevator, intake, wrist));
+        midi.getButtonFromDict("button1").buttonTrigger.onFalse(new scoreAmpPositRunner(elevator, wrist));
+        midi.getButtonFromDict("button2").buttonTrigger.onFalse(new autoIntakeRunner(elevator, wrist, intake));
+
         midi.getButtonFromDict("button3").buttonTrigger.onFalse(new intake(intake));
         midi.getButtonFromDict("button4").buttonTrigger.onFalse(new outtake(intake));
         midi.getButtonFromDict("button5").buttonTrigger.onFalse(new WristMoveAuto(wrist, Constants.wrist.positions.intake));
@@ -204,6 +214,7 @@ public class controlInitalizer {
         controller.b().onFalse(new grabNoteFromGroundRunner(driveSubsystem, elevator, intake, wrist));
         controller.leftTrigger().onTrue(new elevatorMoveTo(elevator, true));
         controller.rightTrigger().onTrue(new ElevatorToggle(elevator));
+        controller.rightBumper().onTrue(new wristReset(wrist));
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
 

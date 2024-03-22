@@ -88,7 +88,7 @@ public final class Constants {
         public static final double elevatorBackupDownSpeed=0.01;
         public static final double elevatorBackupUpSpeed=-0.3;
         public static final double elevatorBackupTime = 1.3;
-        public static final double elevatorClimbSpeed = 0.6;
+        public static final double elevatorClimbSpeed = 0.75;
         public static final double elevatorStayClimbingSpeed = 0.4;
     }
   

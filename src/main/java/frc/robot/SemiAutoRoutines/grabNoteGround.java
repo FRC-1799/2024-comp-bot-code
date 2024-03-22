@@ -20,15 +20,9 @@ public class grabNoteGround extends SequentialCommandGroup {
     public grabNoteGround(DriveBase drive, WristIntake wrist, Intake intake, Elevator elevator){
         super(
             new ParallelRaceGroup(
-                //new DriveToPoint(drive, FeildPosits.notePickup),
-                new SequentialCommandGroup(
-                    new ParallelCommandGroup(
-                        new elevatorMoveTo(elevator, false),
-                        new WristMoveAuto(wrist, Constants.wrist.positions.intake)
-
-                    ),
-                    new intake(intake)
-                )
+                new DriveToPoint(drive, FeildPosits.notePickup),
+                new autoIntake(elevator, wrist, intake)
+                
             )
         );
     }

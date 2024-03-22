@@ -18,11 +18,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 import frc.robot.Constants.auto;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
+import frc.robot.commands.DriveCommands.ArcadeDrive;
+import frc.robot.commands.SpeakerShooterCommands.ShootSpeakerMain;
 import frc.robot.semiAutoCommands.DriveToPoint;
 //import frc.robot.autoRoutines.*;
 import frc.robot.controlInitalizer;
@@ -90,6 +95,9 @@ public class Robot extends TimedRobot {
     autoChooser.addOption("testEverything", new testEverything(intake, wrist, elevator));
     autoChooser.addOption("double amp", new doubleAmp(drive, elevator, intake, wrist));
     autoChooser.addOption("drive forward",new DriveToPoint(drive, new Pose2d(1, 1, new Rotation2d(0))));
+    autoChooser.addOption("shitty auto", new SequentialCommandGroup(
+      new ParallelDeadlineGroup(new WaitCommand(5), new ShootSpeakerMain(shooter)),
+       new ParallelDeadlineGroup(new WaitCommand(1.5), new ArcadeDrive(drive, ()->(-0.5), ()->(0)))));
   
    
 

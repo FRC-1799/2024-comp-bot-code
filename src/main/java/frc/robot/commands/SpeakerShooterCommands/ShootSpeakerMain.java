@@ -37,10 +37,10 @@ public class ShootSpeakerMain extends Command {
         }
     }
 
-    @Override
-    public boolean isFinished() { 
-        return false;
-    }  
+    // @Override
+    // public boolean isFinished() { 
+    //     return false;
+    // }  
 
     @Override
     public void end(boolean wasInterupted){
