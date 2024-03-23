@@ -10,7 +10,6 @@ import frc.robot.subsystems.limitSwitch;
 public class elevatorMoveTo extends Command{
     Elevator elevator;
     boolean goingUp;
-    boolean canRun;
     double speed;
     limitSwitch activeSwitch;
     public elevatorMoveTo(Elevator elevator, boolean goingUp){
@@ -21,6 +20,8 @@ public class elevatorMoveTo extends Command{
 
     @Override
     public void initialize(){
+        SmartDashboard.putBoolean("elevatorEndStatus", false);
+
         if (goingUp){
             speed=Constants.elevator.elevatorUpSpeed;
             activeSwitch=elevator.topSwitch;
@@ -39,18 +40,21 @@ public class elevatorMoveTo extends Command{
 
     @Override 
     public boolean isFinished(){
-        return activeSwitch.getVal()||!canRun;
+        return activeSwitch.getVal();
     }
 
     @Override 
     public void end(boolean wasInterupted){
+        SmartDashboard.putBoolean("elevatorEndStatus", true);
+        SmartDashboard.putBoolean("elevatorWasInterupted", wasInterupted);
         elevator.stop();
         if (!wasInterupted){
           elevator.isUp=goingUp;
-        }
-        if (elevator.isUp){
+          if (elevator.isUp){
             new stayAtTopMain(elevator).schedule();
         }
+        }
+
 
     }
 }

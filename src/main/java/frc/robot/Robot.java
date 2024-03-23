@@ -97,7 +97,7 @@ public class Robot extends TimedRobot {
     autoChooser.addOption("drive forward",new DriveToPoint(drive, new Pose2d(1, 1, new Rotation2d(0))));
     autoChooser.addOption("shitty auto", new SequentialCommandGroup(
       new ParallelDeadlineGroup(new WaitCommand(5), new ShootSpeakerMain(shooter)),
-       new ParallelDeadlineGroup(new WaitCommand(1.5), new ArcadeDrive(drive, ()->(-0.5), ()->(0)))));
+       new ParallelDeadlineGroup(new WaitCommand(2.5), new ArcadeDrive(drive, ()->(-0.5), ()->(0)))));
   
    
 

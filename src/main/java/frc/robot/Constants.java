@@ -258,7 +258,7 @@ public final class Constants {
 
         public static final class positions{
             public static final double up = 0;
-            public static final double intake = 115;
+            public static final double intake = 106;
             public static final double amp = 56;
         }
 

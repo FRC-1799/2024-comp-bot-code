@@ -41,6 +41,8 @@ public class WristMoveAuto extends Command {
 
   @Override
   public void initialize() {
+    SmartDashboard.putBoolean("wristEndStatus", false);
+
     pid.setSetpoint(setpoint);
     pid.setTolerance(Constants.wrist.tolerance);
     SmartDashboard.putString("wrist", "moving");
@@ -61,9 +63,11 @@ public class WristMoveAuto extends Command {
 
   @Override
   public void end(boolean interrupted){
+    SmartDashboard.putBoolean("wristEndStatus", true);
+    SmartDashboard.putBoolean("wristWasInterupted", interrupted);
     wrist.move(0);
     if (!interrupted){
-      new WristMoveHold(wrist, setpoint).schedule();
+      //new WristMoveHold(wrist, setpoint).schedule();
     }
   }
 
