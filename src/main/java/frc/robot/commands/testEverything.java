@@ -7,7 +7,7 @@ import frc.robot.commands.ElevatorCommands.climb;
 import frc.robot.commands.IntakeCommands.intake;
 import frc.robot.commands.IntakeCommands.outtake;
 import frc.robot.commands.SpeakerShooterCommands.shootIntake;
-import frc.robot.commands.WristComands.WristMoveAuto;
+import frc.robot.commands.WristComands.WristMove;
 import frc.robot.commands.WristComands.wristReset;
 import frc.robot.subsystems.*;
 
@@ -15,11 +15,11 @@ public class testEverything extends SequentialCommandGroup {
     public testEverything(Intake intake, WristIntake wrist, Elevator elevator){
         super( 
          new wristReset(wrist),
-         new WristMoveAuto(wrist, Constants.wrist.positions.intake),
+         new WristMove(wrist, Constants.wrist.positions.intake),
          new intake(intake), 
-         new WristMoveAuto(wrist, Constants.wrist.positions.amp),
+         new WristMove(wrist, Constants.wrist.positions.amp),
          new outtake(intake),
-         new WristMoveAuto(wrist, Constants.wrist.positions.up),
+         new WristMove(wrist, Constants.wrist.positions.up),
          new ElevatorToggle(elevator),
          new ElevatorToggle(elevator),
          new ElevatorToggle(elevator),

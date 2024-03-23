@@ -11,7 +11,7 @@ import frc.robot.SemiAutoRoutines.scoreAmpRunner;
 import frc.robot.SemiAutoRoutines.turnAround;
 import frc.robot.commands.ElevatorCommands.elevatorMoveTo;
 import frc.robot.commands.IntakeCommands.intake;
-import frc.robot.commands.WristComands.WristMoveAuto;
+import frc.robot.commands.WristComands.WristMove;
 import frc.robot.commands.WristComands.WristMoveHold;
 import frc.robot.commands.WristComands.wristReset;
 import frc.robot.semiAutoCommands.DriveToPoint;
@@ -35,7 +35,7 @@ public class doubleAmp extends SequentialCommandGroup{
                         new elevatorMoveTo(elevator, false),
                         new wristReset(wrist)
                     ),
-                    new WristMoveAuto(wrist, Constants.wrist.positions.intake),
+                    new WristMove(wrist, Constants.wrist.positions.intake),
                     new intake(intake)
                 )
             ),
