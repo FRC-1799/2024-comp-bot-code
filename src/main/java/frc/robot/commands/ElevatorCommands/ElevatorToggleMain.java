@@ -46,7 +46,7 @@ public class ElevatorToggleMain extends Command {
     if (!wasInterupted){
       elevator.isUp=!elevator.isUp;
       if (elevator.isUp){
-        new stayAtTopMain(elevator).schedule();
+        this.andThen(new stayAtTopMain(elevator));
       }
     }
 

@@ -48,9 +48,6 @@ public class elevatorMoveTo extends Command{
         if (!wasInterupted){
           elevator.isUp=goingUp;
         }
-        if (elevator.isUp){
-            new stayAtTopMain(elevator).schedule();
-        }
 
     }
 }

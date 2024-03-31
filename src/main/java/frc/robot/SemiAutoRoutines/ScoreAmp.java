@@ -37,7 +37,7 @@ public class ScoreAmp extends SequentialCommandGroup {
             
 
             //MainLoop
-            new ParallelCommandGroup(
+            new ParallelRaceGroup(
 
                 new DriveToPoint(drive, FeildPosits.ampScore),
                 new scoreAmpPosit(intakeElevator, wrist)

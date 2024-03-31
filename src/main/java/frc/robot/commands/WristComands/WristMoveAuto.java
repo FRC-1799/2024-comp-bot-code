@@ -62,9 +62,9 @@ public class WristMoveAuto extends Command {
   @Override
   public void end(boolean interrupted){
     wrist.move(0);
-    if (!interrupted){
-      new WristMoveHold(wrist, setpoint).schedule();
-    }
+    
   }
+
+
 
 }
