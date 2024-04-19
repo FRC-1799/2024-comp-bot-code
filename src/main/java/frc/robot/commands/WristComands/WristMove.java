@@ -7,7 +7,7 @@ public class WristMove extends SequentialCommandGroup{
     public WristMove(WristIntake wrist, double Position){
         super(
             new WristMoveAuto(wrist, Position),
-            new WristMoveHold(wrist, Math.toRadians(Position))
+            new WristMoveHold(wrist, Position)
         );
     }
 }

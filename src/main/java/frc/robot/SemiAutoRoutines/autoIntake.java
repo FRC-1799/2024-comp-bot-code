@@ -10,6 +10,9 @@ import frc.robot.Constants.auto;
 import frc.robot.commands.ElevatorCommands.elevatorMoveTo;
 import frc.robot.commands.IntakeCommands.intake;
 import frc.robot.commands.WristComands.WristMove;
+import frc.robot.commands.WristComands.WristMoveAuto;
+import frc.robot.commands.WristComands.WristMoveHold;
+import frc.robot.commands.WristComands.wristReset;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.WristIntake;
@@ -17,15 +20,21 @@ import frc.robot.subsystems.WristIntake;
 public class autoIntake extends SequentialCommandGroup{
     public autoIntake(Elevator elevator, WristIntake wrist, Intake intake){
         super(
-            new PrintCommand("test"),
+            //new PrintCommand("test"),
 
-            new ParallelRaceGroup(
+            new ParallelCommandGroup(
                 new elevatorMoveTo(elevator, false),
                 //new ElevatorToggle(elevator),
-                new WristMove(wrist, Constants.wrist.positions.intake)
+                new WristMoveAuto(wrist, Constants.wrist.positions.intake)
             ),
-            new PrintCommand("autoIntakeFinished"),
-            new intake(intake)
+            //new PrintCommand("autoIntakeFinished"),
+            new ParallelRaceGroup(
+                new intake(intake),
+                
+                new WristMoveHold(wrist, Constants.wrist.positions.intake)
+            ),
+            new wristReset(wrist)
+
         );
     }
 }

@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class SpeakerShooter extends SubsystemBase {
-	public final CANSparkFlex flyWheel = new CANSparkFlex(Constants.speakerShooter.ports.topMotorPort, MotorType.kBrushless);
+	public final CANSparkMax flyWheel = new CANSparkMax(Constants.speakerShooter.ports.topMotorPort, MotorType.kBrushed);
 	public final CANSparkFlex indexer = new CANSparkFlex(Constants.speakerShooter.ports.bottomMotorPort, MotorType.kBrushless);
-	public final RelativeEncoder topEncoder = flyWheel.getEncoder();
 	public final RelativeEncoder bottomEncoder = indexer.getEncoder();
 
 

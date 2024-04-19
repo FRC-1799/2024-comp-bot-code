@@ -129,8 +129,9 @@ public class controlInitalizer {
         movementController.rightTrigger().onTrue(new scoreAmpPositRunner(elevator, wrist));
         movementController.leftTrigger().onTrue(new autoIntakeRunner(elevator, wrist, intake));
         movementController.b().onTrue(new wristReset(wrist));
-        movementController.leftBumper().onTrue(new climb(elevator));
-        //manipulatorController.leftBumper().onTrue(new ShootSpeakerMain(shooter));
+        //movementController.leftBumper().onTrue(new ampOuttakeRunner(elevator, wrist, intake));
+        //movementController.leftBumper().onTrue(new climb(elevator));
+        manipulatorController.leftBumper().onTrue(new ShootSpeakerMain(shooter));
         //movementController.y().onTrue(new shootSpeaker(shooter));
         //movementController.b().onTrue(new ShootSpeakerMain(shooter));   
         //movementController.leftBumper().onTrue(new testEverything(intake, wrist, elevator));   
@@ -193,7 +194,7 @@ public class controlInitalizer {
         midi.getButtonFromDict("button7").buttonTrigger.onFalse(new WristMove(wrist, Constants.wrist.positions.up));
         midi.getButtonFromDict("button8").buttonTrigger.onFalse(new wristReset(wrist));
         midi.getButtonFromDict("button9").buttonTrigger.onFalse(cancel);
-
+        midi.getButtonFromDict("replay").buttonTrigger.onFalse(new ampOuttakeRunner(elevator, wrist, intake));
         midi.getButtonFromDict("leftSilverDial").buttonTrigger.onTrue(new ElevatorToggle(elevator));
         midi.getButtonFromDict("rightSilverDial").buttonTrigger.onFalse(new climb(elevator));
         

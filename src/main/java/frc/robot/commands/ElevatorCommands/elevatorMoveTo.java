@@ -50,9 +50,9 @@ public class elevatorMoveTo extends Command{
         elevator.stop();
         if (!wasInterupted){
           elevator.isUp=goingUp;
-          if (elevator.isUp){
-            new stayAtTopMain(elevator).schedule();
-        }
+        //   if (elevator.isUp){
+        //     new stayAtTopMain(elevator).schedule();
+        // }
         }
 
 
