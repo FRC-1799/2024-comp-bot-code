@@ -15,6 +15,7 @@ public class Elevator extends SubsystemBase {
 	public final limitSwitch topSwitch = new limitSwitch(Constants.elevator.topLimitSwitch);
 	public final limitSwitch bottomSwitch = new limitSwitch(Constants.elevator.bottomLimitSwitch);
 	public boolean isUp = false;
+	public boolean isHeld = true;
 	
 
 

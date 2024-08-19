@@ -67,7 +67,12 @@ public class WristMoveAuto extends Command {
     SmartDashboard.putBoolean("wristWasInterupted", interrupted);
     wrist.move(0);
     if (!interrupted){
+      wrist.shouldBeHeld=true;
+      wrist.holdPoint=setpoint;
       //new WristMoveHold(wrist, setpoint).schedule();
+    }
+    else{
+      wrist.shouldBeHeld=false;
     }
   }
 

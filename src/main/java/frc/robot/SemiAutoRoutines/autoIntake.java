@@ -28,11 +28,11 @@ public class autoIntake extends SequentialCommandGroup{
                 new WristMoveAuto(wrist, Constants.wrist.positions.intake)
             ),
             //new PrintCommand("autoIntakeFinished"),
-            new ParallelRaceGroup(
-                new intake(intake),
+            
+            new intake(intake),
                 
-                new WristMoveHold(wrist, Constants.wrist.positions.intake)
-            ),
+                
+            
             new wristReset(wrist)
 
         );

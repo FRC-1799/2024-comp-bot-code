@@ -99,7 +99,8 @@ public class Robot extends TimedRobot {
       new ParallelDeadlineGroup(new WaitCommand(5), new ShootSpeakerMain(shooter)),
        new ParallelDeadlineGroup(new WaitCommand(2.5), new ArcadeDrive(drive, ()->(-0.5), ()->(0)))));
   
-   
+    elevator.setDefaultCommand(new stayAtTopMain(elevator))
+    wrist.setDefaultCommand( new WristHold(wrist))
 
 
 

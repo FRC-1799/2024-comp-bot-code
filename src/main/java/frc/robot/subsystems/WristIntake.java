@@ -12,6 +12,8 @@ public class WristIntake extends SubsystemBase {
 	public final CANSparkMax wristMotor;
     public final limitSwitch wristLimitSwitch;
     public final RelativeEncoder encoder;
+    public double holdPoint=0;
+    public boolean shouldBeHeld=true;
 
     
 

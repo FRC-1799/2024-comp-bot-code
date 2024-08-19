@@ -34,5 +34,8 @@ public class wristReset extends Command{
     @Override
     public void end(boolean isFinished){
         wrist.move(0);
+        wrist.shouldBeHeld=true;
+        wrist.holdPoint=0;
+
     }
 }
