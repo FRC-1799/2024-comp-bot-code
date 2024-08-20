@@ -27,10 +27,14 @@ import frc.robot.Constants.auto;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 import frc.robot.commands.DriveCommands.ArcadeDrive;
+import frc.robot.commands.ElevatorCommands.stayAtTopMain;
 import frc.robot.commands.SpeakerShooterCommands.ShootSpeakerMain;
+import frc.robot.commands.WristComands.WristHold;
+//import frc.robot.commands.WristComands.WristHold;
 import frc.robot.semiAutoCommands.DriveToPoint;
 //import frc.robot.autoRoutines.*;
 import frc.robot.controlInitalizer;
+//import frc.robot.commands.elevator.stayAtTopMain;
 import frc.robot.autoRoutines.doubleAmp;
 import frc.robot.Constants.speakerShooter;
 
@@ -99,8 +103,8 @@ public class Robot extends TimedRobot {
       new ParallelDeadlineGroup(new WaitCommand(5), new ShootSpeakerMain(shooter)),
        new ParallelDeadlineGroup(new WaitCommand(2.5), new ArcadeDrive(drive, ()->(-0.5), ()->(0)))));
   
-    elevator.setDefaultCommand(new stayAtTopMain(elevator))
-    wrist.setDefaultCommand( new WristHold(wrist))
+    elevator.setDefaultCommand(new stayAtTopMain(elevator));
+    wrist.setDefaultCommand( new WristHold(wrist));
 
 
 
