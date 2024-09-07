@@ -26,6 +26,6 @@ public final class FeildPosits {
 
     public static final class dancePosits{
         public final static Pose2d firstPosit = new Pose2d();
-        public static final Pose2d secondPosit = new Pose2d(12.0, 0.0, new Rotation2d(Math.PI));
+        public static final Pose2d secondPosit = new Pose2d(-12.0, 0.0, new Rotation2d(Math.PI));
     }
 }
