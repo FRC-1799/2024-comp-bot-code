@@ -219,6 +219,10 @@ public class controlInitalizer {
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
 
+    public static final void danceControl(){
+        driveSubsystem.setDefaultCommand(new danceCaller(driveSubsystem));
+    }
+
 
   
 
