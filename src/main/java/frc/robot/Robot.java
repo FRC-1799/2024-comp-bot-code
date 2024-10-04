@@ -34,6 +34,8 @@ import frc.robot.commands.WristComands.WristHold;
 import frc.robot.semiAutoCommands.DriveToPoint;
 //import frc.robot.autoRoutines.*;
 import frc.robot.controlInitalizer;
+import frc.robot.autoRoutines.GrabDumpDouble;
+import frc.robot.autoRoutines.GrabDumpSingle;
 //import frc.robot.commands.elevator.stayAtTopMain;
 import frc.robot.autoRoutines.doubleAmp;
 import frc.robot.Constants.speakerShooter;
@@ -99,9 +101,10 @@ public class Robot extends TimedRobot {
     autoChooser.addOption("testEverything", new testEverything(intake, wrist, elevator));
     autoChooser.addOption("double amp", new doubleAmp(drive, elevator, intake, wrist));
     autoChooser.addOption("drive forward",new DriveToPoint(drive, new Pose2d(1, 1, new Rotation2d(0))));
-    autoChooser.addOption("shitty auto", new SequentialCommandGroup(
-      new ParallelDeadlineGroup(new WaitCommand(5), new ShootSpeakerMain(shooter)),
-       new ParallelDeadlineGroup(new WaitCommand(2.5), new ArcadeDrive(drive, ()->(-0.5), ()->(0)))));
+    autoChooser.addOption("double grab", new GrabDumpDouble(drive, intake, wrist));
+    autoChooser.addOption("single grab", new GrabDumpSingle(drive, intake, wrist));
+    autoChooser.addOption("get out right", new DriveToPoint(drive, FeildPosits.getOut));
+    autoChooser.addOption("get out left", new DriveToPoint(drive, FeildPosits.getOutLeft));
   
     elevator.setDefaultCommand(new stayAtTopMain(elevator));
     wrist.setDefaultCommand( new WristHold(wrist));
