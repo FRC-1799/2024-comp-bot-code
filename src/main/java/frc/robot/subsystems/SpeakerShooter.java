@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class SpeakerShooter extends SubsystemBase {
-	public final CANSparkMax flyWheel = new CANSparkMax(Constants.speakerShooter.ports.topMotorPort, MotorType.kBrushed);
-	public final CANSparkFlex indexer = new CANSparkFlex(Constants.speakerShooter.ports.bottomMotorPort, MotorType.kBrushless);
-	public final RelativeEncoder bottomEncoder = indexer.getEncoder();
+	//public final CANSparkMax flyWheel = new CANSparkMax(Constants.speakerShooter.ports.topMotorPort, MotorType.kBrushed);
+	//public final CANSparkFlex indexer = new CANSparkFlex(Constants.speakerShooter.ports.bottomMotorPort, MotorType.kBrushless);
+	//public final RelativeEncoder bottomEncoder = indexer.getEncoder();
 
 
 	public final limitSwitch beamBreak = new limitSwitch(Constants.speakerShooter.ports.beamBreakPort);
@@ -25,11 +25,11 @@ public class SpeakerShooter extends SubsystemBase {
 
 
 	public void revving(){
-    	flyWheel.set(Constants.speakerShooter.motorSpeeds.topMotorSpeed);
+    	//flyWheel.set(Constants.speakerShooter.motorSpeeds.topMotorSpeed);
   	}
 
 	public void runIndex(){
-        indexer.set(Constants.speakerShooter.motorSpeeds.bottomMotorSpeed);
+        //indexer.set(Constants.speakerShooter.motorSpeeds.bottomMotorSpeed);
   	}
 
     public boolean checkNote(){
@@ -37,19 +37,19 @@ public class SpeakerShooter extends SubsystemBase {
     }
 
     public void SafetyFunction(double indexSpeed, double flySpeed){
-        indexer.set(indexSpeed);
-        flyWheel.set(flySpeed);
+        //indexer.set(indexSpeed);
+        //flyWheel.set(flySpeed);
     }
 
 
 	public void intake(){
-		flyWheel.set(Constants.speakerShooter.motorSpeeds.intakeSpeed);
-		indexer.set(Constants.speakerShooter.motorSpeeds.intakeSpeed);
+		//flyWheel.set(Constants.speakerShooter.motorSpeeds.intakeSpeed);
+		//indexer.set(Constants.speakerShooter.motorSpeeds.intakeSpeed);
 	}
 
 	public void stop(){
-		flyWheel.set(0);
-		indexer.set(0);
+		//flyWheel.set(0);
+		//indexer.set(0);
 	}
 
 	public boolean canShoot(){
