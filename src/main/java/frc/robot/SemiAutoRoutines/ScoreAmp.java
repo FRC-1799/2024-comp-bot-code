@@ -11,14 +11,11 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.FeildPosits;
 import frc.robot.semiAutoManager;
-import frc.robot.commands.ToggleElevator;
 import frc.robot.commands.ElevatorCommands.elevatorMoveTo;
-import frc.robot.commands.IntakeCommands.OuttakeMain;
+import frc.robot.commands.IntakeCommands.Outtake;
 import frc.robot.commands.WristComands.WristMove;
 import frc.robot.commands.WristComands.wristReset;
-import frc.robot.semiAutoCommands.BlinkinGreen;
-import frc.robot.semiAutoCommands.BlinkinRed;
-import frc.robot.semiAutoCommands.BlinkinYellow;
+
 import frc.robot.semiAutoCommands.DriveToPoint;
 import frc.robot.semiAutoCommands.stealDriveCommand;
 import frc.robot.subsystems.Blinkin;
@@ -46,12 +43,14 @@ public class ScoreAmp extends SequentialCommandGroup {
             ),
             //Ending set
             new ParallelRaceGroup(
-                new OuttakeMain(intake),
+                new Outtake(intake),
                 new stealDriveCommand(drive)
             )
 
             //passOff
         );
+        addRequirements(semiAutoManager.hasSemiAutoPerm);
+
 
     }
 }

@@ -13,7 +13,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.semiAutoCommands.CancelCurrentRoutine;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Gyro;
@@ -30,6 +32,7 @@ public  class semiAutoManager{
     private static Command current;
     public static CancelCurrentRoutine cancel= new CancelCurrentRoutine();
     private static Pose2d startingPose;
+    public static Subsystem hasSemiAutoPerm = new Subsystem(){};
 
 
     public static void configureSemiAutoManager(DriveBase Drive, Gyro Gyro, Limelight Limelight, Timer Timer){
@@ -91,6 +94,7 @@ public  class semiAutoManager{
         poseEstimator.resetPosition(gyro.getYaw(), drive.getLeftEncoder(), drive.getRightEncoder(), pose);
     }
     
+
 
 
 

@@ -7,12 +7,11 @@ import frc.robot.FeildPosits;
 import frc.robot.Constants;
 import frc.robot.Constants.elevator;
 import frc.robot.SemiAutoRoutines.ScoreAmp;
-import frc.robot.SemiAutoRoutines.scoreAmpRunner;
+
 import frc.robot.SemiAutoRoutines.turnAround;
 import frc.robot.commands.ElevatorCommands.elevatorMoveTo;
-import frc.robot.commands.IntakeCommands.intake;
+import frc.robot.commands.IntakeCommands.intakeCommand;
 import frc.robot.commands.WristComands.WristMove;
-import frc.robot.commands.WristComands.WristMoveHold;
 import frc.robot.commands.WristComands.wristReset;
 import frc.robot.semiAutoCommands.DriveToPoint;
 import frc.robot.subsystems.DriveBase;
@@ -36,7 +35,7 @@ public class doubleAmp extends SequentialCommandGroup{
                         new wristReset(wrist)
                     ),
                     new WristMove(wrist, Constants.wrist.positions.intake),
-                    new intake(intake)
+                    new intakeCommand(intake)
                 )
             ),
             new ScoreAmp(drive, elevator, intake, wrist)

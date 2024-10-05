@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -18,27 +17,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
-import frc.robot.Constants.auto;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
-import frc.robot.commands.DriveCommands.ArcadeDrive;
-import frc.robot.commands.ElevatorCommands.stayAtTopMain;
-import frc.robot.commands.SpeakerShooterCommands.ShootSpeakerMain;
+import frc.robot.commands.ElevatorCommands.stayAtTop;
 import frc.robot.commands.WristComands.WristHold;
 //import frc.robot.commands.WristComands.WristHold;
 import frc.robot.semiAutoCommands.DriveToPoint;
 //import frc.robot.autoRoutines.*;
-import frc.robot.controlInitalizer;
 import frc.robot.autoRoutines.GrabDumpDouble;
 import frc.robot.autoRoutines.GrabDumpSingle;
 //import frc.robot.commands.elevator.stayAtTopMain;
 import frc.robot.autoRoutines.doubleAmp;
-import frc.robot.Constants.speakerShooter;
 
 
 
@@ -106,7 +98,7 @@ public class Robot extends TimedRobot {
     autoChooser.addOption("get out right", new DriveToPoint(drive, FeildPosits.getOut));
     autoChooser.addOption("get out left", new DriveToPoint(drive, FeildPosits.getOutLeft));
   
-    elevator.setDefaultCommand(new stayAtTopMain(elevator));
+    elevator.setDefaultCommand(new stayAtTop(elevator));
     wrist.setDefaultCommand( new WristHold(wrist));
 
 

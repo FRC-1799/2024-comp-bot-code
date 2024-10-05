@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
-public class IntakeMain extends Command {
+public class intakeCommand extends Command {
   Intake intake;
   int counter;
   boolean canRun;
 
   boolean noteInIntake;
   
-  public IntakeMain(Intake intake) {
+  public intakeCommand(Intake intake) {
     this.intake = intake;
     addRequirements(intake);
 

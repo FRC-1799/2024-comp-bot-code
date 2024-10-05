@@ -2,7 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import frc.robot.semiAutoCommands.routineValidator;
+
 
 public final class FeildPosits {
     public static final class startingNotes{

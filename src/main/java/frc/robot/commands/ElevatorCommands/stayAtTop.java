@@ -1,11 +1,43 @@
 package frc.robot.commands.ElevatorCommands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.limitSwitch;
 
-public class stayAtTop extends SequentialCommandGroup { 
-    public stayAtTop(Elevator elevator) {
-        super(new stayAtTopMain(elevator), new stayAtTopBack(elevator));
+public class stayAtTop extends Command {
+    limitSwitch topSwitch;
+    Elevator elevator;
+    boolean canRun;
+
+    public stayAtTop(Elevator elevator){
+        this.elevator=elevator;
+        this.topSwitch=elevator.topSwitch;
+        addRequirements(elevator);
+    }
+
+    @Override
+    public void initialize(){
+        canRun=elevator.isUp||topSwitch.isOk();
+ 
+    }
+
+    @Override
+    public void execute(){
+        if (!topSwitch.getVal()&&elevator.isUp&&elevator.isHeld){
+            elevator.moveElevator(Constants.elevator.elevatorStayAtTopSpeed);
+        }
+        else{
+            elevator.moveElevator(0);
+        }
+    }
+
+    @Override
+    public void end(boolean wasInterupted){
+        elevator.moveElevator(0);
+    }
+
+    public boolean isFinished(){
+        return !canRun;
     }
 }

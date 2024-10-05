@@ -7,12 +7,7 @@ import frc.robot.controlInitalizer;
 import frc.robot.semiAutoManager;
 
 public class CancelCurrentRoutine extends InstantCommand{
-    public void execute(){
-    if (semiAutoManager.getCurrent()!=null){
-        CommandScheduler.getInstance().cancel(semiAutoManager.getCurrent());
-        semiAutoManager.setCurrent(null); 
-        new BlinkinGreen().schedule(); 
-
-    }
+    public CancelCurrentRoutine(){
+        addRequirements(semiAutoManager.hasSemiAutoPerm);
     }
 }
