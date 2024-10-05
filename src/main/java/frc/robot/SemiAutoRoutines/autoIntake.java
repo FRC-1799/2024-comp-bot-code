@@ -29,9 +29,6 @@ public class autoIntake extends SequentialCommandGroup{
             //new PrintCommand("autoIntakeFinished"),
             
             new intakeCommand(intake),
-                
-                
-            
             new wristReset(wrist)
 
         );
