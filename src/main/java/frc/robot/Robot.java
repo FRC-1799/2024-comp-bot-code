@@ -110,6 +110,7 @@ public class Robot extends TimedRobot {
     controlChooser.addOption("MidiControl alone", 3);
     controlChooser.addOption("autoDriveTest", 4);
     controlChooser.setDefaultOption("Comp Controlls", 5);
+    controlChooser.setDefaultOption("New Comp Controlls", 6);
 
 
     poseChooser.setDefaultOption("leftCorner", FeildPosits.startingPosit.cornerStart);
@@ -162,6 +163,9 @@ public class Robot extends TimedRobot {
 
     else if (controlChooser.getSelected()==5){
       controlInitalizer.jaceControllWithMidi(controller1, midi);
+    }
+    else if (controlChooser.getSelected()==6){
+      controlInitalizer.newCompControls(controller1, controller2);
     }
      
 
