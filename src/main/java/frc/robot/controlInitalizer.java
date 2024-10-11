@@ -33,7 +33,7 @@ public class controlInitalizer {
     static WristIntake wrist;
     static Intake intake;
     static Elevator elevator;
-    //static CancelCurrentRoutine cancel;
+
     static boolean hasBeenInitalizedFromRobot=false;
     static boolean hasBeenInitalizedFromSemiAutoManager=false;
     public static Command testRoutine;
@@ -55,7 +55,6 @@ public class controlInitalizer {
 
     public static void controlInitalizerFromSemiAutoManager(){
         hasBeenInitalizedFromSemiAutoManager=true;
-        //cancel = Cancel;
 
     }
 
@@ -187,7 +186,7 @@ public class controlInitalizer {
         midi.getButtonFromDict("button6").buttonTrigger.onFalse(new WristMove(wrist, Constants.wrist.positions.amp));
         midi.getButtonFromDict("button7").buttonTrigger.onFalse(new WristMove(wrist, Constants.wrist.positions.up));
         midi.getButtonFromDict("button8").buttonTrigger.onFalse(new wristReset(wrist));
-        //midi.getButtonFromDict("button9").buttonTrigger.onFalse(cancel);
+
         midi.getButtonFromDict("replay").buttonTrigger.onFalse(new ampOuttake(elevator, wrist, intake));
         midi.getButtonFromDict("leftSilverDial").buttonTrigger.onTrue(new ElevatorToggle(elevator));
         midi.getButtonFromDict("rightSilverDial").buttonTrigger.onFalse(new climb(elevator));
@@ -203,7 +202,7 @@ public class controlInitalizer {
                   () -> (-controller.getRightX())
             )); 
 
-        //controller.y().onTrue(cancel);
+
         controller.x().onFalse(new testRoutine(driveSubsystem));
         controller.a().onFalse(new ScoreAmp(driveSubsystem, elevator, intake, wrist));
         controller.b().onFalse(new grabNoteGround(driveSubsystem, elevator, intake, wrist));
@@ -216,6 +215,30 @@ public class controlInitalizer {
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
 
+    public static final void newCompControls(CommandXboxController movementController, CommandXboxController manipController){
+        checkInit();
+
+        driveSubsystem.setDefaultCommand(
+            new ArcadeDrive(
+                driveSubsystem,
+                () -> ( movementController.getLeftY()),
+                () -> (-movementController.getRightX())
+            ));
+    
+        gearBox.setDefaultCommand(
+            new shiftGears(() -> (!movementController.rightTrigger().getAsBoolean()), gearBox));
+        
+
+        manipController.a().onFalse(new scoreAmpPosit(elevator, wrist));
+        manipController.x().onFalse(new autoIntake(elevator, wrist, intake));
+        manipController.y().onFalse(new ampOuttake(elevator, wrist, intake));
+        manipController.b().onFalse(new wristReset(wrist));
+        manipController.rightTrigger().onFalse(new ElevatorToggle(elevator));
+        manipController.leftTrigger().onFalse(new climb(elevator));
+        manipController.rightBumper().onFalse(new intakeCommand(intake));
+        manipController.leftBumper().onFalse(new outtake(intake));
+
+    }
 
   
 

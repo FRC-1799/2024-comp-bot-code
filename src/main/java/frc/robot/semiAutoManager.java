@@ -50,7 +50,9 @@ public  class semiAutoManager{
             drive.getRightEncoder(), 
             startingPose);
 
-        //controlInitalizer.controlInitalizerFromSemiAutoManager(cancel);
+
+        controlInitalizer.controlInitalizerFromSemiAutoManager();
+        
         
     }
     
