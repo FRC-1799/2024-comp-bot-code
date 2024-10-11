@@ -12,7 +12,7 @@ import frc.robot.Constants;
 import frc.robot.FeildPosits;
 import frc.robot.semiAutoManager;
 import frc.robot.commands.ElevatorCommands.elevatorMoveTo;
-import frc.robot.commands.IntakeCommands.Outtake;
+import frc.robot.commands.IntakeCommands.outtake;
 import frc.robot.commands.WristComands.WristMove;
 import frc.robot.commands.WristComands.wristReset;
 
@@ -43,13 +43,13 @@ public class ScoreAmp extends SequentialCommandGroup {
             ),
             //Ending set
             new ParallelRaceGroup(
-                new Outtake(intake),
+                new ampOuttake(intakeElevator, wrist, intake),
                 new stealDriveCommand(drive)
             )
 
             //passOff
         );
-        addRequirements(semiAutoManager.hasSemiAutoPerm);
+        //addRequirements(semiAutoManager.hasSemiAutoPerm);
 
 
     }

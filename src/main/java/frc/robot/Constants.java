@@ -124,7 +124,7 @@ public final class Constants {
 
         public static final class intakeSpeeds {
             public static final double intakeSpeed = -1;
-            public static final double outakeSpeed = 0.5;
+            public static final double outakeSpeed = 1;
             // public static final int intakeRaiseSpeed = 1;
         }
 

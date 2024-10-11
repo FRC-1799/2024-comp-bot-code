@@ -33,7 +33,7 @@ public class controlInitalizer {
     static WristIntake wrist;
     static Intake intake;
     static Elevator elevator;
-    static CancelCurrentRoutine cancel;
+    //static CancelCurrentRoutine cancel;
     static boolean hasBeenInitalizedFromRobot=false;
     static boolean hasBeenInitalizedFromSemiAutoManager=false;
     public static Command testRoutine;
@@ -53,9 +53,9 @@ public class controlInitalizer {
 
     }
 
-    public static void controlInitalizerFromSemiAutoManager(CancelCurrentRoutine Cancel){
+    public static void controlInitalizerFromSemiAutoManager(){
         hasBeenInitalizedFromSemiAutoManager=true;
-        cancel = Cancel;
+        //cancel = Cancel;
 
     }
 
@@ -116,13 +116,12 @@ public class controlInitalizer {
         // movementController.a().whileTrue(new IntakeNote(intake));
         // movementController.b().whileTrue(new ShootNote(intake));
         movementController.a().onTrue(new intakeCommand(intake));
-        movementController.x().onTrue(new Outtake(intake));
+        movementController.x().onTrue(new outtake(intake));
         movementController.rightBumper().onTrue(new ElevatorToggle(elevator));
         movementController.y().onTrue(new WristMove(wrist, Constants.wrist.positions.amp));
         //manipulatorController.rightTrigger().onTrue(new WristMove(wrist, Constants.wrist.positions.intake));
         //manipulatorController.leftTrigger().onTrue(new WristMove(wrist, Constants.wrist.positions.up));
         movementController.rightTrigger().onTrue(new scoreAmpPosit(elevator, wrist));
-        movementController.leftTrigger().onTrue(new autoIntake(elevator, wrist, intake));
         movementController.b().onTrue(new wristReset(wrist));
         //movementController.leftBumper().onTrue(new ampOuttakeRunner(elevator, wrist, intake));
         //movementController.leftBumper().onTrue(new climb(elevator));
@@ -183,12 +182,12 @@ public class controlInitalizer {
         midi.getButtonFromDict("button2").buttonTrigger.onFalse(new autoIntake(elevator, wrist, intake));
 
         midi.getButtonFromDict("button3").buttonTrigger.onFalse(new intakeCommand(intake));
-        midi.getButtonFromDict("button4").buttonTrigger.onFalse(new Outtake(intake));
+        midi.getButtonFromDict("button4").buttonTrigger.onFalse(new outtake(intake));
         midi.getButtonFromDict("button5").buttonTrigger.onFalse(new WristMove(wrist, Constants.wrist.positions.intake));
         midi.getButtonFromDict("button6").buttonTrigger.onFalse(new WristMove(wrist, Constants.wrist.positions.amp));
         midi.getButtonFromDict("button7").buttonTrigger.onFalse(new WristMove(wrist, Constants.wrist.positions.up));
         midi.getButtonFromDict("button8").buttonTrigger.onFalse(new wristReset(wrist));
-        midi.getButtonFromDict("button9").buttonTrigger.onFalse(cancel);
+        //midi.getButtonFromDict("button9").buttonTrigger.onFalse(cancel);
         midi.getButtonFromDict("replay").buttonTrigger.onFalse(new ampOuttake(elevator, wrist, intake));
         midi.getButtonFromDict("leftSilverDial").buttonTrigger.onTrue(new ElevatorToggle(elevator));
         midi.getButtonFromDict("rightSilverDial").buttonTrigger.onFalse(new climb(elevator));
@@ -204,13 +203,16 @@ public class controlInitalizer {
                   () -> (-controller.getRightX())
             )); 
 
-        controller.y().onTrue(cancel);
+        //controller.y().onTrue(cancel);
         controller.x().onFalse(new testRoutine(driveSubsystem));
         controller.a().onFalse(new ScoreAmp(driveSubsystem, elevator, intake, wrist));
         controller.b().onFalse(new grabNoteGround(driveSubsystem, elevator, intake, wrist));
-        controller.leftTrigger().onTrue(new elevatorMoveTo(elevator, true));
+        controller.leftTrigger().onTrue(new autoIntake(elevator, wrist, intake));
+        controller.y().onFalse(new ampOuttake(elevator, wrist, intake));
         controller.rightTrigger().onTrue(new ElevatorToggle(elevator));
         controller.rightBumper().onTrue(new wristReset(wrist));
+        controller.leftBumper().onTrue(new scoreAmpPosit(elevator, wrist));
+
         //controller.rightTrigger().onTrue(new shiftGears(true, gearBox)).onFalse(new shiftGears(false, gearBox));
     }
 

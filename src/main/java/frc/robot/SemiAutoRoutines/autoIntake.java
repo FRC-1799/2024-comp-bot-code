@@ -32,7 +32,7 @@ public class autoIntake extends SequentialCommandGroup{
             new wristReset(wrist)
 
         );
-        addRequirements(semiAutoManager.hasSemiAutoPerm);
+        //addRequirements(semiAutoManager.hasSemiAutoPerm);
 
     }
 }

@@ -6,13 +6,13 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
-public class Outtake extends Command {
+public class outtake extends Command {
   Intake intake;
   double speed;
   boolean canRun;
   int count=0;
 
-  public Outtake(Intake intake2) {
+  public outtake(Intake intake2) {
     this.intake = intake2;
     addRequirements(intake2);
   }

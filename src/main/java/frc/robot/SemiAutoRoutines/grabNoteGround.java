@@ -22,7 +22,7 @@ public class grabNoteGround extends SequentialCommandGroup {
                 
             )
         );
-        addRequirements(semiAutoManager.hasSemiAutoPerm);
+        //addRequirements(semiAutoManager.hasSemiAutoPerm);
 
     }
 }

@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.semiAutoCommands.CancelCurrentRoutine;
+//import frc.robot.semiAutoCommands.CancelCurrentRoutine;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Gyro;
 import frc.robot.subsystems.Limelight;
@@ -30,7 +30,7 @@ public  class semiAutoManager{
     public static Timer timer;
     public static DifferentialDrivePoseEstimator poseEstimator;
     private static Command current;
-    public static CancelCurrentRoutine cancel= new CancelCurrentRoutine();
+    //public static CancelCurrentRoutine cancel= new CancelCurrentRoutine();
     private static Pose2d startingPose;
     public static Subsystem hasSemiAutoPerm = new Subsystem(){};
 
@@ -50,7 +50,7 @@ public  class semiAutoManager{
             drive.getRightEncoder(), 
             startingPose);
 
-        controlInitalizer.controlInitalizerFromSemiAutoManager(cancel);
+        //controlInitalizer.controlInitalizerFromSemiAutoManager(cancel);
         
     }
     
