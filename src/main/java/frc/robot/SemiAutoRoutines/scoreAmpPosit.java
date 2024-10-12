@@ -18,6 +18,6 @@ public class scoreAmpPosit extends ParallelCommandGroup{
                 new stayAtTop(elevator)
             ),
             new WristMove(wrist, Constants.wrist.positions.amp)
-        );
+        ); 
     }
 }

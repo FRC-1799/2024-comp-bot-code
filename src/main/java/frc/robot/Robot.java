@@ -113,11 +113,11 @@ public class Robot extends TimedRobot {
     controlChooser.setDefaultOption("New Comp Controlls", 6);
 
 
-    poseChooser.setDefaultOption("leftCorner", FeildPosits.startingPosit.cornerStart);
-    poseChooser.addOption("leftSpeaker", FeildPosits.startingPosit.leftSpeakerStart);
+    poseChooser.setDefaultOption("rightCorner", FeildPosits.startingPosit.cornerStart);
+    poseChooser.addOption("rightSpeaker", FeildPosits.startingPosit.leftSpeakerStart);
     poseChooser.addOption("middleSpeaker", FeildPosits.startingPosit.middleSpeakerStart);
-    poseChooser.addOption("rightSpeaker", FeildPosits.startingPosit.rightSpeakerStart);
-    poseChooser.addOption("right corner", FeildPosits.startingPosit.farRightStartForPosits);
+    poseChooser.addOption("leftSpeaker", FeildPosits.startingPosit.rightSpeakerStart);
+    poseChooser.addOption("left corner", FeildPosits.startingPosit.farRightStartForPosits);
 
 
     SmartDashboard.putData("control type", controlChooser);
