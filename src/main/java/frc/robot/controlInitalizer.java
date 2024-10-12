@@ -203,7 +203,7 @@ public class controlInitalizer {
             )); 
 
 
-        controller.x().onFalse(new testRoutine(driveSubsystem));
+        controller.x().onFalse(new testRoutine(driveSubsystem, elevator, intake, wrist));
         controller.a().onFalse(new ScoreAmp(driveSubsystem, elevator, intake, wrist));
         controller.b().onFalse(new grabNoteGround(driveSubsystem, elevator, intake, wrist));
         controller.leftTrigger().onTrue(new autoIntake(elevator, wrist, intake));
