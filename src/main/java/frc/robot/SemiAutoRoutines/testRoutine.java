@@ -29,14 +29,14 @@ public testRoutine(DriveBase drive, Elevator intakeElevator, Intake intake, Wris
 
             //MainLoop
             new ParallelCommandGroup(
-                new DriveToPoint(drive, FeildPosits.ampScore),
                 new scoreAmpPosit(intakeElevator, wrist)
             ),
             //Ending set
-            new ParallelRaceGroup(
-                new ampOuttake(intakeElevator, wrist, intake),
-                new stealDriveCommand(drive)
-            )
+            new ampOuttake(intakeElevator, wrist, intake)
+
+            // new ParallelRaceGroup(
+            //     new stealDriveCommand(drive)
+            // )
 
             //passOff
         );

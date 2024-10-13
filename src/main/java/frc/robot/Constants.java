@@ -270,7 +270,7 @@ public final class Constants {
 
         public static final double resetPosition = 0;
 
-        public static final double tolerance = 0.052;
+        public static final double tolerance = 0.175;
         public static final double kp = 0.4;
         public static final double ki = 0;
 
