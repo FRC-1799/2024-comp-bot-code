@@ -28,9 +28,8 @@ public testRoutine(DriveBase drive, Elevator intakeElevator, Intake intake, Wris
             
 
             //MainLoop
-            new ParallelCommandGroup(
-                new scoreAmpPosit(intakeElevator, wrist)
-            ),
+            new scoreAmpPosit(intakeElevator, wrist),
+            
             //Ending set
             new ampOuttake(intakeElevator, wrist, intake)
 

@@ -11,13 +11,13 @@ public final class FeildPosits {
         public final static Pose2d rightNote = new Pose2d(2.9, 4.13, new Rotation2d());
     }
         public static final class startingPosit{
-        public static final Pose2d cornerStart = new Pose2d(0,0, new Rotation2d(0));
+        public static final Pose2d cornerStart = new Pose2d(0.5,2, new Rotation2d(0));
         public static final Pose2d leftSpeakerStart = new Pose2d();
         public static final Pose2d middleSpeakerStart = new Pose2d();
         public static final Pose2d rightSpeakerStart = new Pose2d();
-        public static final Pose2d farRightStartForPosits = new Pose2d(.05, 7.764, new Rotation2d(0));
+        public static final Pose2d farRightStartForPosits = new Pose2d(.5, 7.25, new Rotation2d(0));
     }
-    public static final Pose2d ampScore = new Pose2d(1.66, 7.56, new Rotation2d(Math.toRadians(90)));
+    public static final Pose2d ampScore = new Pose2d(1.5, 7.6, new Rotation2d(Math.toRadians(90)));
     public static final Pose2d speakerScore = new Pose2d();
 
     public static final Pose2d notePickup = new Pose2d(14.1, 0.74, new Rotation2d(0));

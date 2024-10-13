@@ -1,9 +1,12 @@
 package frc.robot.autoRoutines;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.FeildPosits;
+import frc.robot.semiAutoManager;
 import frc.robot.Constants;
 import frc.robot.Constants.elevator;
 import frc.robot.SemiAutoRoutines.ScoreAmp;
@@ -26,8 +29,8 @@ public class doubleAmp extends SequentialCommandGroup{
 
             new ParallelRaceGroup(
                 new SequentialCommandGroup(
-                    new turnAround(drive),
-                    new DriveToPoint(drive, FeildPosits.startingNotes.rightNote)
+                    new DriveToPoint(drive, new Pose2d(semiAutoManager.getCoords().getX(), semiAutoManager.getCoords().getY(), new Rotation2d(semiAutoManager.getCoords().getRotation().getRadians()+Math.PI))),
+                    new DriveToPoint(drive, FeildPosits.startingNotes.leftNote)
                 ),
                 new SequentialCommandGroup(
                     new ParallelCommandGroup(
