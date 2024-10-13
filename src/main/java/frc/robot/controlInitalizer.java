@@ -239,6 +239,31 @@ public class controlInitalizer {
         manipController.leftBumper().onFalse(new outtake(intake));
 
     }
+    public static final void newerCompControls(CommandXboxController movementController, CommandXboxController manipController){
+        checkInit();
+
+        driveSubsystem.setDefaultCommand(
+            new ArcadeDrive(
+                driveSubsystem,
+                () -> ( movementController.getLeftY()),
+                () -> (-movementController.getRightX())
+            ));
+    
+        gearBox.setDefaultCommand(
+            new shiftGears(() -> (!movementController.rightTrigger().getAsBoolean()), gearBox));
+        
+
+        manipController.a().onFalse(new scoreAmpPosit(elevator, wrist));
+        manipController.x().onFalse(new autoIntake(elevator, wrist, intake));
+        manipController.y().onFalse(new ampOuttake(elevator, wrist, intake));
+        manipController.b().onFalse(new wristReset(wrist));
+        manipController.rightTrigger().onFalse(new ElevatorToggle(elevator));
+        manipController.leftTrigger().onFalse(new climb(elevator));
+        manipController.rightBumper().onFalse(new intakeCommand(intake));
+        manipController.leftBumper().onFalse(new outtake(intake));
+        manipController.pov(0).onFalse(new ScoreAmp(driveSubsystem, elevator, intake, wrist));
+
+    }
 
   
 

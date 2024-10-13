@@ -111,6 +111,7 @@ public class Robot extends TimedRobot {
     controlChooser.addOption("autoDriveTest", 4);
     controlChooser.setDefaultOption("Comp Controlls", 5);
     controlChooser.setDefaultOption("New Comp Controlls", 6);
+    controlChooser.setDefaultOption("newer comp controlls", 7);
 
 
     poseChooser.setDefaultOption("rightCorner", FeildPosits.startingPosit.cornerStart);
@@ -166,6 +167,9 @@ public class Robot extends TimedRobot {
     }
     else if (controlChooser.getSelected()==6){
       controlInitalizer.newCompControls(controller1, controller2);
+    }
+    else if (controlChooser.getSelected()==7){
+      controlInitalizer.newerCompControls(controller2, controller1);
     }
      
 
