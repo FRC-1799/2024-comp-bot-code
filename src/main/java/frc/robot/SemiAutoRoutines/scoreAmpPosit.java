@@ -13,10 +13,7 @@ import frc.robot.subsystems.WristIntake;
 public class scoreAmpPosit extends ParallelCommandGroup{
     public scoreAmpPosit(Elevator elevator, WristIntake wrist){
         super(
-            new SequentialCommandGroup(
-                new elevatorMoveTo(elevator, true),
-                new stayAtTop(elevator)
-            ),
+            new elevatorMoveTo(elevator, true),
             new WristMove(wrist, Constants.wrist.positions.amp)
         ); 
     }
